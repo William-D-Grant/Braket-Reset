@@ -15,7 +15,7 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-*  Version Changes:	Changed SetBloxStats and SetAbilities      *
+* Version Changes:	Changed SetBloxStats and SetAbilities      *
 ****************************************************************/
 
 using System.Collections.Generic;
