@@ -2,10 +2,10 @@
 * Filename:       	ClassVitals.cs                             *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.1.0                                      *
-* Previous Version: 0.0.1                                      *
+* Current Version:  0.1.1                                      *
+* Previous Version: 0.1.0                                      *
 * Creation Date:  	April 28, 2026                             *
-* Last Modified:  	April 30, 2026                             *
+* Last Modified:  	May 5, 2026                                *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
@@ -15,7 +15,7 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-* Version Changes:	Changed SetBloxStats and SetAbilities      *
+* Version Changes:	Added ClearStatus                          *
 ****************************************************************/
 
 using System.Collections.Generic;
@@ -54,7 +54,7 @@ public class ClassVitals
     private AbilityInstance[] _currAbilities;
 
     //The Blox's team (either player or enemy)
-    private string _team;
+    private Team _team;
 
     //The Blox's current effects
     private List<EffectInstance> _currEffects;
@@ -66,46 +66,17 @@ public class ClassVitals
     /* Description: A constructor to initiate the creation of a new Blox and to       */
     /*              create an empty list of effects for later                         */
     /* Parameters: ClassAbstract className: a specific class of Blox (ex: Fighter)    */
+    /*             Team team: The team the Blox is on, either Player or Enemy         */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public ClassVitals(string className)//add Team team
+    public ClassVitals(ClassAbstract className, Team team)
     {
-        // _team = team;
-        switch (className)
-        {
-            case "FIGHTER":
-                _class = new FighterClass();
-                break;
+        //Set the Blox's team
+         _team = team;
 
-            case "TANK":
-                _class = new TankClass();
-                break;
-
-            case "RANGER":
-                _class = new RangerClass();
-                break;
-
-            case "THIEF":
-                _class = new ThiefClass();
-                break;
-
-            case "SAGE":
-                _class = new SageClass();
-                break;
-
-            case "CLOWN":
-                _class = new ClownClass();
-                break;
-
-            case "COWBOY":
-                _class = new CowboyClass();
-                break;
-
-            case "PIRATE":
-                _class = new PirateClass();
-                break;
-        }
+        //Store what class is passed
+        _class = className;
 
         _currEffects = new List<EffectInstance>();
 
@@ -234,7 +205,7 @@ public class ClassVitals
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public string GetTeam()
+    public Team GetTeam()
     {
         return _team;
     }
@@ -296,6 +267,33 @@ public class ClassVitals
         _currEffects.Add(effect);
     }//end ApplyStatus
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: ClearStatus                                                     */
+    /* Description: Clears all current statuses on a blox                             */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void ClearStatus()
+    {
+        _currEffects.Clear();
+    }
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetSpeed                                                        */
+    /* Description: A gettor for the Blox's speed                                     */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetSpeed()
+    {
+        return _currSPD;
+    }
 
     /**********************************************************************************/
     /*                                                                                */

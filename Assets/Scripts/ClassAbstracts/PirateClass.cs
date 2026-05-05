@@ -29,6 +29,9 @@ public class PirateClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "PIRATE";
+
         //The Pirate's maximum health points
         classMaxHP = 60;
 

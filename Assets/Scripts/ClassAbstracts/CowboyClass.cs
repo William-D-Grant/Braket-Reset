@@ -29,6 +29,9 @@ public class CowboyClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "COWBOY";
+
         //The Cowboy's maximum health points
         classMaxHP = 60;
 

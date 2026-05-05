@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Filters;
 using UnityEngine;
 
 public class ClownClass : ClassAbstract
@@ -29,6 +30,9 @@ public class ClownClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "CLOWN";
+
         //The Clown's maximum health points
         classMaxHP = 50;
 
@@ -58,6 +62,7 @@ public class ClownClass : ClassAbstract
         {
             "HYPE_TRAIN"
         };
+
     }//end CreateClass
 
 }//end ClownClass

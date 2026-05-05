@@ -29,6 +29,9 @@ public class SageClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "SAGE";
+
         //The Sage's maximum health points
         classMaxHP = 100;
 

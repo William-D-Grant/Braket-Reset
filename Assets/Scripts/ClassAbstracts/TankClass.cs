@@ -29,6 +29,9 @@ public class TankClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "TANK";
+
         //The Tank's maximum health points
         classMaxHP = 90;
 

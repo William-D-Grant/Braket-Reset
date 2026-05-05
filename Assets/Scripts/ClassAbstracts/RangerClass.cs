@@ -29,6 +29,9 @@ public class RangerClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "RANGER";
+
         //The Ranger's maximum health points
         classMaxHP = 70;
 

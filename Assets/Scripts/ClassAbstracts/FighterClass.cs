@@ -29,6 +29,9 @@ public class FighterClass : ClassAbstract
     /**********************************************************************************/
     public override void CreateClass()
     {
+        //The class's name
+        className = "FIGHTER";
+
         //The fighter's maximum health points
         classMaxHP = 60;
 

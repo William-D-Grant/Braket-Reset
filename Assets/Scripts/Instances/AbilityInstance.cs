@@ -89,7 +89,7 @@ public class AbilityInstance
                 case "SEA_SHANTY":
                     EffectFlyweight seaShantyEffect = EffectFactory.RetrieveEffect("SEA_SHANTY");
                     EffectInstance seaShantyInstance = new EffectInstance(seaShantyEffect);
-                    if (abilityTarget.GetTeam() == "Player")
+                    if (abilityTarget.GetTeam() == Team.Player)
                     {
                         abilityTarget.UpdateLuck(2);
                         abilityTarget.UpdateHype(2);

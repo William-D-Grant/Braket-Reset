@@ -1,5 +1,5 @@
 /***************************************************************
-* Filename:       	ClassVitals.cs                             *
+* Filename:       	EnemyTeamSelector.cs                       *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
 * Current Version:  0.1.0                                      *
@@ -117,7 +117,7 @@ public class EnemyTeamSelector : MonoBehaviour
 
         bracket.Clear();
 
-        for (int i = 0; i < bracket.Count; i++)
+        for (int i = 0; i < temp.Count; i++)
         {
             int index = Random.Range(0, temp.Count - 1);
             bracket.Add(temp[index]);
@@ -130,15 +130,15 @@ public class EnemyTeamSelector : MonoBehaviour
     }//end ShuffleBracket
 
 
-    /**********************************************************************************/
-    /*                                                                                */
-    /* Function name: BuildEnemyTeams                                                 */
-    /* Description: Clear _allEnemyTeams and build all of the hardcoded enemy teams,  */
-    /*              enemy teams are hardcoded to give them character and personality, */
-    /* Parameters: N/A                                                                */
-    /* Return Value: N/A                                                              */
-    /*                                                                                */
-    /**********************************************************************************/
+    /*************************************************************************************************/
+    /*                                                                                               */
+    /* Function name: BuildEnemyTeams                                                                */
+    /* Description: Clear _allEnemyTeams and build blueprints for all of the hardcoded enemy teams,  */
+    /*              enemy teams are hardcoded to give them character and personality,                */
+    /* Parameters: N/A                                                                               */
+    /* Return Value: N/A                                                                             */
+    /*                                                                                               */
+    /*************************************************************************************************/
     private void BuildEnemyTeams()
     {
         //Clear _allEnemyTeams
@@ -163,7 +163,7 @@ public class EnemyTeamSelector : MonoBehaviour
         }));
 
         //Build Leneyjoce Superdark
-        _allEnemyTeams.Add(new EnemyTeam("LENEYJOCE_SUPERDARK", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("LENEYJOCE_SUPERDARK",new List<ClassAbstract>
         {
             new TankClass()
         }));
@@ -185,6 +185,12 @@ public class EnemyTeamSelector : MonoBehaviour
         {
             new SageClass()
         }));
+
+        //Set the team to Enemy
+        foreach(EnemyTeam team in _allEnemyTeams)
+        {
+            team.team = Team.Enemy;
+        }
 
     }//end BuildEnemyTeams
 }

@@ -19,6 +19,10 @@ using UnityEngine;
 
 public abstract class ClassAbstract
 {
+
+    //The class' name
+    public string className;
+
     //The class' maximum health points
     public float classMaxHP;
 
@@ -45,6 +49,9 @@ public abstract class ClassAbstract
 
     //The array of the class' abilities
     public string[] abilityArray;
+
+    //The Blox's team
+    public Team team;
 
 
     /**********************************************************************************/
