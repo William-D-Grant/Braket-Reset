@@ -177,16 +177,33 @@ public class CombatHandler : MonoBehaviour
 
     }//end CheckVictor
 
-    /*i dont know what to do with these, are they just gettors?
-    public void PlayerList()
-    {
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: PlayerList                                                      */
+    /* Description: A gettor for the player's current list of Blox in this run        */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public List<ClassVitals> PlayerList()
+    {
+        return _runManager.playerTeam;
     }
 
-    public void EnemyList()
-    {
 
-    }*/
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: EnemyList                                                       */
+    /* Description: A gettor for the enemy's current list of Blox                     */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public List<ClassVitals> EnemyList()
+    {
+        return _runManager.enemyTeam;
+    }
 
 }
 
