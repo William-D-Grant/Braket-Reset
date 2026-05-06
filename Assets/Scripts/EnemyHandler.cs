@@ -31,12 +31,12 @@ public class EnemyController
         ChangeState();
     }//end update
 
-
+    // https://stackoverflow.com/questions/71130518/find-closest-object-in-unity-3d
     public void FindClosestTarget()
     {
         _closestTarget = null;
 
-        float closestDistance = 99999f;
+        float closestDistance = Mathf.Infinity;
 
         foreach (ClassVitals playerBlox in _combatHandler.PlayerList())
         {
@@ -58,8 +58,7 @@ public class EnemyController
         PathtoTarget();
 
         if (_isAdjacentToPlayer == true && _hasAction == true)
-    
-    {
+        {
             //attack logic here
             _hasAction = false;
             EndTurn();
