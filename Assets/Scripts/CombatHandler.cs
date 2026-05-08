@@ -72,6 +72,9 @@ public class CombatHandler : MonoBehaviour
         //Sorts the turn list by the Blox's speed value
         _turnList = _turnList.OrderByDescending(blox => blox.GetSpeed()).ToList();
 
+        _turn = 0;
+        _round = 1;
+
     }//end Populate turns
 
 
@@ -96,7 +99,7 @@ public class CombatHandler : MonoBehaviour
             _round++;
         }
 
-        return _turnList[_round].GetTeam();
+        return _turnList[_turn].GetTeam();
     }//end shiftTurn
 
 

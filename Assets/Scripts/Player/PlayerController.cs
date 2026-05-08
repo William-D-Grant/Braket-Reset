@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        activeUnit = _combatHandler.CurrentUnit();
         abilitySelected = activeUnit._currAbilities[0];
     }
+
     private void Update()
     {
         if (_inputManager.SelectInput)

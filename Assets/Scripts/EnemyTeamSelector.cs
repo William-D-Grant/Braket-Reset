@@ -2,10 +2,10 @@
 * Filename:       	EnemyTeamSelector.cs                       *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.1.0                                      *
-* Previous Version: 0.0.1                                      *
+* Current Version:  0.2.0                                      *
+* Previous Version: 0.1.0                                      *
 * Creation Date:  	May 2, 2026                                *
-* Last Modified:  	May 2, 2026                                *
+* Last Modified:  	May 7, 2026                                *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
@@ -14,17 +14,14 @@
 *                   current list of enemy teams, the current   *
 *                   enemy team the player is fighting, and     *
 *                   handle remaking and shuffling these        *
-* Version Changes:	Changed _allEnemyTeams and _currentBracket *
-*                   Teams to be List<Team> instead of          *
-*                   List<List<ClassAbstract>> to account for   *
-*                   the creation of the Team class to          *
-*                   distunguish between characters             *
+* Version Changes:	Made EnemyTeamSelector a singleton         *
 ****************************************************************/
 using UnityEngine;
 using System.Collections.Generic;
 
 public class EnemyTeamSelector : MonoBehaviour
 {
+    //
     public static EnemyTeamSelector _singletonInstance { get; private set; }
     //A list of all of the enemy teams, enemy teams are hard coded to give personality to them 
     private List<EnemyTeam> _allEnemyTeams;
