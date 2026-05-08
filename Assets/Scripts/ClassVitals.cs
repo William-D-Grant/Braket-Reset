@@ -84,6 +84,9 @@ public class ClassVitals
         //Store what class is passed
         _class = className;
 
+        //Set Blox model
+        _bloxObject = className.bloxObject;
+
         _currEffects = new List<EffectInstance>();
 
         ClassFactory.BuildClass(this, _class);

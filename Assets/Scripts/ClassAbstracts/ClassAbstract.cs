@@ -53,6 +53,9 @@ public abstract class ClassAbstract
     //The Blox's team
     public Team team;
 
+    //The Blox's model
+    public GameObject bloxObject = Resources.Load<GameObject>("PreFabs/TestPlayer");
+
 
     /**********************************************************************************/
     /*                                                                                */

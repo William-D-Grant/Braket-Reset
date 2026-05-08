@@ -35,6 +35,10 @@ public class CombatHandler : MonoBehaviour
     //What turn it is in the round
     private int _turn = 0;
 
+    [SerializeField]
+    //Player controller to pass turn to
+    private PlayerController _playerController;
+
 
     /**********************************************************************************/
     /*                                                                                */
@@ -47,6 +51,7 @@ public class CombatHandler : MonoBehaviour
     private void Start()
     {
         _runManager = RunManager._singletonInstance;
+        Debug.Log("Starting Combat Handler");
         PopulateTurns();
     }//end Start
 
@@ -61,18 +66,26 @@ public class CombatHandler : MonoBehaviour
     //OrderByDescending taken from Bernard Vander Beken on https://stackoverflow.com/questions/5344805/linq-orderby-descending-query
     public void PopulateTurns()
     {
+        Debug.Log("Populating Turns");
         //Clears the turn list
         _turnList.Clear();
 
+        Debug.Log(_runManager.playerTeam[0]);
+
         //Adds both the player's and the enemy's teams of Blox into the turn order
         _turnList.AddRange(_runManager.playerTeam);
-        _turnList.AddRange(_runManager.enemyTeam);
+        //_turnList.AddRange(_runManager.enemyTeam);
 
         //Sorts the turn list by the Blox's speed value
         _turnList = _turnList.OrderByDescending(blox => blox.GetSpeed()).ToList();
 
-        _turn = 0;
+        _turn = -1;
         _round = 1;
+        Debug.Log("At other debugs");
+        Debug.Log(_turnList.Count);
+        Debug.Log(_turnList[0]._bloxObject);
+
+        ShiftTurn();
 
     }//end Populate turns
 
@@ -86,7 +99,7 @@ public class CombatHandler : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public Team ShiftTurn()
+    public void ShiftTurn()
     {
         //Update the turn number
         _turn++;
@@ -98,7 +111,12 @@ public class CombatHandler : MonoBehaviour
             _round++;
         }
 
-        return _turnList[_turn].GetTeam();
+        if (_turnList[_turn].GetTeam() == Team.Player)
+        {
+            _playerController.EnablePlayer(_turnList[_turn]);
+        }
+
+        //return _turnList[_turn].GetTeam();
     }//end shiftTurn
 
 

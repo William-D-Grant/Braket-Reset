@@ -15,7 +15,9 @@ public class MapHandler : MonoBehaviour
     public void PlaceUnits()
     {
         List<ClassVitals> playerTeam = _combatHandler.PlayerList();
+        int playerCount = 0;
         List<ClassVitals> enemyTeam = _combatHandler.EnemyList();
+        int enemyCount = 0;
 
         for (int i = 0; i < tileGrid.GetLength(0); i++)
         {
@@ -25,13 +27,13 @@ public class MapHandler : MonoBehaviour
                 {
                     if (i == 0)
                     {
-                        GameObject bloxSpawned = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
                     else
                     {
-                        GameObject bloxSpawned = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount]._bloxObject, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
@@ -46,14 +48,14 @@ public class MapHandler : MonoBehaviour
     {
         Tile[] nearbyTiles = new Tile[4];
         int tileNumber = 0;
-        for (int i = (int)(referenceUnit._currPos.x - 1); i <= (int)(referenceUnit._currPos.x + 1); i++)
+        for (int i = Mathf.Clamp((int)(referenceUnit._currPos.x - 1), 0, 9); i <= (int)(referenceUnit._currPos.x + 1); i++)
         {
             if (i != referenceUnit._currPos.x)
             {
                 nearbyTiles[tileNumber] = tileGrid[i, (int)(referenceUnit._currPos.y)];
             }
         }
-        for (int j = (int)(referenceUnit._currPos.y - 1); j <= (int)(referenceUnit._currPos.y + 1); j++)
+        for (int j = Mathf.Clamp((int)(referenceUnit._currPos.y - 1), 0, 9); j <= (int)(referenceUnit._currPos.y + 1); j++)
         {
             if (j != referenceUnit._currPos.y)
             {

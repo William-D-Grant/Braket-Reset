@@ -93,6 +93,7 @@ public class ClassSelectorMenu : MonoBehaviour
 
         //Add the new blox into the player's current selected Blox
         playerSelection.Add(playerBlox);
+        Debug.Log("Added" + playerBlox);
 
         //If the player has chosen enough Blox (3), start the game
         if(playerSelection.Count == _teamSize)

@@ -60,7 +60,8 @@ public class ClownClass : ClassAbstract
         //The array of the Clown's abilities
         abilityArray = new string[]
         {
-            "HYPE_TRAIN"
+            "HYPE_TRAIN",
+            "DEFAULT_TEST"
         };
 
     }//end CreateClass
