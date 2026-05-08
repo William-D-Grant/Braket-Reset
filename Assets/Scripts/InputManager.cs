@@ -91,14 +91,20 @@ public class InputManager : MonoBehaviour
         _pauseInputAction.Enable();
     }
 
-/**********************************************************************************/
+    private void Update()
+    {
+        SelectInput = _selectInputAction.WasPressedThisFrame();
+        DeselectInput = _deselectInputAction.WasPressedThisFrame();
+    }
+
+    /**********************************************************************************/
     /*                                                                                */
     /* Function name: OnEnable                                                        */
     /* Description: Enables the action map on enable.                                 */
-    /* Parameters: None                                                               */           
+    /* Parameters: None                                                               */
     /* Return Value: N/A                                                              */
     /*                                                                                */
-/**********************************************************************************/
+    /**********************************************************************************/
     private void OnEnable()
     {
         _theActionMap.Enable();
@@ -164,6 +170,25 @@ public class InputManager : MonoBehaviour
         Physics.Raycast(Mouse3DPositionChecker, out Mouse3DPosition);
         
         return Mouse3DPosition.transform.position;
-    } 
+    }
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetMouse3DTarget                                                */
+    /* Description: A function that uses the mouse's current position to fire a       */
+    /*              raycast from the camera, returning the item that it hits          */
+    /*              at the location of the mouse                                      */
+    /* Parameters:  None.                                                             */
+    /* Return Value: Vector3                                                          */
+    /*                                                                                */
+    /**********************************************************************************/
+    public RaycastHit GetMouse3DTarget()
+    {
+        Ray Mouse3DPositionChecker = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit Mouse3DPosition;
+        Physics.Raycast(Mouse3DPositionChecker, out Mouse3DPosition);
+
+        return Mouse3DPosition;
+    }
 
 }

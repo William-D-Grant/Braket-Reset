@@ -39,6 +39,16 @@ public class AbilityInstance
         this._abilityStats = abilityStats;
     }//end AbilityInstance Constructor
 
+    public int GetRange()
+    {
+        return _abilityStats.abilityRange;
+    }
+
+    public string GetName()
+    {
+        return _abilityStats.abilityID;
+    }
+
 
     public void UseAbility(ClassVitals abilityCaster, ClassVitals abilityTarget)
     {
