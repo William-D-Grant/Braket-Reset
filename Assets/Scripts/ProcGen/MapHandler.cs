@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapHandler : MonoBehaviour
@@ -8,8 +9,14 @@ public class MapHandler : MonoBehaviour
     public GameObject testEnemy;
     public float playerOffset;
 
+    [SerializeField]
+    private CombatHandler _combatHandler; 
+
     public void PlaceUnits()
     {
+        List<ClassVitals> playerTeam = _combatHandler.PlayerList();
+        List<ClassVitals> enemyTeam = _combatHandler.EnemyList();
+
         for (int i = 0; i < tileGrid.GetLength(0); i++)
         {
             for (int j = 0; j < tileGrid.GetLength(1); j++)
@@ -18,17 +25,22 @@ public class MapHandler : MonoBehaviour
                 {
                     if (i == 0)
                     {
-                        unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
+                        // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
                     else
                     {
-                        unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
+                        // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
                     
                 }
             }
         }
     }
+
 
     public Tile[] FindTilesNearUnit(ClassVitals referenceUnit)
     {
@@ -50,4 +62,8 @@ public class MapHandler : MonoBehaviour
         }
         return nearbyTiles;
     }
+
+
+
+
 }

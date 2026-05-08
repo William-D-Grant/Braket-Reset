@@ -41,7 +41,7 @@ public class ClassVitals
     //The Blox's current tile movement value
     private int _currTM;
 
-    //The Blox's current Hype ///////OUTDATED
+    //The Blox's current Hype generation
     private int _currHype;
 
     //The Blox's current Range

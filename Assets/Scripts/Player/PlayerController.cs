@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public AbilityInstance abilitySelected;
     private int abilityIndex;
 
+    private int _currentHype;
+
 
     private void Awake()
     {

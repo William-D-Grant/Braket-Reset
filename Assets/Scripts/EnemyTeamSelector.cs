@@ -25,6 +25,7 @@ using System.Collections.Generic;
 
 public class EnemyTeamSelector : MonoBehaviour
 {
+    public static EnemyTeamSelector _singletonInstance { get; private set; }
     //A list of all of the enemy teams, enemy teams are hard coded to give personality to them 
     private List<EnemyTeam> _allEnemyTeams;
 
@@ -34,6 +35,31 @@ public class EnemyTeamSelector : MonoBehaviour
     //The current enemy team the player is fighting against
     private EnemyTeam _currentEnemyTeam;
 
+
+
+
+    /***************************************************************************************************/
+    /*                                                                                                 */
+    /* Function name: Awake                                                                            */
+    /* Description: Makes EnemyTeamSelector a singleton, and resets the bracket <- say that again      */ 
+    /* Parameters: N/A                                                                                 */
+    /* Return Value: N/A                                                                               */
+    /*                                                                                                 */
+    /***************************************************************************************************/
+    private void Awake()
+    {
+        if (_singletonInstance == null)
+        {
+            _singletonInstance = this;
+            DontDestroyOnLoad(gameObject);
+            ResetBracket();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }//end void
 
     /**********************************************************************************/
     /*                                                                                */
@@ -117,15 +143,13 @@ public class EnemyTeamSelector : MonoBehaviour
 
         bracket.Clear();
 
-        for (int i = 0; i < temp.Count; i++)
+        while (temp.Count > 0)
         {
-            int index = Random.Range(0, temp.Count - 1);
+            int index = Random.Range(0, temp.Count);
             bracket.Add(temp[index]);
             temp.RemoveAt(index);
 
-            //if this causes issues, remove the - 1 from temp.Count - 1 and put an i-- in this line, i literally dont know why i couldnt begin to explain, it should work like this though but it wouldnt for me
-
-        }//end for
+        }//end while
 
     }//end ShuffleBracket
 

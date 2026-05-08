@@ -30,7 +30,7 @@ public class CombatHandler : MonoBehaviour
     private int _round = 1;
 
     //The list of Blox in the order they'll take turns in
-    private List<ClassVitals> _turnList;
+    private List<ClassVitals> _turnList = new List<ClassVitals>();
 
     //What turn it is in the round
     private int _turn = 0;
@@ -141,11 +141,11 @@ public class CombatHandler : MonoBehaviour
         //If the player won, end the combat
         if(CheckVictor() == Team.Player)
         {
-            _runManager.EndCombat();
+            _runManager.EndCombat(killedUnit.GetTeam());
         }//end if
         else
         {//If the enemy won, end the Run
-            _runManager.EndRun();
+            _runManager.EndRun(killedUnit.GetTeam());
         }//end if else
 
     }//end DefeatUnit
@@ -183,13 +183,14 @@ public class CombatHandler : MonoBehaviour
     /* Function name: PlayerList                                                      */
     /* Description: A gettor for the player's current list of Blox in this run        */
     /* Parameters: N/A                                                                */
-    /* Return Value: N/A                                                              */
+    /* Return Value: List<ClassVitals> _runManager.playerTeam: the player's team of   */
+    /*               Blox                                                             */
     /*                                                                                */
     /**********************************************************************************/
     public List<ClassVitals> PlayerList()
     {
         return _runManager.playerTeam;
-    }
+    }//end PlayerList
 
 
     /**********************************************************************************/
@@ -197,13 +198,13 @@ public class CombatHandler : MonoBehaviour
     /* Function name: EnemyList                                                       */
     /* Description: A gettor for the enemy's current list of Blox                     */
     /* Parameters: N/A                                                                */
-    /* Return Value: N/A                                                              */
-    /*                                                                                */
+    /* Return Value: List<ClassVitals> _runManager.enemyTeam: the enemy's team of     */
+    /*               Blox                                                             */
     /**********************************************************************************/
     public List<ClassVitals> EnemyList()
     {
         return _runManager.enemyTeam;
-    }
+    }//end EnemyList
 
 }
 
