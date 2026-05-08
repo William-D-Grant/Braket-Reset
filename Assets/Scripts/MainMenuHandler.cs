@@ -102,6 +102,6 @@ public class MainMenuHandler : MonoBehaviour
     // Returns:     None
     public void StartLevel()
     {
-        SceneManager.LoadScene(levelSceneIndex);
+        SceneManager.LoadScene("BloxSelection");
     }
 }

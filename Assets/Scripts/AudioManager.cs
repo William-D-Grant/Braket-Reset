@@ -73,7 +73,7 @@ public class AudioManager : MonoBehaviour
     public void UpdateSFXVolume(float updatedValue)
     {
         PlayerOptions.SFXVolume = updatedValue;
-        _musicMixerGroup.audioMixer.SetFloat("MixerSFXVolume", ModifierToDecibels(updatedValue));
+        _sfxMixerGroup.audioMixer.SetFloat("SFX", ModifierToDecibels(updatedValue));
     }
 
     // Name:        UpdateMusicVolume
@@ -83,7 +83,7 @@ public class AudioManager : MonoBehaviour
     public void UpdateMusicVolume(float updatedValue)
     {
         PlayerOptions.MusicVolume = updatedValue;
-        _musicMixerGroup.audioMixer.SetFloat("MixerMusicVolume", ModifierToDecibels(updatedValue));
+        _musicMixerGroup.audioMixer.SetFloat("Music", ModifierToDecibels(updatedValue));
     }
 
     // Name:        UpdateVoiceVolume
@@ -93,7 +93,7 @@ public class AudioManager : MonoBehaviour
     public void UpdateVoiceVolume(float updatedValue)
     {
         PlayerOptions.VoiceVolume = updatedValue;
-        _voiceMixerGroup.audioMixer.SetFloat("MixerVoiceVolume", ModifierToDecibels(updatedValue));
+        _voiceMixerGroup.audioMixer.SetFloat("Voice", ModifierToDecibels(updatedValue));
     }
 
     // Name:        ModifierToDecibels

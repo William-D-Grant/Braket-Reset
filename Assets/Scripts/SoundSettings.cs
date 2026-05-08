@@ -1,12 +1,12 @@
 // Filename:            SoundSettings.cs
-// Author:              Professor Wolfe edited by Mars Dunn
+// Author:              Professor Wolfe edited by Mars Dunn and Noah Stern
 // Creation Date:       1/29/2026
 // Last Modified:       5/8/2026
-// Current Version:     0.2.0
-// Previous Version:    0.1.1
+// Current Version:     0.2.1
+// Previous Version:    0.2.0
 // Project:             Braket Reset
 // Purpose:             Handles updates made to audio settings
-// Version Changes:     Updated version for "Braket Reset" integration
+// Version Changes:     Changed Awake to be Start instead, moved correlated logic
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,21 +29,29 @@ public class SoundSettings : MonoBehaviour
     // Description: Called immediately upon the object loading in
     // Parameters:  None
     // Returns:     None
-    void Awake()
+    void Start()
     {
         _audioManager = AudioManager.SingletonInstance;
+
+        if (_audioManager == null)
+        {
+            Debug.Log("null");
+        }
+        _sfxVolumeSlider.value = PlayerOptions.SFXVolume;
+        _musicVolumeSlider.value = PlayerOptions.MusicVolume;
+        _voiceVolumeSlider.value = PlayerOptions.VoiceVolume;
     }
 
     // Name:        Start
     // Description: Called immediately before the object's first Update frame
     // Parameters:  None
     // Returns:     None
-    void Start()
+    /*void Start()
     {
         _sfxVolumeSlider.value = PlayerOptions.SFXVolume;
         _musicVolumeSlider.value = PlayerOptions.MusicVolume;
         _voiceVolumeSlider.value = PlayerOptions.VoiceVolume;
-    }
+    }*/
 
     // Name:        UpdateSFXVolume
     // Description: Forwards SFX volume changes to the audio manager
