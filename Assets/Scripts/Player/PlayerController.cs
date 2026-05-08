@@ -15,8 +15,14 @@ public class PlayerController : MonoBehaviour
     private ClassVitals activeUnit;
     private ClassVitals targetUnit;
     private Tile selectedTile;
-    private AbilityFlyweight abilitySelected;
+    public AbilityInstance abilitySelected;
+    private int abilityIndex;
 
+
+    private void Awake()
+    {
+        abilitySelected = activeUnit._currAbilities[0];
+    }
     private void Update()
     {
         if (_inputManager.SelectInput)
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void MoveToTile()
+    public void MoveToTile()
     {
         if (remainingTM > 0)
         {
@@ -85,22 +91,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SelectAbility(AbilityFlyweight clickedAbility)
+    public void SelectAbility()
     {
-        abilitySelected = clickedAbility;
+        abilityIndex++;
+        abilitySelected = activeUnit._currAbilities[abilityIndex];
     }
 
-    private void UseAbility()
+    public void UseAbility()
     {
         if (hasAction && targetUnit != null)
         {
-            for (int i = (int)activeUnit._currPos.x - abilitySelected.abilityRange; i < (int)activeUnit._currPos.x + abilitySelected.abilityRange; i++)
+            for (int i = (int)activeUnit._currPos.x - abilitySelected.GetRange(); i < (int)activeUnit._currPos.x + abilitySelected.GetRange(); i++)
             {
-                for (int j = (int)activeUnit._currPos.y - abilitySelected.abilityRange; j < (int)activeUnit._currPos.y + abilitySelected.abilityRange; j++)
+                for (int j = (int)activeUnit._currPos.y - abilitySelected.GetRange(); j < (int)activeUnit._currPos.y + abilitySelected.GetRange(); j++)
                 {
                     if (targetUnit._bloxObject == _mapHandler.unitGrid[i, j])
                     {
-                        targetUnit.TakeDamage(abilitySelected.abilityDamage);
+                        abilitySelected.UseAbility(activeUnit, targetUnit);
                         hasAction = false;
                     }
                 }
@@ -108,7 +115,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void EndTurn()
+    public void EndTurn()
     {
         _combatHandler.ShiftTurn();
     }

@@ -51,7 +51,7 @@ public class ClassVitals
     private int _currLuck;
 
     //The Blox's current abilities
-    private AbilityInstance[] _currAbilities;
+    public AbilityInstance[] _currAbilities;
 
     //The Blox's team (either player or enemy)
     private Team _team;
