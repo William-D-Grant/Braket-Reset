@@ -47,7 +47,6 @@ public class CombatHandler : MonoBehaviour
     private void Start()
     {
         _runManager = RunManager._singletonInstance;
-
         PopulateTurns();
     }//end Start
 
@@ -93,7 +92,7 @@ public class CombatHandler : MonoBehaviour
         _turn++;
 
         //If the turn number is higher than the number of blox in _turnList, then reset the turn order
-        if(_turn > _turnList.Count)
+        if(_turn >= _turnList.Count)
         {
             _turn = 0;
             _round++;

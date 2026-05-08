@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private int _currentHype;
 
 
-    private void Awake()
+    private void Start()
     {
         activeUnit = _combatHandler.CurrentUnit();
         abilitySelected = activeUnit._currAbilities[0];
