@@ -29,4 +29,25 @@ public class MapHandler : MonoBehaviour
             }
         }
     }
+
+    public Tile[] FindTilesNearUnit(ClassVitals referenceUnit)
+    {
+        Tile[] nearbyTiles = new Tile[4];
+        int tileNumber = 0;
+        for (int i = (int)(referenceUnit._currPos.x - 1); i <= (int)(referenceUnit._currPos.x + 1); i++)
+        {
+            if (i != referenceUnit._currPos.x)
+            {
+                nearbyTiles[tileNumber] = tileGrid[i, (int)(referenceUnit._currPos.y)];
+            }
+        }
+        for (int j = (int)(referenceUnit._currPos.y - 1); j <= (int)(referenceUnit._currPos.y + 1); j++)
+        {
+            if (j != referenceUnit._currPos.y)
+            {
+                nearbyTiles[tileNumber] = tileGrid[(int)(referenceUnit._currPos.x), j];
+            }
+        }
+        return nearbyTiles;
+    }
 }

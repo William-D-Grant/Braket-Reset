@@ -59,6 +59,12 @@ public class ClassVitals
     //The Blox's current effects
     private List<EffectInstance> _currEffects;
 
+    //The Blox's current position
+    public Vector2 _currPos;
+
+    //The associated Blox's GameObject
+    public GameObject _bloxObject;
+
 
     /**********************************************************************************/
     /*                                                                                */
