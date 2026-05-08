@@ -138,6 +138,7 @@ public class CombatHandler : MonoBehaviour
             _runManager.enemyTeam.Remove(killedUnit);
         }//end else
         
+
         //If the player won, end the combat
         if(CheckVictor() == Team.Player)
         {
