@@ -37,13 +37,13 @@ public class InputManager : MonoBehaviour
             return _singletonInstance;
         }
     }
-    
     private InputAction _selectInputAction;
     private InputAction _deselectInputAction;
     private InputAction _aimInputAction;
     private InputAction _cameraInputAction;
     private InputAction _pauseInputAction;
 
+    [SerializeField]
     private InputActionAsset _theActionMap;
     public bool SelectInput { get; private set; }
     public bool DeselectInput { get; private set; }
@@ -75,8 +75,6 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        _theActionMap = new InputActionAsset();
 
         _selectInputAction = _theActionMap.FindActionMap("MenuNavigation").FindAction("Select");
         _deselectInputAction = _theActionMap.FindActionMap("MenuNavigation").FindAction("Deselect");
