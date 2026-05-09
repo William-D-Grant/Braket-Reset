@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 222509613937244607}
   - component: {fileID: 7573073497502758829}
   - component: {fileID: 7757630046686668007}
+  - component: {fileID: -6401568384793198016}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -125,6 +126,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328bebe097f10f408cfd059e84bd677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TIle
-  tileObject: {fileID: 0}
+  upNeighbors: []
+  downNeighbors: []
+  rightNeighbors: []
+  leftNeighbors: []
   _tileType: 0
-  location: {x: 0, y: 0, z: 0}
+--- !u!114 &-6401568384793198016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447242157508443090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87726bf802f6a1540b33f580e5d7d21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassVitals
+  _currPos: {x: 0, y: 0}
+  _bloxObject: {fileID: 0}

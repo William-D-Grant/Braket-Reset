@@ -31,15 +31,25 @@ public class MapHandler : MonoBehaviour
                     Debug.Log(tileGrid[i, j].name);
                     if (j == 0)
                     {
-                        GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = playerTeam[playerCount].gameObject;
+                        bloxSpawned.transform.position = tileGrid[i, j].transform.position = new Vector3(0, playerOffset + 0.2f, 0);
+                        bloxSpawned.transform.SetParent(transform);
+                        playerTeam[playerCount]._currPos = new Vector2(i, j);
+                        //GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        playerCount++;
                     }
                     else
                     {
-                        GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = enemyTeam[enemyCount].gameObject;
+                        bloxSpawned.transform.position = tileGrid[i, j].transform.position = new Vector3(0, playerOffset + 0.2f, 0);
+                        bloxSpawned.transform.SetParent(transform);
+                        enemyTeam[enemyCount]._currPos = new Vector2(i, j);
+                        //GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        enemyCount++;
                     }
                     
                 }

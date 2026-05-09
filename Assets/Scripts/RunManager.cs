@@ -2,18 +2,19 @@
 * Filename:       	RunManager.cs                              *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.0                                      *
-* Previous Version: 0.1.4                                      *
+* Current Version:  0.2.1                                      *
+* Previous Version: 0.1.2                                      *
 * Creation Date:  	May 4, 2026                                *
 * Last Modified:  	May 7, 2026                                *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
-* Project:        	Braket Reset                                 *
-* Purpose:        	Handle all information for a singular run,     *
-*                   healing the player between fights, ending      *
-*                   runs, and getting the enemy team               *
-* Version Changes:	Added CreatePlayerTeam and made it a singleton *
+* Project:        	Braket Reset                               *
+* Purpose:        	Handle all information for a singular run, *
+*                   healing the player between fights, ending  *
+*                   runs, and getting the enemy team           *
+* Version Changes:	Adjusted CreatePlayerTeam and SelectEnemies*
+*                   to instantiate the teams now               *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -74,7 +75,7 @@ public class RunManager : MonoBehaviour
     /*************************************************************************************/
     /*                                                                                   */
     /* Function name: CreatePlayerTeam                                                   */
-    /* Description: Creates the player's team, gets the enemy, and loads the first fight */
+    /* Description: Creates and instantiates the player's team, gets the enemy           */
     /* Parameters: List<ClassAbstract> selectedBlox: the classes the player selected     */
     /* Return Value: N/A                                                                 */
     /*                                                                                   */
@@ -84,11 +85,16 @@ public class RunManager : MonoBehaviour
         playerTeam = new List<ClassVitals>();
         foreach (ClassAbstract classAbstract in selectedBlox)
         {
+
             Debug.Log("Selected Blox is " + classAbstract);
-            ClassVitals blox = new ClassVitals(classAbstract, Team.Player);
-            Debug.Log("Resulting Vitals is " + blox);
-            playerTeam.Add(blox);
+            GameObject bloxGameObject = Instantiate(classAbstract.bloxObject);
+            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
+            bloxVitals.InitializeBlox(classAbstract, Team.Player);
+            if (bloxVitals == null)
+            Debug.Log("Resulting Vitals is " + bloxVitals);
+            playerTeam.Add(bloxVitals);
         }//end foreach
+
     }
 
     /**********************************************************************************/
@@ -113,7 +119,7 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: SelectEnemies                                                   */
-    /* Description: Gets the next enemy's team of Blox                                */
+    /* Description: Gets and instantiates next enemy's team of Blox                   */
     /* Parameters: N/A                                                                */
     /* Return Value: N/A                                                              */
     /*                                                                                */
@@ -127,11 +133,16 @@ public class RunManager : MonoBehaviour
         EnemyTeam tempEnemyTeam = EnemyTeamSelector._singletonInstance.GetRandomTeam();
 
         //Loop through every Blox in the next enemy team and add them to _enemyTeam
-        foreach (ClassAbstract enemyClassName in tempEnemyTeam.enemyBlox)
+        foreach (ClassAbstract enemyClassAbstract in tempEnemyTeam.enemyBlox)
         {
-            ClassVitals enemyBlox = new ClassVitals(enemyClassName, Team.Enemy);
 
-            enemyTeam.Add(enemyBlox);
+            GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
+
+            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+
+            enemyBloxClassVitals.InitializeBlox(enemyClassAbstract, Team.Enemy);
+
+            enemyTeam.Add(enemyBloxClassVitals);
         }//end foreach
 
     }//end SelectEnemies
@@ -196,4 +207,4 @@ public class RunManager : MonoBehaviour
         _enemyTeamSelector.ResetBracket();
     }//end EndRun
 
-}
+}//end RunManager

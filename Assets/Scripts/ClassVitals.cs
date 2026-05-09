@@ -2,8 +2,8 @@
 * Filename:       	ClassVitals.cs                             *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.1.1                                      *
-* Previous Version: 0.1.0                                      *
+* Current Version:  0.2.0                                      *
+* Previous Version: 0.1.4                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	May 5, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -15,13 +15,13 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-* Version Changes:	Added ClearStatus                          *
+* Version Changes:	Changed to be a MonoBehavior               *
 ****************************************************************/
 
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassVitals
+public class ClassVitals : MonoBehaviour
 {
     //The class of the Blox
     private ClassAbstract _class;
@@ -68,7 +68,7 @@ public class ClassVitals
 
     /**********************************************************************************/
     /*                                                                                */
-    /* Function name: ClassVitals                                                     */
+    /* Function name: InitializeBlox                                                  */
     /* Description: A constructor to initiate the creation of a new Blox and to       */
     /*              create an empty list of effects for later                         */
     /* Parameters: ClassAbstract className: a specific class of Blox (ex: Fighter)    */
@@ -76,7 +76,7 @@ public class ClassVitals
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public ClassVitals(ClassAbstract className, Team team)
+    public void InitializeBlox(ClassAbstract className, Team team)
     {
         //Set the Blox's team
          _team = team;
