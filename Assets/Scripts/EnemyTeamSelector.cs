@@ -23,6 +23,7 @@ public class EnemyTeamSelector : MonoBehaviour
 {
     //
     public static EnemyTeamSelector _singletonInstance { get; private set; }
+
     //A list of all of the enemy teams, enemy teams are hard coded to give personality to them 
     private List<EnemyTeam> _allEnemyTeams;
 
@@ -165,46 +166,60 @@ public class EnemyTeamSelector : MonoBehaviour
         //Clear _allEnemyTeams
         _allEnemyTeams = new List<EnemyTeam>();
 
-        //Build Alex Smartville XII
+        //Build Alec Smartville XII
         _allEnemyTeams.Add(new EnemyTeam("ALEC_SMARTVILLE_XII", new List<ClassAbstract>
         {
-            new ThiefClass()
+            new PirateClass(),
+            new ThiefClass(),
+            new ClownClass()
         }));
 
         //Build Gerrelle Hatchetman
         _allEnemyTeams.Add(new EnemyTeam("GERRELE_HATCHETMAN", new List<ClassAbstract>
         {
-            new CowboyClass()
+            new CowboyClass(),
+            new CowboyClass(),
+            new SageClass()
         }));
 
         //Build Circe Listerine
         _allEnemyTeams.Add(new EnemyTeam("CIRCE_LISTERINE", new List<ClassAbstract>
         {
-            new ClownClass()
+            new FighterClass(),
+            new ClownClass(),
+            new PirateClass()
         }));
 
         //Build Leneyjoce Superdark
         _allEnemyTeams.Add(new EnemyTeam("LENEYJOCE_SUPERDARK",new List<ClassAbstract>
         {
-            new TankClass()
+            new FighterClass(),
+            new TankClass(),
+            new RangerClass()
         }));
 
         //Build Professor Jac- I mean Vector Vachglitch
         _allEnemyTeams.Add(new EnemyTeam("VECTOR_VACHGLITCH", new List<ClassAbstract>
         {
+            new CowboyClass(),
+            new RangerClass(),
             new RangerClass()
         }));
 
         //Build Chimp T. Lucky
         _allEnemyTeams.Add(new EnemyTeam("CHIMP_T_LUCKY", new List<ClassAbstract>
         {
+            new PirateClass(),
+            new PirateClass(),
             new PirateClass()
         }));
 
         //Build Holly WarmHart
         _allEnemyTeams.Add(new EnemyTeam("HOLLY_WARMHART", new List<ClassAbstract>
         {
-            new SageClass()
+            new SageClass(),
+            new TankClass(),
+            new ClownClass()
         }));
 
         //Set the team to Enemy
