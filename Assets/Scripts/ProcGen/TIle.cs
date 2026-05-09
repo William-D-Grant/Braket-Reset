@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public Tile[] upNeighbors;
+    public Tile[] downNeighbors;
+    public Tile[] rightNeighbors;
+    public Tile[] leftNeighbors;
+
     public enum TileType
     {
         Normal,
@@ -13,11 +18,5 @@ public class Tile : MonoBehaviour
         Spawn
     }
 
-    [SerializeField]
-    public GameObject tileObject;
-
     public TileType _tileType;
-
-    [SerializeField]
-    public Vector3 location;
 }

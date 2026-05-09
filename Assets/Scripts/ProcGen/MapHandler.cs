@@ -27,13 +27,13 @@ public class MapHandler : MonoBehaviour
                 {
                     if (i == 0)
                     {
-                        GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
                     else
                     {
-                        GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount]._bloxObject, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                     }
