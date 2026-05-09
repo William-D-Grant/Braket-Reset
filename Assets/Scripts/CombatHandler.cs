@@ -51,8 +51,6 @@ public class CombatHandler : MonoBehaviour
     private void Start()
     {
         _runManager = RunManager._singletonInstance;
-        Debug.Log("Starting Combat Handler");
-        PopulateTurns();
     }//end Start
 
     /**********************************************************************************/

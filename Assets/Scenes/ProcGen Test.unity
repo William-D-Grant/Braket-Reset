@@ -376,19 +376,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2066412583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1518630ee685d0a47b1ba28d69eef570, type: 3}
+  m_Script: {fileID: 11500000, guid: e534804b099a783428633bef3bb3df95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveFunctionCollapse
-  dimensions: 0
+  _mapHandler: {fileID: 0}
+  dimensions: 9
+  spacing: {x: 4, y: 5}
   tileObjects:
   - {fileID: 7292634898827545720, guid: 56c50dc0309f9c84cbc8da8d20180fcd, type: 3}
   - {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
   - {fileID: -7443148010161747484, guid: 22f8d6c59402a7e40b2e283be9a5a122, type: 3}
-  - {fileID: -7090671851281878953, guid: 545e1612531b6244486b5c9991ead665, type: 3}
   - {fileID: -662964149713258294, guid: 9ad8ae9edb5d7374dbba70678ee72203, type: 3}
   - {fileID: 7009587790469927059, guid: b466c38950c4ab544bed00c94b71105d, type: 3}
+  spawnObject: {fileID: -7090671851281878953, guid: 545e1612531b6244486b5c9991ead665, type: 3}
   gridComponents: []
   cellObj: {fileID: 2027525385934408674, guid: 8cab6a2f4b8717d4889ccebff91a7599, type: 3}
+  backupTile: {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     public Tile spawnObject;
     public List<Cell> gridComponents;
     public Cell cellObj;
-    public Tile[,] testGrid = new Tile[9, 9];
+    //public Tile[,] testGrid = new Tile[9, 9];
 
     public Tile backupTile;
 
@@ -35,10 +35,10 @@ public class WaveFunctionCollapse : MonoBehaviour
             for (int x = 0; x < dimensions; x++)
             {
                 Cell newCell = Instantiate(cellObj, new Vector3(x * spacing.x, 0, y * spacing.y), Quaternion.identity);
-                if ((y == 3 || y == 4 || y == 5) && (x == 0 || x == 8))
+                if ((x == 3 || x == 4 || x == 5) && (y == 0 || y == 8))
                 {
-                    Instantiate(spawnObject, newCell.transform.position, spawnObject.transform.rotation);
-                    testGrid[x, y] = spawnObject;
+                    Tile currentSpawnTile = Instantiate(spawnObject, newCell.transform.position, spawnObject.transform.rotation);
+                    _mapHandler.tileGrid[x, y] = currentSpawnTile;
                     newCell.CreateCell(true, tileObjects, new Vector2(x,y));
                 }
                 else
@@ -84,8 +84,8 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
 
         Tile foundTile = cellToCollapse.tileOptions[0];
-        Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
-        testGrid[(int)cellToCollapse.arrayPosition.x, (int)cellToCollapse.arrayPosition.y] = foundTile;
+        Tile currentFoundTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        _mapHandler.tileGrid[(int)cellToCollapse.arrayPosition.x, (int)cellToCollapse.arrayPosition.y] = currentFoundTile;
 
         UpdateGeneration();
     }
@@ -198,16 +198,19 @@ public class WaveFunctionCollapse : MonoBehaviour
         else
         {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < testGrid.GetLength(0); i++)
+            for (int i = 0; i < _mapHandler.tileGrid.GetLength(0); i++)
             {
-                for (int j = 0; j < testGrid.GetLength(1); j++)
+                for (int j = 0; j < _mapHandler.tileGrid.GetLength(1); j++)
                 {
-                    sb.Append(testGrid[i, j]._tileType);
+                    sb.Append(_mapHandler.tileGrid[i, j]._tileType);
                     sb.Append(' ');
                 }
                 sb.AppendLine();
             }
             Debug.Log(sb.ToString());
+
+            _mapHandler.Populate();
+            _mapHandler.PlaceUnits();
         }
     }
 

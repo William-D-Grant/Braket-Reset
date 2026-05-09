@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         if (activeUnit != null)
         {
-            Debug.Log("Updating");
             if (_inputManager.SelectInput)
             {
                 Debug.Log("Click Detected");

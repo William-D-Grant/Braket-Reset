@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MapHandler : MonoBehaviour
 {
-    public Tile[,] tileGrid;
+    public Tile[,] tileGrid = new Tile[9, 9];
     public GameObject[,] unitGrid = new GameObject[9, 9];
     public GameObject testPlayer;
     public GameObject testEnemy;
@@ -19,13 +19,17 @@ public class MapHandler : MonoBehaviour
         List<ClassVitals> enemyTeam = _combatHandler.EnemyList();
         int enemyCount = 0;
 
-        for (int i = 0; i < tileGrid.GetLength(0); i++)
+        for (int j = 0; j < tileGrid.GetLength(0); j++)
         {
-            for (int j = 0; j < tileGrid.GetLength(1); j++)
+            for (int i = 0; i < tileGrid.GetLength(1); i++)
             {
+                Debug.Log(tileGrid[i, j]._tileType);
+                Debug.Log(tileGrid[i, j].transform.position);
                 if (tileGrid[i,j]._tileType == Tile.TileType.Spawn)
                 {
-                    if (i == 0)
+                    Debug.Log("spawning");
+                    Debug.Log(tileGrid[i, j].name);
+                    if (j == 0)
                     {
                         GameObject bloxSpawned = Instantiate(playerTeam[playerCount]._bloxObject, tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
@@ -65,7 +69,10 @@ public class MapHandler : MonoBehaviour
         return nearbyTiles;
     }
 
-
+    public void Populate()
+    {
+        _combatHandler.PopulateTurns();
+    }
 
 
 }
