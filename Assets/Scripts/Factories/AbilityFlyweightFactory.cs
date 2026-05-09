@@ -156,6 +156,17 @@ public class AbilityFlyweightFactory
                 //seaShantyAbility.abilityIcon = ;
                 //seaShantyAbility.abilitySound = ;
                 return seaShantyAbility;
+
+            case "DEFAULT_TEST":
+                AbilityFlyweight defaultTestAbility = new AbilityFlyweight();
+                defaultTestAbility.abilityID = abilityID;
+                defaultTestAbility.abilityDamage = 1;
+                defaultTestAbility.abilityRange = 2;
+                defaultTestAbility.abilityCooldown = 1;
+                defaultTestAbility.abilityCost = 0;
+                //seaShantyAbility.abilityIcon = ;
+                //seaShantyAbility.abilitySound = ;
+                return defaultTestAbility;
         }//end switch
 
         return abilityplaceholdersocodecompiles;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using UnityEngine;
 
 public class ProceduralGeneration : MonoBehaviour
@@ -32,32 +32,32 @@ public class ProceduralGeneration : MonoBehaviour
             for (int j = 0; j < size.y; j++)
             {
                 Tile currentTile = _mapHandler.tileGrid[i,j];
-                currentTile.location = new Vector3(i * offset.x, 0, -j * offset.y);
+                currentTile.transform.position = new Vector3(i * offset.x, 0, -j * offset.y);
                 Quaternion tileRotation = Quaternion.Euler(0, 90, 0);
                 switch (currentTile._tileType)
                 {
                     case Tile.TileType.Normal:
-                        currentTile.tileObject = Instantiate(normalTypes[Mathf.FloorToInt(Random.Range(0, normalTypes.Count))], currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(normalTypes[Mathf.FloorToInt(Random.Range(0, normalTypes.Count))], currentTile.transform.position, tileRotation, transform);
                         break;
 
                     case Tile.TileType.Slow:
-                        currentTile.tileObject = Instantiate(slowTypes[Mathf.FloorToInt(Random.Range(0, slowTypes.Count))], currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(slowTypes[Mathf.FloorToInt(Random.Range(0, slowTypes.Count))], currentTile.transform.position, tileRotation, transform);
                         break;
 
                     case Tile.TileType.Wall:
-                        currentTile.tileObject = Instantiate(wallTypes[Mathf.FloorToInt(Random.Range(0, wallTypes.Count))], currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(wallTypes[Mathf.FloorToInt(Random.Range(0, wallTypes.Count))], currentTile.transform.position, tileRotation, transform);
                         break;
 
                     case Tile.TileType.Damage:
-                        currentTile.tileObject = Instantiate(damageTypes[Mathf.FloorToInt(Random.Range(0, damageTypes.Count))], currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(damageTypes[Mathf.FloorToInt(Random.Range(0, damageTypes.Count))], currentTile.transform.position, tileRotation, transform);
                         break;
 
                     case Tile.TileType.Hazard:
-                        currentTile.tileObject = Instantiate(hazardTypes[Mathf.FloorToInt(Random.Range(0, hazardTypes.Count))], currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(hazardTypes[Mathf.FloorToInt(Random.Range(0, hazardTypes.Count))], currentTile.transform.position, tileRotation, transform);
                         break;
 
                     case Tile.TileType.Spawn:
-                        currentTile.tileObject = Instantiate(spawnTile, currentTile.location, tileRotation, transform);
+                        currentTile.tileObject = Instantiate(spawnTile, currentTile.transform.position, tileRotation, transform);
                         break;
 
                     default:
@@ -66,11 +66,11 @@ public class ProceduralGeneration : MonoBehaviour
 
             }
         }
-        /* if (GameObject.FindGameObjectsWithTag("Spawn Tile").Length != 6)
+         if (GameObject.FindGameObjectsWithTag("Spawn Tile").Length != 6)
         {
             Debug.Log("Reloaded");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        } */
+        } 
 
     }
 
@@ -119,3 +119,4 @@ public class ProceduralGeneration : MonoBehaviour
         }
     }
 }
+*/

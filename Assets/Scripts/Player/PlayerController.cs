@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,31 +22,35 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        activeUnit = _combatHandler.CurrentUnit();
-        abilitySelected = activeUnit._currAbilities[0];
+        
     }
 
     private void Update()
     {
-        if (_inputManager.SelectInput)
+        if (activeUnit != null)
         {
-            if (activeUnit != null)
+            if (_inputManager.SelectInput)
             {
-                _inputManager.GetMouse3DTarget().collider.TryGetComponent(out targetUnit);
+                Debug.Log("Click Detected");
+                if (targetUnit == null)
+                {
+                    Debug.Log("Target Detected");
+                }
+                if (selectedTile == null)
+                {
+                    Debug.Log("Tile Detected");
+                    _inputManager.GetMouse3DTarget().collider.TryGetComponent(out selectedTile);
+                    CheckTile();
+                }
             }
-            if (selectedTile != null)
+            if (_inputManager.DeselectInput)
             {
-                _inputManager.GetMouse3DTarget().collider.TryGetComponent(out selectedTile);
-                CheckTile();
+                DeselectAll();
             }
-        }
-        if (_inputManager.DeselectInput)
-        {
-            DeselectAll();
-        }
-        if (remainingTM <= 0 && hasAction == false)
-        {
-            EndTurn();
+            if (remainingTM <= 0 && hasAction == false)
+            {
+                EndTurn();
+            }
         }
     }
 
@@ -97,8 +100,16 @@ public class PlayerController : MonoBehaviour
 
     public void SelectAbility()
     {
-        abilityIndex++;
-        abilitySelected = activeUnit._currAbilities[abilityIndex];
+        if (activeUnit != null)
+        {
+            Debug.Log("This is working");
+            abilityIndex++;
+            if (abilityIndex >= activeUnit._currAbilities.Length)
+            {
+                abilityIndex = 0;
+            }
+            abilitySelected = activeUnit._currAbilities[abilityIndex];
+        }
     }
 
     public void UseAbility()
@@ -121,6 +132,13 @@ public class PlayerController : MonoBehaviour
 
     public void EndTurn()
     {
+        activeUnit = null;
         _combatHandler.ShiftTurn();
+    }
+
+    public void EnablePlayer(ClassVitals currentPlayer)
+    {
+        activeUnit = currentPlayer;
+        abilitySelected = activeUnit._currAbilities[0];
     }
 }

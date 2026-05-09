@@ -93,6 +93,8 @@ public class InputManager : MonoBehaviour
     {
         SelectInput = _selectInputAction.WasPressedThisFrame();
         DeselectInput = _deselectInputAction.WasPressedThisFrame();
+        _aimInputAction.performed += context => AimInput = context.ReadValue<Vector2>();
+        _aimInputAction.canceled += context => AimInput = Vector2.zero;
     }
 
     /**********************************************************************************/
@@ -182,7 +184,7 @@ public class InputManager : MonoBehaviour
     /**********************************************************************************/
     public RaycastHit GetMouse3DTarget()
     {
-        Ray Mouse3DPositionChecker = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray Mouse3DPositionChecker = Camera.main.ScreenPointToRay(AimInput);
         RaycastHit Mouse3DPosition;
         Physics.Raycast(Mouse3DPositionChecker, out Mouse3DPosition);
 

@@ -81,13 +81,12 @@ public class RunManager : MonoBehaviour
     /*************************************************************************************/
     public void CreatePlayerTeam(List<ClassAbstract> selectedBlox)
     {
-        playerSelection = new List<ClassAbstract>(selectedBlox);
-
         playerTeam = new List<ClassVitals>();
-
-        foreach (ClassAbstract classAbstract in playerSelection)
+        foreach (ClassAbstract classAbstract in selectedBlox)
         {
+            Debug.Log("Selected Blox is " + classAbstract);
             ClassVitals blox = new ClassVitals(classAbstract, Team.Player);
+            Debug.Log("Resulting Vitals is " + blox);
             playerTeam.Add(blox);
         }//end foreach
     }
