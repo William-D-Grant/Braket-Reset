@@ -167,7 +167,7 @@ public class EnemyTeamSelector : MonoBehaviour
         _allEnemyTeams = new List<EnemyTeam>();
 
         //Build Alec Smartville XII
-        _allEnemyTeams.Add(new EnemyTeam("ALEC_SMARTVILLE_XII", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("ALEC_SMARTSVILLE_XII", new List<ClassAbstract>
         {
             new PirateClass(),
             new ThiefClass(),
