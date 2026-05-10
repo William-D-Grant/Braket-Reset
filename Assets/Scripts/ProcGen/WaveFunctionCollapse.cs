@@ -209,8 +209,13 @@ public class WaveFunctionCollapse : MonoBehaviour
             }
             Debug.Log(sb.ToString());
 
+<<<<<<< Updated upstream
             _mapHandler.Populate();
             _mapHandler.PlaceUnits();
+=======
+            _mapHandler.PlaceUnits();
+            _mapHandler.Populate();
+>>>>>>> Stashed changes
         }
     }
 

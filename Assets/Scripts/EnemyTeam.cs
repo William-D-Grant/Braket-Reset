@@ -34,7 +34,7 @@ public class EnemyTeam : MonoBehaviour
     /* Description: A constructor that builds an enemy team, including the enemy's    */
     /*              name and the Blox they use                                        */
     /* Parameters: string enemyName: The name of the enemy                            */
-    /*             List<ClassVitals> enemyBlox: A list of said enemy's Blox           */
+    /*             List<ClassAbstract> enemyBlox: A list of said enemy's Blox           */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/

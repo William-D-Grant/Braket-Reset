@@ -12,10 +12,18 @@ GameObject:
   - component: {fileID: 1836748042689001755}
   - component: {fileID: 2862844522533108967}
   - component: {fileID: 3335274490273015113}
+<<<<<<< Updated upstream
   - component: {fileID: -662964149713258294}
+=======
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: -662964149713258294}
+  - component: {fileID: 2913135610894364158}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +121,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 --- !u!114 &-662964149713258294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +155,20 @@ MonoBehaviour:
   - {fileID: -662964149713258294}
   - {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
   _tileType: 1
+<<<<<<< Updated upstream
+=======
+--- !u!114 &2913135610894364158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904085491354153802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8d421dd125dba4881ee74b3dcd525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectHighlight
+  _renderer: {fileID: 2862844522533108967}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
