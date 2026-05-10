@@ -12,14 +12,10 @@ GameObject:
   - component: {fileID: 5192958629199987082}
   - component: {fileID: 5922343944129487589}
   - component: {fileID: 3716884977575415640}
-<<<<<<< Updated upstream
-=======
   - component: {fileID: 7292634898827545720}
-  - component: {fileID: -6753730486870605341}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Black Hole
-  m_TagString: Tile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,8 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!114 &7292634898827545720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,18 +133,6 @@ MonoBehaviour:
   - {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
   leftNeighbors:
   - {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
+  tileObject: {fileID: 0}
   _tileType: 4
---- !u!114 &-6753730486870605341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970265197468217476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e8d421dd125dba4881ee74b3dcd525d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectHighlight
-  _renderer: {fileID: 5922343944129487589}
->>>>>>> Stashed changes
+  location: {x: 0, y: 0, z: 0}

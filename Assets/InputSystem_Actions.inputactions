@@ -59,7 +59,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -67,10 +67,10 @@
                 {
                     "name": "",
                     "id": "fa50e183-67c6-4198-8715-b8cdb079619e",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "Deselect",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -81,7 +81,7 @@
                     "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "CameraInput",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -89,10 +89,10 @@
                 {
                     "name": "",
                     "id": "0d45be01-4dc9-4674-8174-bc9761956db8",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "",
                     "action": "PauseInput",
                     "isComposite": false,
                     "isPartOfComposite": false

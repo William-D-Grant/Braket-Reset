@@ -62,7 +62,5 @@ public class FighterClass : ClassAbstract
             "HEAVY_HITTER"
         };
 
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Fighter");
-
     }//end CreateClass
 }//end FighterClass

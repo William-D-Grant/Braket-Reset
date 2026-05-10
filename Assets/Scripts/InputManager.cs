@@ -93,8 +93,6 @@ public class InputManager : MonoBehaviour
     {
         SelectInput = _selectInputAction.WasPressedThisFrame();
         DeselectInput = _deselectInputAction.WasPressedThisFrame();
-        //_selectInputAction.performed += context => SelectInput = true;
-        //_selectInputAction.canceled += context => SelectInput = false;
         _aimInputAction.performed += context => AimInput = context.ReadValue<Vector2>();
         _aimInputAction.canceled += context => AimInput = Vector2.zero;
     }

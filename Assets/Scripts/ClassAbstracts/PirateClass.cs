@@ -61,8 +61,6 @@ public class PirateClass : ClassAbstract
         {
             "SEA_SHANTY"
         };
-
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Pirate");
     }//end CreateClass
 
 }//end PirateClass

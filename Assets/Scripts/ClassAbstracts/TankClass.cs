@@ -62,6 +62,5 @@ public class TankClass : ClassAbstract
             "SHIELD_BASH"
         };
 
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Tank");
     }//end CreateClass
 }//end TankClass

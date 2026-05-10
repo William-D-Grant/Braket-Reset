@@ -62,7 +62,5 @@ public class RangerClass : ClassAbstract
             "LONG_SHOT"
         };
 
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Ranger");
-
     }//end CreateClass
 }//end RangerClass

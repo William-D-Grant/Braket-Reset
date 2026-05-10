@@ -64,8 +64,6 @@ public class ClownClass : ClassAbstract
             "DEFAULT_TEST"
         };
 
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Clown");
-
     }//end CreateClass
 
 }//end ClownClass

@@ -12,14 +12,10 @@ GameObject:
   - component: {fileID: 4686173928157545701}
   - component: {fileID: 3370886555788396502}
   - component: {fileID: 8355911284723133373}
-<<<<<<< Updated upstream
-=======
   - component: {fileID: -7443148010161747484}
-  - component: {fileID: -1900638588757426776}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Tile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,8 +113,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!114 &-7443148010161747484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,17 +138,3 @@ MonoBehaviour:
   - {fileID: -662964149713258294, guid: 9ad8ae9edb5d7374dbba70678ee72203, type: 3}
   - {fileID: -2252460729620313099, guid: d3d13a51e039e6e4280291ad3ee1d605, type: 3}
   _tileType: 2
---- !u!114 &-1900638588757426776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4183422243889600264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e8d421dd125dba4881ee74b3dcd525d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectHighlight
-  _renderer: {fileID: 3370886555788396502}
->>>>>>> Stashed changes

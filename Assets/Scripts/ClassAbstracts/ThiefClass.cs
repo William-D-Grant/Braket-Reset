@@ -62,7 +62,5 @@ public class ThiefClass : ClassAbstract
             "SPEED_DEMON"
         };
 
-        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Thief");
-
     }//end CreateClass
 }//end ThiefClass
