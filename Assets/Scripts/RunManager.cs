@@ -2,19 +2,18 @@
 * Filename:       	RunManager.cs                              *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.1                                      *
-* Previous Version: 0.1.2                                      *
+* Current Version:  0.2.0                                      *
+* Previous Version: 0.1.4                                      *
 * Creation Date:  	May 4, 2026                                *
 * Last Modified:  	May 7, 2026                                *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
-* Project:        	Braket Reset                               *
-* Purpose:        	Handle all information for a singular run, *
-*                   healing the player between fights, ending  *
-*                   runs, and getting the enemy team           *
-* Version Changes:	Adjusted CreatePlayerTeam and SelectEnemies*
-*                   to instantiate the teams now               *
+* Project:        	Braket Reset                                 *
+* Purpose:        	Handle all information for a singular run,     *
+*                   healing the player between fights, ending      *
+*                   runs, and getting the enemy team               *
+* Version Changes:	Added CreatePlayerTeam and made it a singleton *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -42,10 +41,10 @@ public class RunManager : MonoBehaviour
     public List<ClassAbstract> playerSelection;
 
     //The player's Blox
-    public List<ClassVitals> playerTeam { get; private set; }
+    public List<GameObject> playerTeam { get; private set; }
 
     //The enemy's Blox
-    public List<ClassVitals> enemyTeam { get; private set; }
+    public List<GameObject> enemyTeam { get; private set; }
 
     //The player's current match
     private int _bracketNumber;
@@ -75,26 +74,27 @@ public class RunManager : MonoBehaviour
     /*************************************************************************************/
     /*                                                                                   */
     /* Function name: CreatePlayerTeam                                                   */
-    /* Description: Creates and instantiates the player's team, gets the enemy           */
+    /* Description: Creates the player's team, gets the enemy, and loads the first fight */
     /* Parameters: List<ClassAbstract> selectedBlox: the classes the player selected     */
     /* Return Value: N/A                                                                 */
     /*                                                                                   */
     /*************************************************************************************/
     public void CreatePlayerTeam(List<ClassAbstract> selectedBlox)
     {
-        playerTeam = new List<ClassVitals>();
+        playerTeam = new List<GameObject>();
         foreach (ClassAbstract classAbstract in selectedBlox)
         {
-
             Debug.Log("Selected Blox is " + classAbstract);
-            GameObject bloxGameObject = Instantiate(classAbstract.bloxObject);
-            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
-            bloxVitals.InitializeBlox(classAbstract, Team.Player);
-            if (bloxVitals == null)
-            Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxVitals);
+<<<<<<< Updated upstream
+            ClassVitals blox = new ClassVitals(classAbstract, Team.Player);
+            Debug.Log("Resulting Vitals is " + blox);
+            playerTeam.Add(blox);
+=======
+            Debug.Log("Resulting Vitals is " + classAbstract.bloxObject.GetComponent<ClassVitals>());
+            playerTeam.Add(classAbstract.bloxObject);
+            Debug.Log(playerTeam[0]);
+>>>>>>> Stashed changes
         }//end foreach
-
     }
 
     /**********************************************************************************/
@@ -107,10 +107,10 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     public void HealPlayer()
     {
-        foreach(ClassVitals blox in playerTeam)
+        foreach(GameObject blox in playerTeam)
         {
-            blox.HealBlox(20);
-            blox.ClearStatus();
+            blox.GetComponent<ClassVitals>().HealBlox(20);
+            blox.GetComponent<ClassVitals>().ClearStatus();
         }//end foreach
 
     }//end HealPlayer
@@ -119,7 +119,7 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: SelectEnemies                                                   */
-    /* Description: Gets and instantiates next enemy's team of Blox                   */
+    /* Description: Gets the next enemy's team of Blox                                */
     /* Parameters: N/A                                                                */
     /* Return Value: N/A                                                              */
     /*                                                                                */
@@ -127,22 +127,27 @@ public class RunManager : MonoBehaviour
     public void SelectEnemies()
     {
         //Clear the current enemy team
-        enemyTeam = new List<ClassVitals>();
+        enemyTeam = new List<GameObject>();
 
         //Make a temporary enemy team so we can access the enemy blox information from the EnemyTeam class
         EnemyTeam tempEnemyTeam = EnemyTeamSelector._singletonInstance.GetRandomTeam();
 
         //Loop through every Blox in the next enemy team and add them to _enemyTeam
-        foreach (ClassAbstract enemyClassAbstract in tempEnemyTeam.enemyBlox)
+        foreach (ClassAbstract enemyClassName in tempEnemyTeam.enemyBlox)
         {
+            ClassVitals enemyBlox = new ClassVitals(enemyClassName, Team.Enemy);
 
-            GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
+<<<<<<< Updated upstream
+            enemyTeam.Add(enemyBlox);
+=======
+            //GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
 
-            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+            //ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
-            enemyBloxClassVitals.InitializeBlox(enemyClassAbstract, Team.Enemy);
+            //enemyBloxClassVitals.InitializeBlox(Team.Enemy);
 
-            enemyTeam.Add(enemyBloxClassVitals);
+            enemyTeam.Add(enemyClassAbstract.bloxObject);
+>>>>>>> Stashed changes
         }//end foreach
 
     }//end SelectEnemies
@@ -207,4 +212,4 @@ public class RunManager : MonoBehaviour
         _enemyTeamSelector.ResetBracket();
     }//end EndRun
 
-}//end RunManager
+}

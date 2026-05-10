@@ -61,6 +61,8 @@ public class CowboyClass : ClassAbstract
         {
             "CAUGHT"
         };
+
+        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Cowboy");
     }//end CreateClass
 
 }//end CowboyClass

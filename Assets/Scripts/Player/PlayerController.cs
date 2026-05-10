@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private int remainingTM;
     private bool hasAction;
-    private ClassVitals activeUnit;
-    private ClassVitals targetUnit;
+    private GameObject activeUnit;
+    private GameObject targetUnit;
     private Tile selectedTile;
     public AbilityInstance abilitySelected;
     private int abilityIndex;
@@ -32,15 +32,40 @@ public class PlayerController : MonoBehaviour
             if (_inputManager.SelectInput)
             {
                 Debug.Log("Click Detected");
-                if (targetUnit == null)
+                RaycastHit mouseTarget = _inputManager.GetMouse3DTarget();
+                Debug.Log(selectedTile + " Before");
+                Debug.Log(targetUnit + " Before");
+                if (mouseTarget.collider != null)
                 {
-                    Debug.Log("Target Detected");
-                }
-                if (selectedTile == null)
-                {
-                    Debug.Log("Tile Detected");
-                    _inputManager.GetMouse3DTarget().collider.TryGetComponent(out selectedTile);
-                    CheckTile();
+                    if (targetUnit == null)
+                    {
+                        Debug.Log("Target Detected");
+                        if (mouseTarget.collider.tag == "Unit")
+                        {
+                            targetUnit = mouseTarget.collider.gameObject;
+                            targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            targetUnit = null;
+                        }
+                        Debug.Log(targetUnit + " After");
+                    }
+                    if (selectedTile == null)
+                    {
+                        Debug.Log("Tile Detected");
+                        if (mouseTarget.collider.tag == "Tile")
+                        {
+                            selectedTile = mouseTarget.collider.gameObject.GetComponent<Tile>();
+                            CheckTile();
+                        }
+                        else
+                        {
+                            selectedTile = null;
+                        }
+                        //mouseTarget.collider.TryGetComponent<Tile>(out selectedTile);
+                        Debug.Log(selectedTile + " After");
+                    }
                 }
             }
             if (_inputManager.DeselectInput)
@@ -61,6 +86,11 @@ public class PlayerController : MonoBehaviour
 
     private void DeselectAll()
     {
+        if(targetUnit != null)
+        {
+            targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
+        }
+        
         selectedTile = null;
         targetUnit = null;
     }
@@ -72,14 +102,16 @@ public class PlayerController : MonoBehaviour
 
     private void CheckTile()
     {
-        Tile[] checkingTiles = _mapHandler.FindTilesNearUnit(activeUnit);
+        Tile[] checkingTiles = _mapHandler.FindTilesNearUnit(activeUnit.GetComponent<ClassVitals>());
         for (int i = 0; i < checkingTiles.Length; i++)
         {
             if (checkingTiles[i] == selectedTile)
             {
+                Debug.Log("Good tile");
                 return;
             }
         }
+        Debug.Log("Bad tile");
         selectedTile = null;
         return;
     }
@@ -91,10 +123,13 @@ public class PlayerController : MonoBehaviour
 
     public void MoveToTile()
     {
-        if (remainingTM > 0)
+        Debug.Log(remainingTM);
+        Debug.Log(selectedTile);
+        if (remainingTM > 0 && selectedTile != null)
         {
-            activeUnit._bloxObject.transform.position = selectedTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
+            activeUnit.transform.position = selectedTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
             remainingTM--;
+            Debug.Log(remainingTM + " TM Left");
         }
     }
 
@@ -104,11 +139,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("This is working");
             abilityIndex++;
-            if (abilityIndex >= activeUnit._currAbilities.Length)
+            if (abilityIndex >= activeUnit.GetComponent<ClassVitals>()._currAbilities.Length)
             {
                 abilityIndex = 0;
             }
-            abilitySelected = activeUnit._currAbilities[abilityIndex];
+            abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[abilityIndex];
         }
     }
 
@@ -116,13 +151,13 @@ public class PlayerController : MonoBehaviour
     {
         if (hasAction && targetUnit != null)
         {
-            for (int i = (int)activeUnit._currPos.x - abilitySelected.GetRange(); i < (int)activeUnit._currPos.x + abilitySelected.GetRange(); i++)
+            for (int i = (int)activeUnit.GetComponent<ClassVitals>()._currPos.x - abilitySelected.GetRange(); i < (int)activeUnit.GetComponent<ClassVitals>()._currPos.x + abilitySelected.GetRange(); i++)
             {
-                for (int j = (int)activeUnit._currPos.y - abilitySelected.GetRange(); j < (int)activeUnit._currPos.y + abilitySelected.GetRange(); j++)
+                for (int j = (int)activeUnit.GetComponent<ClassVitals>()._currPos.y - abilitySelected.GetRange(); j < (int)activeUnit.GetComponent<ClassVitals>()._currPos.y + abilitySelected.GetRange(); j++)
                 {
-                    if (targetUnit._bloxObject == _mapHandler.unitGrid[i, j])
+                    if (targetUnit == _mapHandler.unitGrid[i, j])
                     {
-                        abilitySelected.UseAbility(activeUnit, targetUnit);
+                        abilitySelected.UseAbility(activeUnit.GetComponent<ClassVitals>(), targetUnit.GetComponent<ClassVitals>());
                         hasAction = false;
                     }
                 }
@@ -132,13 +167,19 @@ public class PlayerController : MonoBehaviour
 
     public void EndTurn()
     {
+        activeUnit.transform.Find("HighlightActive").gameObject.SetActive(false);
         activeUnit = null;
         _combatHandler.ShiftTurn();
     }
 
-    public void EnablePlayer(ClassVitals currentPlayer)
+    public void EnablePlayer(GameObject currentPlayer)
     {
+        Debug.Log(currentPlayer);
         activeUnit = currentPlayer;
-        abilitySelected = activeUnit._currAbilities[0];
+        activeUnit.transform.Find("HighlightActive").gameObject.SetActive(true);
+        remainingTM = activeUnit.GetComponent<ClassVitals>()._currTM;
+        Debug.Log(activeUnit.GetComponent<ClassVitals>()._currTM + " TM");
+        hasAction = true;
+        //abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[0];
     }
 }

@@ -30,7 +30,7 @@ public class CombatHandler : MonoBehaviour
     private int _round = 1;
 
     //The list of Blox in the order they'll take turns in
-    private List<ClassVitals> _turnList = new List<ClassVitals>();
+    private List<GameObject> _turnList = new List<GameObject>();
 
     //What turn it is in the round
     private int _turn = 0;
@@ -75,13 +75,13 @@ public class CombatHandler : MonoBehaviour
         //_turnList.AddRange(_runManager.enemyTeam);
 
         //Sorts the turn list by the Blox's speed value
-        _turnList = _turnList.OrderByDescending(blox => blox.GetSpeed()).ToList();
+        _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
 
         _turn = -1;
         _round = 1;
         Debug.Log("At other debugs");
         Debug.Log(_turnList.Count);
-        Debug.Log(_turnList[0]._bloxObject);
+        Debug.Log(_turnList[0]);
 
         ShiftTurn();
 
@@ -109,7 +109,7 @@ public class CombatHandler : MonoBehaviour
             _round++;
         }
 
-        if (_turnList[_turn].GetTeam() == Team.Player)
+        if (_turnList[_turn].GetComponent<ClassVitals>().GetTeam() == Team.Player)
         {
             _playerController.EnablePlayer(_turnList[_turn]);
         }
@@ -126,7 +126,7 @@ public class CombatHandler : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public ClassVitals CurrentUnit()
+    public GameObject CurrentUnit()
     {
         return _turnList[_turn];
     }//end currentUnit
@@ -143,20 +143,20 @@ public class CombatHandler : MonoBehaviour
     public void DefeatUnit(ClassVitals killedUnit)
     {
         //remove the blox from the turn order
-        _turnList.Remove(killedUnit);
+        _turnList.Remove(killedUnit.gameObject);
 
 
         //If the Blox was on the Player's team, remove it from their team
         if (killedUnit.GetTeam() == Team.Player)
         {
-            _runManager.playerTeam.Remove(killedUnit);
+            _runManager.playerTeam.Remove(killedUnit.gameObject);
         }//end if
         else 
         { //If the Blox was on the Enemy's team, remove it from their team
-            _runManager.enemyTeam.Remove(killedUnit);
+            _runManager.enemyTeam.Remove(killedUnit.gameObject);
         }//end else
         
-        Destroy(killedUnit._bloxObject);
+        Destroy(killedUnit.gameObject);
 
         //If the player won, end the combat
         if(CheckVictor() == Team.Player)
@@ -207,7 +207,7 @@ public class CombatHandler : MonoBehaviour
     /*               Blox                                                             */
     /*                                                                                */
     /**********************************************************************************/
-    public List<ClassVitals> PlayerList()
+    public List<GameObject> PlayerList()
     {
         return _runManager.playerTeam;
     }//end PlayerList
@@ -221,7 +221,7 @@ public class CombatHandler : MonoBehaviour
     /* Return Value: List<ClassVitals> _runManager.enemyTeam: the enemy's team of     */
     /*               Blox                                                             */
     /**********************************************************************************/
-    public List<ClassVitals> EnemyList()
+    public List<GameObject> EnemyList()
     {
         return _runManager.enemyTeam;
     }//end EnemyList

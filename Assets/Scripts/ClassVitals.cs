@@ -2,8 +2,8 @@
 * Filename:       	ClassVitals.cs                             *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.0                                      *
-* Previous Version: 0.1.4                                      *
+* Current Version:  0.1.1                                      *
+* Previous Version: 0.1.0                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	May 5, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -15,16 +15,19 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-* Version Changes:	Changed to be a MonoBehavior               *
+* Version Changes:	Added ClearStatus                          *
 ****************************************************************/
 
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassVitals : MonoBehaviour
+public class ClassVitals
 {
     //The class of the Blox
     private ClassAbstract _class;
+
+    //The name of the class for initalization
+    private string _className;
 
     //The Blox's current health points
     private float _currHP;
@@ -39,7 +42,7 @@ public class ClassVitals : MonoBehaviour
     private int _currDEF;
 
     //The Blox's current tile movement value
-    private int _currTM;
+    public int _currTM { get; private set; }
 
     //The Blox's current Hype generation
     private int _currHype;
@@ -62,13 +65,10 @@ public class ClassVitals : MonoBehaviour
     //The Blox's current position
     public Vector2 _currPos;
 
-    //The associated Blox's GameObject
-    public GameObject _bloxObject;
-
 
     /**********************************************************************************/
     /*                                                                                */
-    /* Function name: InitializeBlox                                                  */
+    /* Function name: ClassVitals                                                     */
     /* Description: A constructor to initiate the creation of a new Blox and to       */
     /*              create an empty list of effects for later                         */
     /* Parameters: ClassAbstract className: a specific class of Blox (ex: Fighter)    */
@@ -76,16 +76,14 @@ public class ClassVitals : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void InitializeBlox(ClassAbstract className, Team team)
+<<<<<<< Updated upstream
+    public ClassVitals(ClassAbstract className, Team team)
+=======
+    public void InitializeBlox(Team team)
+>>>>>>> Stashed changes
     {
         //Set the Blox's team
          _team = team;
-
-        //Store what class is passed
-        _class = className;
-
-        //Set Blox model
-        _bloxObject = className.bloxObject;
 
         _currEffects = new List<EffectInstance>();
 
