@@ -12,15 +12,8 @@ GameObject:
   - component: {fileID: 6618985668039498760}
   - component: {fileID: 3451559433031585141}
   - component: {fileID: 7441720902532024391}
-<<<<<<< Updated upstream
-  - component: {fileID: -2252460729620313099}
-=======
-<<<<<<< Updated upstream
-=======
   - component: {fileID: -2252460729620313099}
   - component: {fileID: -5879269239924968069}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Grass
   m_TagString: Tile
@@ -121,11 +114,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!114 &-2252460729620313099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,8 +147,6 @@ MonoBehaviour:
   - {fileID: -7443148010161747484, guid: 22f8d6c59402a7e40b2e283be9a5a122, type: 3}
   - {fileID: 7292634898827545720, guid: 56c50dc0309f9c84cbc8da8d20180fcd, type: 3}
   _tileType: 0
-<<<<<<< Updated upstream
-=======
 --- !u!114 &-5879269239924968069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,5 +160,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectHighlight
   _renderer: {fileID: -7511558181221131132, guid: b972053955eac2b439978205c9ca75af, type: 3}
->>>>>>> Stashed changes
->>>>>>> Stashed changes

@@ -76,15 +76,8 @@ public class ClassVitals : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-<<<<<<< Updated upstream
-    public void InitializeBlox(ClassAbstract className, Team team)
-=======
-<<<<<<< Updated upstream
-    public ClassVitals(ClassAbstract className, Team team)
-=======
+
     public void InitializeBlox(Team team)
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     {
         //Set the Blox's team
          _team = team;

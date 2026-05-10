@@ -87,24 +87,21 @@ public class RunManager : MonoBehaviour
         {
 
             Debug.Log("Selected Blox is " + classAbstract);
-<<<<<<< Updated upstream
-            GameObject bloxGameObject = Instantiate(classAbstract.bloxObject);
+           /* GameObject bloxGameObject = Instantiate(classAbstract.bloxObject);
             ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             bloxVitals.InitializeBlox(classAbstract, Team.Player);
             if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
             playerTeam.Add(bloxVitals);
-=======
-<<<<<<< Updated upstream
+
+
             ClassVitals blox = new ClassVitals(classAbstract, Team.Player);
             Debug.Log("Resulting Vitals is " + blox);
-            playerTeam.Add(blox);
-=======
+            playerTeam.Add(blox); */
+
             Debug.Log("Resulting Vitals is " + classAbstract.bloxObject.GetComponent<ClassVitals>());
             playerTeam.Add(classAbstract.bloxObject);
             Debug.Log(playerTeam[0]);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         }//end foreach
 
     }
@@ -148,18 +145,18 @@ public class RunManager : MonoBehaviour
         foreach (ClassAbstract enemyClassAbstract in tempEnemyTeam.enemyBlox)
         {
 
-<<<<<<< Updated upstream
-            GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
+
+            /* GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
 
             ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
             enemyBloxClassVitals.InitializeBlox(enemyClassAbstract, Team.Enemy);
 
             enemyTeam.Add(enemyBloxClassVitals);
-=======
-<<<<<<< Updated upstream
-            enemyTeam.Add(enemyBlox);
-=======
+
+            enemyTeam.Add(enemyBlox); */
+
+
             //GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
 
             //ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
@@ -167,8 +164,6 @@ public class RunManager : MonoBehaviour
             //enemyBloxClassVitals.InitializeBlox(Team.Enemy);
 
             enemyTeam.Add(enemyClassAbstract.bloxObject);
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         }//end foreach
 
     }//end SelectEnemies
