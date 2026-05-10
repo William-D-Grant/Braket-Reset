@@ -62,5 +62,7 @@ public class SageClass : ClassAbstract
             "LIFE_DRAIN"
         };
 
+        bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Sage");
+
     }//end CreateClass
 }//end SageClass

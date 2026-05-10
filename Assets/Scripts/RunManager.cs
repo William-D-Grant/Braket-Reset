@@ -41,10 +41,10 @@ public class RunManager : MonoBehaviour
     public List<ClassAbstract> playerSelection;
 
     //The player's Blox
-    public List<ClassVitals> playerTeam { get; private set; }
+    public List<GameObject> playerTeam { get; private set; }
 
     //The enemy's Blox
-    public List<ClassVitals> enemyTeam { get; private set; }
+    public List<GameObject> enemyTeam { get; private set; }
 
     //The player's current match
     private int _bracketNumber;
@@ -81,13 +81,19 @@ public class RunManager : MonoBehaviour
     /*************************************************************************************/
     public void CreatePlayerTeam(List<ClassAbstract> selectedBlox)
     {
-        playerTeam = new List<ClassVitals>();
+        playerTeam = new List<GameObject>();
         foreach (ClassAbstract classAbstract in selectedBlox)
         {
             Debug.Log("Selected Blox is " + classAbstract);
+<<<<<<< Updated upstream
             ClassVitals blox = new ClassVitals(classAbstract, Team.Player);
             Debug.Log("Resulting Vitals is " + blox);
             playerTeam.Add(blox);
+=======
+            Debug.Log("Resulting Vitals is " + classAbstract.bloxObject.GetComponent<ClassVitals>());
+            playerTeam.Add(classAbstract.bloxObject);
+            Debug.Log(playerTeam[0]);
+>>>>>>> Stashed changes
         }//end foreach
     }
 
@@ -101,10 +107,10 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     public void HealPlayer()
     {
-        foreach(ClassVitals blox in playerTeam)
+        foreach(GameObject blox in playerTeam)
         {
-            blox.HealBlox(20);
-            blox.ClearStatus();
+            blox.GetComponent<ClassVitals>().HealBlox(20);
+            blox.GetComponent<ClassVitals>().ClearStatus();
         }//end foreach
 
     }//end HealPlayer
@@ -121,7 +127,7 @@ public class RunManager : MonoBehaviour
     public void SelectEnemies()
     {
         //Clear the current enemy team
-        enemyTeam = new List<ClassVitals>();
+        enemyTeam = new List<GameObject>();
 
         //Make a temporary enemy team so we can access the enemy blox information from the EnemyTeam class
         EnemyTeam tempEnemyTeam = EnemyTeamSelector._singletonInstance.GetRandomTeam();
@@ -131,7 +137,17 @@ public class RunManager : MonoBehaviour
         {
             ClassVitals enemyBlox = new ClassVitals(enemyClassName, Team.Enemy);
 
+<<<<<<< Updated upstream
             enemyTeam.Add(enemyBlox);
+=======
+            //GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
+
+            //ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+
+            //enemyBloxClassVitals.InitializeBlox(Team.Enemy);
+
+            enemyTeam.Add(enemyClassAbstract.bloxObject);
+>>>>>>> Stashed changes
         }//end foreach
 
     }//end SelectEnemies

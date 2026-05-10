@@ -26,6 +26,9 @@ public class ClassVitals
     //The class of the Blox
     private ClassAbstract _class;
 
+    //The name of the class for initalization
+    private string _className;
+
     //The Blox's current health points
     private float _currHP;
 
@@ -39,7 +42,7 @@ public class ClassVitals
     private int _currDEF;
 
     //The Blox's current tile movement value
-    private int _currTM;
+    public int _currTM { get; private set; }
 
     //The Blox's current Hype generation
     private int _currHype;
@@ -62,9 +65,6 @@ public class ClassVitals
     //The Blox's current position
     public Vector2 _currPos;
 
-    //The associated Blox's GameObject
-    public GameObject _bloxObject;
-
 
     /**********************************************************************************/
     /*                                                                                */
@@ -76,16 +76,14 @@ public class ClassVitals
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
+<<<<<<< Updated upstream
     public ClassVitals(ClassAbstract className, Team team)
+=======
+    public void InitializeBlox(Team team)
+>>>>>>> Stashed changes
     {
         //Set the Blox's team
          _team = team;
-
-        //Store what class is passed
-        _class = className;
-
-        //Set Blox model
-        _bloxObject = className.bloxObject;
 
         _currEffects = new List<EffectInstance>();
 
