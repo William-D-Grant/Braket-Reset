@@ -167,19 +167,31 @@ public class DialogueManager : MonoBehaviour
                 break;
 
             case "VECTOR_VACHGLITCH":
-                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Augh a filthy newbie; Probably just another Sage spammer trying to cheese me;", _playerIdle, true));
-
-                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Gyeh; Sorry; Knee-jerk; It’s nice to meet you; I hope you are acclimating well;", _playerIdle, true));
-
-
-                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Grah; Yes; It is I; Fear me for I have learned justice;", _playerIdle, true));
-
-                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Khah; And you are not depending on how you play;", _playerIdle, true));
-
+                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Augh a filthy newbie; Probably just another Sage spammer trying to cheese me;", _computerRoomSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Oh well hello to you too, rust bucket. Aren’t you pleasant to be around.", _playerSad, true));
+                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Gyeh; Sorry; Knee-jerk; It’s nice to meet you; I hope you are acclimating well;", _computerRoomIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "It’s had…ups and downs. Thanks, though. Let’s just play the game and move on, alright?", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "…", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Wait wait wait…you’re that robot from the health insurance thing! The bot made to pretty much just auto-decline people, but you went rogue and nixed your maker!", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Grah; Yes; It is I; Fear me for I have learned justice;", _computerRoomSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Dude, you’re like. My hero in academia.", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Vector Vachglitch", "Khah; And you are not depending on how you play;", _computerRoomHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "…okay.", _playerIdle, true));
                 break;
 
             case "CHIMP_T_LUCKY":
-
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "A newcomer to the game? That reminds me of the time I assaulted an officer.", _strawBoaterIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Oh good on you! But uh, how’d that get you here? That sounds like it’ll get you in hot water, but not this hot.", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "She thinks it doesn’t sound that bad? That reminds me of the time I hid evidence from the courts.", _strawBoaterHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "…okay then, what else did you do?", _playerHappy, true));
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "She’s asking me what else I did? That reminds me of the time I freed a prisoner, and they asked me the same thing.", _strawBoaterIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "…anything else?", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "Anything else? That reminds me of the time I destroyed public property and anything else I saw at that moment.", _strawBoaterHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Okay…", _playerSad, true));
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "Okay? That reminds me-", _strawBoaterIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Alright, just pick up the controller and play the game.", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Chimp T Lucky", "Pick up-", _strawBoaterSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "STOP.", _playerSad, true));
                 break;
 
             case "HOLLY_WARMHART":
