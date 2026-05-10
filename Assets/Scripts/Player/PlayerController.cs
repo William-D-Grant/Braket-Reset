@@ -166,8 +166,10 @@ public class PlayerController : MonoBehaviour
                 {
                     if (targetUnit == _mapHandler.unitGrid[i, j])
                     {
+                        Debug.Log("Move used");
                         abilitySelected.UseAbility(activeUnit.GetComponent<ClassVitals>(), targetUnit.GetComponent<ClassVitals>());
                         hasAction = false;
+                        Debug.Log(hasAction + " hasAction");
                     }
                 }
             }
