@@ -155,7 +155,7 @@ public class EnemyTeamSelector : MonoBehaviour
     /*************************************************************************************************/
     /*                                                                                               */
     /* Function name: BuildEnemyTeams                                                                */
-    /* Description: Clear _allEnemyTeams and build blueprints for all of the hardcoded enemy teams,  */
+    /* Description: Clear _allEnemyTeams and assign classes for all of the hardcoded enemy teams,    */
     /*              enemy teams are hardcoded to give them character and personality,                */
     /* Parameters: N/A                                                                               */
     /* Return Value: N/A                                                                             */
@@ -167,66 +167,66 @@ public class EnemyTeamSelector : MonoBehaviour
         _allEnemyTeams = new List<EnemyTeam>();
 
         //Build Alec Smartville XII
-        _allEnemyTeams.Add(new EnemyTeam("ALEC_SMARTVILLE_XII", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("ALEC_SMARTVILLE_XII", new List<BloxClass>
         {
-            new PirateClass(),
-            new ThiefClass(),
-            new ClownClass()
+            BloxClass.Pirate,
+            BloxClass.Thief,
+            BloxClass.Clown
         }));
 
         //Build Gerrelle Hatchetman
-        _allEnemyTeams.Add(new EnemyTeam("GERRELE_HATCHETMAN", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("GERRELE_HATCHETMAN", new List<BloxClass>
         {
-            new CowboyClass(),
-            new CowboyClass(),
-            new SageClass()
+            BloxClass.Cowboy,
+            BloxClass.Cowboy,
+            BloxClass.Sage
         }));
 
         //Build Circe Listerine
-        _allEnemyTeams.Add(new EnemyTeam("CIRCE_LISTERINE", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("CIRCE_LISTERINE", new List<BloxClass>
         {
-            new FighterClass(),
-            new ClownClass(),
-            new PirateClass()
+            BloxClass.Fighter,
+            BloxClass.Clown,
+            BloxClass.Pirate
         }));
 
         //Build Leneyjoce Superdark
-        _allEnemyTeams.Add(new EnemyTeam("LENEYJOCE_SUPERDARK",new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("LENEYJOCE_SUPERDARK",new List<BloxClass>
         {
-            new FighterClass(),
-            new TankClass(),
-            new RangerClass()
+            BloxClass.Fighter,
+            BloxClass.Tank,
+            BloxClass.Ranger
         }));
 
         //Build Professor Jac- I mean Vector Vachglitch
-        _allEnemyTeams.Add(new EnemyTeam("VECTOR_VACHGLITCH", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("VECTOR_VACHGLITCH", new List<BloxClass>
         {
-            new CowboyClass(),
-            new RangerClass(),
-            new RangerClass()
+            BloxClass.Ranger,
+            BloxClass.Cowboy,
+            BloxClass.Ranger
         }));
 
         //Build Chimp T. Lucky
-        _allEnemyTeams.Add(new EnemyTeam("CHIMP_T_LUCKY", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("CHIMP_T_LUCKY", new List<BloxClass>
         {
-            new PirateClass(),
-            new PirateClass(),
-            new PirateClass()
+            BloxClass.Pirate,
+            BloxClass.Pirate,
+            BloxClass.Pirate
         }));
 
         //Build Holly WarmHart
-        _allEnemyTeams.Add(new EnemyTeam("HOLLY_WARMHART", new List<ClassAbstract>
+        _allEnemyTeams.Add(new EnemyTeam("HOLLY_WARMHART", new List<BloxClass>
         {
-            new SageClass(),
-            new TankClass(),
-            new ClownClass()
+            BloxClass.Sage,
+            BloxClass.Tank,
+            BloxClass.Clown
         }));
 
         //Set the team to Enemy
-        foreach(EnemyTeam team in _allEnemyTeams)
+        /*foreach(EnemyTeam team in _allEnemyTeams)
         {
             team.team = Team.Enemy;
-        }
+        }*/
 
     }//end BuildEnemyTeams
 }

@@ -23,6 +23,10 @@ using UnityEngine;
 
 public class ClassVitals : MonoBehaviour
 {
+
+    [SerializeField]
+    private BloxClass _bloxClass;
+
     //The class of the Blox
     private ClassAbstract _class;
 
@@ -71,21 +75,62 @@ public class ClassVitals : MonoBehaviour
     /* Function name: InitializeBlox                                                  */
     /* Description: A constructor to initiate the creation of a new Blox and to       */
     /*              create an empty list of effects for later                         */
-    /* Parameters: ClassAbstract className: a specific class of Blox (ex: Fighter)    */
+    /* Parameters: BloxClass className: a specific class of Blox (ex: Fighter)        */
     /*             Team team: The team the Blox is on, either Player or Enemy         */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void InitializeBlox(ClassAbstract className, Team team)
+    public void InitializeBlox(BloxClass className, Team team)
     {
         //Set the Blox's team
          _team = team;
 
+
+        switch (className)
+        {
+            case BloxClass.Fighter:
+                _class = new FighterClass();
+                break;
+
+            case BloxClass.Tank:
+                _class = new TankClass();
+                break;
+
+            case BloxClass.Ranger:
+                _class = new RangerClass();
+                break;
+
+            case BloxClass.Thief:
+                _class = new ThiefClass();
+                break;
+
+            case BloxClass.Sage:
+                _class = new SageClass();
+                break;
+
+            case BloxClass.Clown:
+                _class = new ClownClass();
+                break;
+
+            case BloxClass.Cowboy:
+                _class = new CowboyClass();
+                break;
+
+            case BloxClass.Pirate:
+                _class = new PirateClass();
+                break;
+
+            default:
+                _class = new FighterClass();
+                break;
+
+        }
+
         //Store what class is passed
-        _class = className;
+        //_class = className;
 
         //Set Blox model
-        _bloxObject = className.bloxObject;
+        //_bloxObject = className.bloxObject;
 
         _currEffects = new List<EffectInstance>();
 

@@ -25,7 +25,7 @@ using UnityEditor.Experimental.GraphView;
 public class ClassSelectorMenu : MonoBehaviour
 {
     //The list of the player's choices
-    public List<ClassAbstract> playerSelection { get; private set; } = new List<ClassAbstract>();
+    public List<BloxClass> playerSelection { get; private set; } = new List<BloxClass>();
 
     //The size of the player's team, set to a constant 3
     private const int _teamSize = 3;
@@ -45,12 +45,12 @@ public class ClassSelectorMenu : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void SelectClass(string selectedClass)
+    public void SelectClass(BloxClass playerBloxClass)
     {
         //Create a playerBlox to represent the new blox being added
-        ClassAbstract playerBlox;
+        //BloxClass playerBloxClass;
         
-        //A switch to run through every possible outcome of Blox class
+        /*//A switch to run through every possible outcome of Blox class
         switch (selectedClass)
         {
             case "FIGHTER":
@@ -89,11 +89,11 @@ public class ClassSelectorMenu : MonoBehaviour
                 playerBlox = new FighterClass();
                 break;
 
-        }//end switch
+        }//end switch*/
 
         //Add the new blox into the player's current selected Blox
-        playerSelection.Add(playerBlox);
-        Debug.Log("Added" + playerBlox);
+        playerSelection.Add(playerBloxClass);
+        Debug.Log("Added" + playerBloxClass);
 
         //If the player has chosen enough Blox (3), start the game
         if(playerSelection.Count == _teamSize)

@@ -35,6 +35,9 @@ public class RunManager : MonoBehaviour
     [SerializeField]
     private LossHandler _lossHandler;
 
+    [SerializeField]
+    private GameObject _bloxPrefab;
+
     //The EnemyTeam selector to hold all possible enemy teams, an retrieve team being fought
     private EnemyTeamSelector _enemyTeamSelector;
 
@@ -76,20 +79,19 @@ public class RunManager : MonoBehaviour
     /*                                                                                   */
     /* Function name: CreatePlayerTeam                                                   */
     /* Description: Creates and instantiates the player's team, gets the enemy           */
-    /* Parameters: List<ClassAbstract> selectedBlox: the classes the player selected     */
+    /* Parameters: List<BloxClass> selectedBlox: the classes the player selected         */
     /* Return Value: N/A                                                                 */
     /*                                                                                   */
     /*************************************************************************************/
-    public void CreatePlayerTeam(List<ClassAbstract> selectedBlox)
+    public void CreatePlayerTeam(List<BloxClass> selectedBlox)
     {
         playerTeam = new List<ClassVitals>();
-        foreach (ClassAbstract classAbstract in selectedBlox)
+        foreach (BloxClass bloxClass in selectedBlox)
         {
-
-            Debug.Log("Selected Blox is " + classAbstract);
-            GameObject bloxGameObject = Instantiate(classAbstract.bloxObject);
+            Debug.Log("Selected Blox is " + bloxClass);
+            GameObject bloxGameObject = Instantiate(_bloxPrefab);
             ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
-            bloxVitals.InitializeBlox(classAbstract, Team.Player);
+            bloxVitals.InitializeBlox(bloxClass, Team.Player);
             if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
             playerTeam.Add(bloxVitals);
@@ -133,14 +135,14 @@ public class RunManager : MonoBehaviour
         EnemyTeam tempEnemyTeam = EnemyTeamSelector._singletonInstance.GetRandomTeam();
 
         //Loop through every Blox in the next enemy team and add them to _enemyTeam
-        foreach (ClassAbstract enemyClassAbstract in tempEnemyTeam.enemyBlox)
+        foreach (BloxClass enemyBloxClass in tempEnemyTeam.enemyBlox)
         {
 
-            GameObject enemyBloxGameObject = Instantiate(enemyClassAbstract.bloxObject);
+            GameObject enemyBloxGameObject = Instantiate(_bloxPrefab);
 
             ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
-            enemyBloxClassVitals.InitializeBlox(enemyClassAbstract, Team.Enemy);
+            enemyBloxClassVitals.InitializeBlox(enemyBloxClass, Team.Enemy);
 
             enemyTeam.Add(enemyBloxClassVitals);
         }//end foreach

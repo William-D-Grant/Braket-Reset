@@ -23,9 +23,10 @@ public class EnemyTeam : MonoBehaviour
     public string enemyName;
 
     //The list of the enemy's blox
-    public List<ClassAbstract> enemyBlox;
+    public List<BloxClass> enemyBlox;
 
-    public Team team;
+    //The team the Blox is on (Enemy)
+    public Team team = Team.Enemy;
 
 
     /**********************************************************************************/
@@ -34,11 +35,11 @@ public class EnemyTeam : MonoBehaviour
     /* Description: A constructor that builds an enemy team, including the enemy's    */
     /*              name and the Blox they use                                        */
     /* Parameters: string enemyName: The name of the enemy                            */
-    /*             List<ClassVitals> enemyBlox: A list of said enemy's Blox           */
+    /*             List<BloxClass> enemyBlox: A list of said enemy's Blox             */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public EnemyTeam(string enemyName, List<ClassAbstract> enemyBlox)
+    public EnemyTeam(string enemyName, List<BloxClass> enemyBlox)
     {
         this.enemyName = enemyName;
         this.enemyBlox = enemyBlox;
