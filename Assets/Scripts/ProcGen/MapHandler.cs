@@ -24,8 +24,6 @@ public class MapHandler : MonoBehaviour
         {
             for (int i = 0; i < tileGrid.GetLength(1); i++)
             {
-                Debug.Log(tileGrid[i, j]._tileType);
-                Debug.Log(tileGrid[i, j].transform.position);
                 if (tileGrid[i,j]._tileType == Tile.TileType.Spawn)
                 {
                     Debug.Log("spawning");
@@ -41,6 +39,7 @@ public class MapHandler : MonoBehaviour
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         //bloxSpawned.GetComponent<ClassVitals>().InitializeBlox(playerTeam[playerCount].GetComponent<ClassVitals>().
                         bloxSpawned.GetComponent<ClassVitals>()._currPos = new Vector2(i, j);
+                        bloxSpawned.GetComponent<ClassVitals>()._team = Team.Player;
                         playerTeam[playerCount] = bloxSpawned;
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         playerCount++;
@@ -54,6 +53,7 @@ public class MapHandler : MonoBehaviour
                         GameObject bloxSpawned = Instantiate(enemyTeam[enemyCount], tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         bloxSpawned.GetComponent<ClassVitals>()._currPos = new Vector2(i, j);
+                        bloxSpawned.GetComponent<ClassVitals>()._team = Team.Enemy;
                         enemyTeam[enemyCount] = bloxSpawned;
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         enemyCount++;
@@ -69,21 +69,38 @@ public class MapHandler : MonoBehaviour
     {
         Tile[] nearbyTiles = new Tile[4];
         Debug.Log(referenceUnit._currPos);
-        int tileNumber = 0;
-        for (int i = Mathf.Clamp((int)(referenceUnit._currPos.x - 1), 0, 9); i <= (int)(referenceUnit._currPos.x + 1); i++)
+        //int tileNumber = 0;
+        if (referenceUnit._currPos.x - 1 >= 0)
         {
-            if (i != referenceUnit._currPos.x)
+            nearbyTiles[0] = tileGrid[(int)referenceUnit._currPos.x - 1, (int)referenceUnit._currPos.y];
+        }
+        if (referenceUnit._currPos.x + 1 < 9)
+        {
+            nearbyTiles[1] = tileGrid[(int)referenceUnit._currPos.x + 1, (int)referenceUnit._currPos.y];
+        }
+        if (referenceUnit._currPos.y - 1 >= 0)
+        {
+            nearbyTiles[2] = tileGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y - 1];
+        }
+        if (referenceUnit._currPos.y + 1 < 9)
+        {
+            nearbyTiles[3] = tileGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y + 1];
+
+        }
+        /*for (int j = (int)referenceUnit._currPos.x - 1; j <= (int)referenceUnit._currPos.x + 1; j++)
+        {
+            if (j != referenceUnit._currPos.x && j >= 0 && j < 9)
             {
-                nearbyTiles[tileNumber] = tileGrid[i, (int)(referenceUnit._currPos.y)];
+                nearbyTiles[tileNumber] = tileGrid[j, (int)(referenceUnit._currPos.y)];
             }
         }
-        for (int j = Mathf.Clamp((int)(referenceUnit._currPos.y - 1), 0, 9); j <= (int)(referenceUnit._currPos.y + 1); j++)
+        for (int i = (int)referenceUnit._currPos.y - 1; i <= (int)referenceUnit._currPos.y + 1; i++)
         {
-            if (j != referenceUnit._currPos.y)
+            if (i != referenceUnit._currPos.y && i >= 0 && i < 9)
             {
-                nearbyTiles[tileNumber] = tileGrid[(int)(referenceUnit._currPos.x), j];
+                nearbyTiles[tileNumber] = tileGrid[(int)(referenceUnit._currPos.x), i];
             }
-        }
+        }*/
         return nearbyTiles;
     }
 

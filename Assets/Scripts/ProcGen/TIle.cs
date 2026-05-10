@@ -19,4 +19,6 @@ public class Tile : MonoBehaviour
     }
 
     public TileType _tileType;
+
+    public Vector2 position;
 }

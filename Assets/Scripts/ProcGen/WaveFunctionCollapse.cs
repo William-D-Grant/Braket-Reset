@@ -39,6 +39,7 @@ public class WaveFunctionCollapse : MonoBehaviour
                 {
                     Tile currentSpawnTile = Instantiate(spawnObject, newCell.transform.position, spawnObject.transform.rotation);
                     _mapHandler.tileGrid[x, y] = currentSpawnTile;
+                    currentSpawnTile.position = new Vector2(x, y);
                     newCell.CreateCell(true, tileObjects, new Vector2(x,y));
                 }
                 else
@@ -86,6 +87,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         Tile foundTile = cellToCollapse.tileOptions[0];
         Tile currentFoundTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
         _mapHandler.tileGrid[(int)cellToCollapse.arrayPosition.x, (int)cellToCollapse.arrayPosition.y] = currentFoundTile;
+        currentFoundTile.position = new Vector2((int)cellToCollapse.arrayPosition.x, (int)cellToCollapse.arrayPosition.y);
 
         UpdateGeneration();
     }

@@ -71,7 +71,19 @@ public class CombatHandler : MonoBehaviour
         Debug.Log(_runManager.playerTeam[0]);
 
         //Adds both the player's and the enemy's teams of Blox into the turn order
+        /*foreach (GameObject playerBlox in _runManager.playerTeam)
+        {
+            GameObject addingPlayerBlox = Instantiate(playerBlox);
+            addingPlayerBlox.GetComponent<ClassVitals>()._team = Team.Player;
+            _turnList.Add(addingPlayerBlox);
+        }*/
         _turnList.AddRange(_runManager.playerTeam);
+        /*foreach (GameObject enemyBlox in _runManager.enemyTeam)
+        {
+            GameObject addingEnemyBlox = Instantiate(enemyBlox);
+            addingEnemyBlox.GetComponent<ClassVitals>()._team = Team.Enemy;
+            _turnList.Add(addingEnemyBlox);
+        }*/
         //_turnList.AddRange(_runManager.enemyTeam);
 
         //Sorts the turn list by the Blox's speed value
@@ -102,15 +114,21 @@ public class CombatHandler : MonoBehaviour
         //Update the turn number
         _turn++;
 
+        Debug.Log("Shifting turn");
+
         //If the turn number is higher than the number of blox in _turnList, then reset the turn order
         if(_turn >= _turnList.Count)
         {
+            Debug.Log("Resetting Turns");
             _turn = 0;
             _round++;
         }
 
+        Debug.Log("Checking if unity is player");
+        Debug.Log(_turnList[_turn].GetComponent<ClassVitals>().GetTeam());
         if (_turnList[_turn].GetComponent<ClassVitals>().GetTeam() == Team.Player)
         {
+            Debug.Log("Enabling Player");
             _playerController.EnablePlayer(_turnList[_turn]);
         }
 

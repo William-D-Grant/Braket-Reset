@@ -45,51 +45,51 @@ public class ClassSelectorMenu : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void SelectClass(BloxClass playerBloxClass)
+    public void SelectClass(string selectedClass)
     {
         //Create a playerBlox to represent the new blox being added
-        //BloxClass playerBloxClass;
+        BloxClass playerBloxClass;
         
-        /*//A switch to run through every possible outcome of Blox class
+        //A switch to run through every possible outcome of Blox class
         switch (selectedClass)
         {
             case "FIGHTER":
-                playerBlox = new FighterClass();
+                playerBloxClass = BloxClass.Fighter;
                 break;
 
             case "TANK":
-                playerBlox = new TankClass();
+                playerBloxClass = BloxClass.Tank;
                 break;
 
             case "RANGER":
-                playerBlox = new RangerClass();
+                playerBloxClass = BloxClass.Ranger;
                 break;
 
             case "THIEF":
-                playerBlox = new ThiefClass();
+                playerBloxClass = BloxClass.Thief;
                 break;
 
             case "SAGE":
-                playerBlox = new SageClass();
+                playerBloxClass = BloxClass.Sage;
                 break;
 
             case "CLOWN":
-                playerBlox = new ClownClass();
+                playerBloxClass = BloxClass.Clown;
                 break;
 
             case "COWBOY":
-                playerBlox = new CowboyClass();
+                playerBloxClass = BloxClass.Cowboy;
                 break;
 
             case "PIRATE":
-                playerBlox = new PirateClass();
+                playerBloxClass = BloxClass.Pirate;
                 break;
 
             default:
-                playerBlox = new FighterClass();
+                playerBloxClass = BloxClass.Fighter;
                 break;
 
-        }//end switch*/
+        }//end switch
 
         //Add the new blox into the player's current selected Blox
         playerSelection.Add(playerBloxClass);

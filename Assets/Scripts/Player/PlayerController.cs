@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private CombatHandler _combatHandler;
     [SerializeField]
     private MapHandler _mapHandler;
+    [SerializeField]
+    private PlayerGUIHandler _playerGUI;
 
     private int remainingTM;
     private bool hasAction;
@@ -102,9 +104,11 @@ public class PlayerController : MonoBehaviour
 
     private void CheckTile()
     {
+        Debug.Log(activeUnit.GetComponent<ClassVitals>()._currPos);
         Tile[] checkingTiles = _mapHandler.FindTilesNearUnit(activeUnit.GetComponent<ClassVitals>());
         for (int i = 0; i < checkingTiles.Length; i++)
         {
+            Debug.Log(checkingTiles[i]);
             if (checkingTiles[i] == selectedTile)
             {
                 Debug.Log("Good tile");
@@ -128,22 +132,27 @@ public class PlayerController : MonoBehaviour
         if (remainingTM > 0 && selectedTile != null)
         {
             activeUnit.transform.position = selectedTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
+            activeUnit.GetComponent<ClassVitals>()._currPos = selectedTile.position;
             remainingTM--;
             Debug.Log(remainingTM + " TM Left");
+            _playerGUI.UpdatePlayerDisplay();
         }
+        selectedTile = null;
     }
 
     public void SelectAbility()
     {
         if (activeUnit != null)
         {
-            Debug.Log("This is working");
+            Debug.Log("This is working.");
             abilityIndex++;
             if (abilityIndex >= activeUnit.GetComponent<ClassVitals>()._currAbilities.Length)
             {
                 abilityIndex = 0;
             }
             abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[abilityIndex];
+            Debug.Log(abilitySelected.GetName());
+            _playerGUI.UpdatePlayerDisplay();
         }
     }
 
@@ -162,6 +171,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            _playerGUI.UpdatePlayerDisplay();
         }
     }
 
@@ -169,6 +179,8 @@ public class PlayerController : MonoBehaviour
     {
         activeUnit.transform.Find("HighlightActive").gameObject.SetActive(false);
         activeUnit = null;
+        selectedTile = null;
+        targetUnit = null;
         _combatHandler.ShiftTurn();
     }
 
@@ -179,7 +191,11 @@ public class PlayerController : MonoBehaviour
         activeUnit.transform.Find("HighlightActive").gameObject.SetActive(true);
         remainingTM = activeUnit.GetComponent<ClassVitals>()._currTM;
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._currTM + " TM");
+        Debug.Log(activeUnit.GetComponent<ClassVitals>()._team + " Team");
+        Debug.Log(activeUnit.GetComponent<ClassVitals>()._bloxClass + " Class");
+        Debug.Log(activeUnit.GetComponent<ClassVitals>()._class + " Abstract");
         hasAction = true;
-        //abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[0];
+        abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[0];
+        _playerGUI.UpdatePlayerDisplay();
     }
 }

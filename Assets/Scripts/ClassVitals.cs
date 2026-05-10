@@ -19,16 +19,17 @@
 ****************************************************************/
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClassVitals : MonoBehaviour
 {
 
     [SerializeField]
-    private BloxClass _bloxClass;
+    public BloxClass _bloxClass;
 
     //The class of the Blox
-    private ClassAbstract _class;
+    public ClassAbstract _class;
 
     //The Blox's current health points
     private float _currHP;
@@ -43,7 +44,7 @@ public class ClassVitals : MonoBehaviour
     private int _currDEF;
 
     //The Blox's current tile movement value
-    private int _currTM;
+    public int _currTM { get; private set; }
 
     //The Blox's current Hype generation
     private int _currHype;
@@ -58,7 +59,7 @@ public class ClassVitals : MonoBehaviour
     public AbilityInstance[] _currAbilities;
 
     //The Blox's team (either player or enemy)
-    private Team _team;
+    public Team _team;
 
     //The Blox's current effects
     private List<EffectInstance> _currEffects;
@@ -80,6 +81,12 @@ public class ClassVitals : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
+
+    private void Awake()
+    {
+        InitializeBlox(_bloxClass, _team);
+    }
+
     public void InitializeBlox(BloxClass className, Team team)
     {
         //Set the Blox's team

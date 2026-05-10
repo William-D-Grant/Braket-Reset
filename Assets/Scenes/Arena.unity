@@ -3943,6 +3943,7 @@ MonoBehaviour:
   _inputManager: {fileID: 983775491}
   _combatHandler: {fileID: 230861456}
   _mapHandler: {fileID: 2104306556}
+  _playerGUI: {fileID: 1772137077}
 --- !u!4 &1723603832
 Transform:
   m_ObjectHideFlags: 0
@@ -4110,6 +4111,7 @@ MonoBehaviour:
   playerHype: 0
   vitalsHUD: {fileID: 844768602}
   _playerController: {fileID: 1723603831}
+  _abilityText: {fileID: 950801217}
 --- !u!4 &1772137078
 Transform:
   m_ObjectHideFlags: 0

@@ -1779,6 +1779,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RunManager
   _victoryHandler: {fileID: 0}
   _lossHandler: {fileID: 0}
+  _bloxPrefabs:
+  - {fileID: 3861117509635913270, guid: 9478e3d6f3cfcb647b7e4345c34e5655, type: 3}
+  - {fileID: 7638320938430263328, guid: ceb26c10eef1eb644a476964d604ec86, type: 3}
+  - {fileID: 5889767585003823346, guid: b40ea2368bdb2af48977e337ad5d95cf, type: 3}
+  - {fileID: 8464906248228649967, guid: 7dd2c8fb5587bfa42b0b766585d59bda, type: 3}
+  - {fileID: 3147726735177710166, guid: 4accf943315f4994aa68f08ce8e87231, type: 3}
+  - {fileID: 4006646711546760377, guid: 08cc343a8a45c4d4aa33ab438f8b821d, type: 3}
+  - {fileID: 2248317286293423994, guid: 82b1736429ac7aa48b446ec4d9713551, type: 3}
+  - {fileID: 5052527938508284102, guid: cd96c20b3f95e354299f35e37ead2c7b, type: 3}
 --- !u!4 &1193564094
 Transform:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class RunManager : MonoBehaviour
     private LossHandler _lossHandler;
 
     [SerializeField]
-    private GameObject _bloxPrefab;
+    private ClassAbstract[] _bloxPrefabs = new ClassAbstract[8];
 
     //The EnemyTeam selector to hold all possible enemy teams, an retrieve team being fought
     private EnemyTeamSelector _enemyTeamSelector;
@@ -45,10 +45,10 @@ public class RunManager : MonoBehaviour
     public List<ClassAbstract> playerSelection;
 
     //The player's Blox
-    public List<ClassVitals> playerTeam { get; private set; }
+    public List<GameObject> playerTeam { get; private set; }
 
     //The enemy's Blox
-    public List<ClassVitals> enemyTeam { get; private set; }
+    public List<GameObject> enemyTeam { get; private set; }
 
     //The player's current match
     private int _bracketNumber;
@@ -72,6 +72,15 @@ public class RunManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _bloxPrefabs[0] = new ClownClass();
+        _bloxPrefabs[1] = new CowboyClass();
+        _bloxPrefabs[2] = new FighterClass();
+        _bloxPrefabs[3] = new PirateClass();
+        _bloxPrefabs[4] = new RangerClass();
+        _bloxPrefabs[5] = new SageClass();
+        _bloxPrefabs[6] = new TankClass();
+        _bloxPrefabs[7] = new ThiefClass();
     }//end void
 
 
@@ -85,16 +94,48 @@ public class RunManager : MonoBehaviour
     /*************************************************************************************/
     public void CreatePlayerTeam(List<BloxClass> selectedBlox)
     {
-        playerTeam = new List<ClassVitals>();
+        playerTeam = new List<GameObject>();
         foreach (BloxClass bloxClass in selectedBlox)
         {
             Debug.Log("Selected Blox is " + bloxClass);
-            GameObject bloxGameObject = Instantiate(_bloxPrefab);
+            GameObject bloxGameObject = null;
+            switch (bloxClass)
+            {
+                case BloxClass.Clown:
+                    bloxGameObject = _bloxPrefabs[0].bloxObject;
+                    break;
+                case BloxClass.Cowboy:
+                    bloxGameObject = _bloxPrefabs[1].bloxObject;
+                    break;
+                case BloxClass.Fighter:
+                    bloxGameObject = _bloxPrefabs[2].bloxObject;
+                    break;
+                case BloxClass.Pirate:
+                    bloxGameObject = _bloxPrefabs[3].bloxObject;
+                    break;
+                case BloxClass.Ranger:
+                    bloxGameObject = _bloxPrefabs[4].bloxObject;
+                    break;
+                case BloxClass.Sage:
+                    bloxGameObject = _bloxPrefabs[5].bloxObject;
+                    break;
+                case BloxClass.Tank:
+                    bloxGameObject = _bloxPrefabs[6].bloxObject;
+                    break;
+                case BloxClass.Thief:
+                    bloxGameObject = _bloxPrefabs[7].bloxObject;
+                    break;
+                default:
+                    bloxGameObject = _bloxPrefabs[2].bloxObject;
+                    break;
+
+            }
             ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
-            bloxVitals.InitializeBlox(bloxClass, Team.Player);
-            if (bloxVitals == null)
+            //bloxVitals._team = Team.Player;
+            //bloxVitals.InitializeBlox(bloxClass, Team.Player);
+            //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxVitals);
+            playerTeam.Add(bloxGameObject);
         }//end foreach
 
     }
@@ -109,10 +150,10 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     public void HealPlayer()
     {
-        foreach(ClassVitals blox in playerTeam)
+        foreach(GameObject blox in playerTeam)
         {
-            blox.HealBlox(20);
-            blox.ClearStatus();
+            blox.GetComponent<ClassVitals>().HealBlox(20);
+            blox.GetComponent<ClassVitals>().ClearStatus();
         }//end foreach
 
     }//end HealPlayer
@@ -129,7 +170,7 @@ public class RunManager : MonoBehaviour
     public void SelectEnemies()
     {
         //Clear the current enemy team
-        enemyTeam = new List<ClassVitals>();
+        enemyTeam = new List<GameObject>();
 
         //Make a temporary enemy team so we can access the enemy blox information from the EnemyTeam class
         EnemyTeam tempEnemyTeam = EnemyTeamSelector._singletonInstance.GetRandomTeam();
@@ -137,14 +178,43 @@ public class RunManager : MonoBehaviour
         //Loop through every Blox in the next enemy team and add them to _enemyTeam
         foreach (BloxClass enemyBloxClass in tempEnemyTeam.enemyBlox)
         {
-
-            GameObject enemyBloxGameObject = Instantiate(_bloxPrefab);
+            GameObject enemyBloxGameObject = null;
+            switch (enemyBloxClass)
+            {
+                case BloxClass.Clown:
+                    enemyBloxGameObject = _bloxPrefabs[0].bloxObject;
+                    break;
+                case BloxClass.Cowboy:
+                    enemyBloxGameObject = _bloxPrefabs[1].bloxObject;
+                    break;
+                case BloxClass.Fighter:
+                    enemyBloxGameObject = _bloxPrefabs[2].bloxObject;
+                    break;
+                case BloxClass.Pirate:
+                    enemyBloxGameObject = _bloxPrefabs[3].bloxObject;
+                    break;
+                case BloxClass.Ranger:
+                    enemyBloxGameObject = _bloxPrefabs[4].bloxObject;
+                    break;
+                case BloxClass.Sage:
+                    enemyBloxGameObject = _bloxPrefabs[5].bloxObject;
+                    break;
+                case BloxClass.Tank:
+                    enemyBloxGameObject = _bloxPrefabs[6].bloxObject;
+                    break;
+                case BloxClass.Thief:
+                    enemyBloxGameObject = _bloxPrefabs[7].bloxObject;
+                    break;
+                default:
+                    enemyBloxGameObject = _bloxPrefabs[2].bloxObject;
+                    break;
+            }
 
             ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
-            enemyBloxClassVitals.InitializeBlox(enemyBloxClass, Team.Enemy);
+            //enemyBloxClassVitals._team = Team.Enemy;
 
-            enemyTeam.Add(enemyBloxClassVitals);
+            enemyTeam.Add(enemyBloxGameObject);
         }//end foreach
 
     }//end SelectEnemies

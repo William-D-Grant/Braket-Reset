@@ -11,6 +11,9 @@ public class PlayerGUIHandler : MonoBehaviour
     [SerializeField]
     private PlayerController _playerController;
 
+    [SerializeField]
+    private TextMeshProUGUI _abilityText;
+
     private void Update()
     {
 
@@ -18,6 +21,7 @@ public class PlayerGUIHandler : MonoBehaviour
 
     public void UpdatePlayerDisplay()
     {
-        vitalsHUD.GetComponent<TextMeshProUGUI>().SetText(_playerController.abilitySelected.GetName());
+        Debug.Log("Trying to update UI");
+        _abilityText.SetText(_playerController.abilitySelected.GetName());
     }
 }
