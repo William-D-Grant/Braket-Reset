@@ -25,8 +25,8 @@ using UnityEngine;
 
 public class ClassVitals : MonoBehaviour
 {
-
-    public BloxClass _bloxClass { get; private set; }
+    [SerializeField]
+    public BloxClass _bloxClass;
 
     //The class of the Blox
     private ClassAbstract _class;

@@ -124,11 +124,16 @@ public class CombatHandler : MonoBehaviour
             Debug.Log("Resetting Turns");
             _turn = 0;
             _round++;
-            foreach(GameObject blox in _turnList)
+            for(int i = 0; i < _turnList.Count; i++)
+            {
+                _turnList[i].GetComponent<ClassVitals>().TurnTick();
+                _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
+            }
+            /*foreach(GameObject blox in _turnList)
             {
                 blox.GetComponent<ClassVitals>().TurnTick();
                 PopulateTurns();
-            }
+            }*/
         }
 
         Debug.Log("Checking if unity is player");
