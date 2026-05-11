@@ -124,9 +124,9 @@ public class CombatHandler : MonoBehaviour
             Debug.Log("Resetting Turns");
             _turn = 0;
             _round++;
-            foreach(ClassVitals blox in _turnList)
+            foreach(GameObject blox in _turnList)
             {
-                blox.TurnTick();
+                blox.GetComponent<ClassVitals>().TurnTick();
                 PopulateTurns();
             }
         }
