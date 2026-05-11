@@ -141,8 +141,8 @@ public class PlayerController : MonoBehaviour
             remainingTM--;
             Debug.Log(remainingTM + " TM Left");
             _playerGUI.UpdatePlayerDisplay();
+            selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         }
-        selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         selectedTile = null;
     }
 
@@ -205,7 +205,10 @@ public class PlayerController : MonoBehaviour
         {
             targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
         }
-        selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
+        if (selectedTile != null)
+        {
+            selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
+        }
         activeUnit = null;
         selectedTile = null;
         targetUnit = null;

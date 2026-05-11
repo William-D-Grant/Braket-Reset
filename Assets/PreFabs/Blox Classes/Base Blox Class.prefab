@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 7701266426814732331}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 2.1102, y: 2.1102, z: 2.1102}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -270,7 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87726bf802f6a1540b33f580e5d7d21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassVitals
+  _bloxClass: 0
+  _team: 0
   _currPos: {x: 0, y: 0}
+  _bloxObject: {fileID: 0}
 --- !u!65 &8206010973807626871
 BoxCollider:
   m_ObjectHideFlags: 0
