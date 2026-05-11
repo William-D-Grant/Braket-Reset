@@ -99,6 +99,13 @@ public static class EffectFactory
                 hypeTrainEffect.effectDuration = 3; //duration doesnt matter
                 return hypeTrainEffect;
 
+            case "JOKE":
+                EffectFlyweight jokeEffect = new EffectFlyweight();
+                jokeEffect.effectID = effectID;
+                //icon
+                jokeEffect.effectDuration = 1;
+                return jokeEffect;
+
             case "CAUGHT":
                 EffectFlyweight caughtEffect = new EffectFlyweight();
                 caughtEffect.effectID = effectID;

@@ -59,7 +59,8 @@ public class RangerClass : ClassAbstract
         //The array of the Ranger's abilities
         abilityArray = new string[]
         {
-            "LONG_SHOT"
+            "Shoot",
+            "Long Shot"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Ranger");

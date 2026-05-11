@@ -358,6 +358,32 @@ public class ClassVitals : MonoBehaviour
 
     /**********************************************************************************/
     /*                                                                                */
+    /* Function name: GetAttack                                                       */
+    /* Description: A gettor for the Blox's attack                                    */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetAttack()
+    {
+        return _currATK;
+    }
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetRange                                                        */
+    /* Description: A gettor for the Blox's Range                                     */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetRange()
+    {
+        return _currRange;
+    }
+
+    /**********************************************************************************/
+    /*                                                                                */
     /* Function name: TurnTick                                                        */
     /* Description: Goes through every effect on the Blox and updates their duration  */
     /*              and other effects, also removes an effect and any stat changes    */
@@ -383,6 +409,10 @@ public class ClassVitals : MonoBehaviour
                         this.UpdateSpeed(2);
                         break;
 
+                    case "DEFEND":
+                        this.UpdateDefense(-2);
+                        break;
+
                     case "SPEED_DEMON":
                         this.UpdateTileMovement(-3);
                         this.UpdateAttack(-1);
@@ -397,6 +427,10 @@ public class ClassVitals : MonoBehaviour
                         this.UpdateTileMovement(90);
                         break;
 
+                    case "JOKE":
+                        this.UpdateHype(-2);
+                        break;
+
                     case "SEA_SHANTY":
                         if(this.GetTeam() == _currEffects[i]._casterTeam)
                         {
@@ -408,6 +442,10 @@ public class ClassVitals : MonoBehaviour
                             this.UpdateLuck(2);
                             this.UpdateHype(2);
                         }
+                        break;
+
+                    case "HUM":
+                        this.UpdateLuck(-1);
                         break;
                 }
                 _currEffects.RemoveAt(i);

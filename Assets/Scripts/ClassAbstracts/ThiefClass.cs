@@ -59,7 +59,9 @@ public class ThiefClass : ClassAbstract
         //The array of the Thief's abilities
         abilityArray = new string[]
         {
-            "SPEED_DEMON"
+            "Hit",
+            "Slash",
+            "Speed Demon"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Thief");

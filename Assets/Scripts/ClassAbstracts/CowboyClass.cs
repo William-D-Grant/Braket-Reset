@@ -59,7 +59,9 @@ public class CowboyClass : ClassAbstract
         //The array of the Cowboy's abilities
         abilityArray = new string[]
         {
-            "CAUGHT"
+            "Whip",
+            "Six Shooter",
+            "Caught"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Cowboy");

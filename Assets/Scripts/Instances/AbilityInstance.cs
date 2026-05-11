@@ -62,14 +62,21 @@ public class AbilityInstance
 
             switch (abilityName)
             {
-                case "SHIELD_BASH":
+                case "Shield Bash":
                     EffectFlyweight shieldBashEffect = EffectFactory.RetrieveEffect("SHIELD_BASH");
                     EffectInstance shieldBashInstance = new EffectInstance(shieldBashEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateSpeed(-2);
                     abilityTarget.ApplyStatus(shieldBashInstance);
                     break;
 
-                case "SPEED_DEMON":
+                case "Defend":
+                    EffectFlyweight defendEffect = EffectFactory.RetrieveEffect("DEFEND");
+                    EffectInstance defendInstance = new EffectInstance(defendEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
+                    abilityTarget.UpdateDefense(2);
+                    abilityTarget.ApplyStatus(defendInstance);
+                    break;
+
+                case "Speed Demon":
                     EffectFlyweight speedDemonEffect = EffectFactory.RetrieveEffect("SPEED_DEMON");
                     EffectInstance speedDemonInstance = new EffectInstance(speedDemonEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateTileMovement(3);
@@ -77,11 +84,15 @@ public class AbilityInstance
                     abilityTarget.ApplyStatus(speedDemonInstance);
                     break;
 
-                case "LIFE_DRAIN":
+                case "Life Drain":
                     abilityCaster.HealBlox(_abilityStats.abilityDamage);
                     break;
 
-                case "HYPE_TRAIN":
+                case "Heal":
+                    abilityTarget.HealBlox(5);
+                    break;
+
+                case "Hype Train":
                     EffectFlyweight hypeTrainEffect = EffectFactory.RetrieveEffect("HYPE_TRAIN");
                     EffectInstance hypeTrainInstance = new EffectInstance(hypeTrainEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityCaster.UpdateDefense(-1);
@@ -89,14 +100,21 @@ public class AbilityInstance
                     abilityCaster.ApplyStatus(hypeTrainInstance);
                     break;
 
-                case "CAUGHT":
+                case "Joke":
+                    EffectFlyweight jokeEffect = EffectFactory.RetrieveEffect("JOKE");
+                    EffectInstance jokeInstance = new EffectInstance(jokeEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
+                    abilityCaster.UpdateHype(2);
+                    abilityCaster.ApplyStatus(jokeInstance);
+                    break;
+
+                case "Caught":
                     EffectFlyweight caughtEffect = EffectFactory.RetrieveEffect("HYPE");
                     EffectInstance caughtInstance = new EffectInstance(caughtEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateTileMovement(-90);
                     abilityTarget.ApplyStatus(caughtInstance);
                     break;
 
-                case "SEA_SHANTY":
+                case "Sea Shanty":
                     EffectFlyweight seaShantyEffect = EffectFactory.RetrieveEffect("SEA_SHANTY");
                     EffectInstance seaShantyInstance = new EffectInstance(seaShantyEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     if ((abilityTarget.GetTeam() == Team.Player && abilityCaster.GetTeam() == Team.Player) || (abilityTarget.GetTeam() == Team.Enemy && abilityCaster.GetTeam() == Team.Enemy))
@@ -109,6 +127,13 @@ public class AbilityInstance
                         abilityTarget.UpdateLuck(-2);
                         abilityTarget.UpdateHype(2);
                     }//end else
+                    break;
+
+                case "Hum":
+                    EffectFlyweight humEffect = EffectFactory.RetrieveEffect("HUM");
+                    EffectInstance humInstance = new EffectInstance(humEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
+                    abilityCaster.UpdateLuck(1);
+                    abilityCaster.ApplyStatus(humInstance); 
                     break;
             }//end switch
         }//end if

@@ -59,7 +59,9 @@ public class TankClass : ClassAbstract
         //The array of the Tank's abilities
         abilityArray = new string[]
         {
-            "SHIELD_BASH"
+            "Hit",
+            "Defend",
+            "Shield Bash"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Tank");
