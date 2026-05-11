@@ -60,7 +60,10 @@ public class ClownClass : ClassAbstract
         //The array of the Clown's abilities
         abilityArray = new string[]
         {
-            "HYPE_TRAIN"
+            "Joke",
+            "Throw Pie",
+            "Eat Pie",
+            "Hype Train"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Clown");

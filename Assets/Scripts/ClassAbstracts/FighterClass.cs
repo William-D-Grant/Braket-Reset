@@ -59,7 +59,9 @@ public class FighterClass : ClassAbstract
         //The array of the fighter's abilities
         abilityArray = new string[]
         {
-            "HEAVY_HITTER"
+            "Stab",
+            "Slash",
+            "Heavy Hitter"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Fighter");

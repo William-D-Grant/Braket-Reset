@@ -59,7 +59,9 @@ public class SageClass : ClassAbstract
         //The array of the Sage's abilities
         abilityArray = new string[]
         {
-            "LIFE_DRAIN"
+            "Heal",
+            "Shock",
+            "Life Drain"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Sage");

@@ -59,7 +59,9 @@ public class PirateClass : ClassAbstract
         //The array of the Pirate's abilities
         abilityArray = new string[]
         {
-            "SEA_SHANTY"
+            "En Guard",
+            "Hum",
+            "Sea Shanty"
         };
 
         bloxObject = Resources.Load<GameObject>("PreFabs/Blox Classes/Pirate");

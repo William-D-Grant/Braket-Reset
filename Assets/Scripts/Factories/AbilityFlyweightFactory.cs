@@ -40,7 +40,7 @@ public class AbilityFlyweightFactory
     /*               stats that were requested                                        */
     /*                                                                                */
     /**********************************************************************************/
-    public static AbilityFlyweight RetrieveAbility(string abilityID)
+    public static AbilityFlyweight RetrieveAbility(string abilityID, ClassVitals Blox)
     {
         //if the AbilityFlyweight has already been made, return the AbilityFlyweight
         if (_abilityDictionary.ContainsKey(abilityID))
@@ -49,7 +49,7 @@ public class AbilityFlyweightFactory
         }//end if
 
         //if the AbilityFlyweight hasn't already been made, create the AbilityFlyweight, store it, and return it
-        AbilityFlyweight newAbility = BuildAbility(abilityID);
+        AbilityFlyweight newAbility = BuildAbility(abilityID, Blox);
         _abilityDictionary[abilityID] = newAbility;
 		return newAbility;
 
@@ -65,37 +65,76 @@ public class AbilityFlyweightFactory
     /*               ability was requested                                            */
     /*                                                                                */
     /**********************************************************************************/
-    private static AbilityFlyweight BuildAbility(string abilityID)
+    private static AbilityFlyweight BuildAbility(string abilityID, ClassVitals Blox)
     {
         AbilityFlyweight abilityplaceholdersocodecompiles = new AbilityFlyweight();
         switch (abilityID)
         {
-            case "HEAVY_HITTER":
+            case "Heavy Hitter":
                 AbilityFlyweight heavyHitterAbility = new AbilityFlyweight();
                 heavyHitterAbility.abilityID = abilityID;
-                heavyHitterAbility.abilityDamage = 10;
-                heavyHitterAbility.abilityRange = 1;
-                heavyHitterAbility.abilityCooldown = 1;
+                heavyHitterAbility.abilityDamage = Blox.GetAttack() * 2;
+                heavyHitterAbility.abilityRange = Blox.GetRange();
+                heavyHitterAbility.abilityCooldown = 2;
                 heavyHitterAbility.abilityCost = 5;
                 //heavyHitterAbility.abilityIcon = ;
                 //heavyHitterAbility.abilitySound = ;
                 return heavyHitterAbility;
 
-            case "SHIELD_BASH":
+            case "Stab":
+                AbilityFlyweight stabAbility = new AbilityFlyweight();
+                stabAbility.abilityID = abilityID;
+                stabAbility.abilityDamage = Blox.GetAttack();
+                stabAbility.abilityRange = Blox.GetRange();
+                stabAbility.abilityCooldown = 1;
+                stabAbility.abilityCost = 0;
+                //icons if we do them
+                return stabAbility;
+
+            case "Slash":
+                AbilityFlyweight slashAbility = new AbilityFlyweight();
+                slashAbility.abilityID = abilityID;
+                slashAbility.abilityDamage = Blox.GetAttack() + 2;
+                slashAbility.abilityRange = Blox.GetRange();
+                slashAbility.abilityCooldown = 1;
+                slashAbility.abilityCost = 2;
+                return slashAbility;
+
+            case "Shield Bash":
                 AbilityFlyweight shieldBashAbility = new AbilityFlyweight();
                 shieldBashAbility.abilityID = abilityID;
                 shieldBashAbility.abilityDamage = 5;
-                shieldBashAbility.abilityRange = 1;
+                shieldBashAbility.abilityRange = Blox.GetRange();
                 shieldBashAbility.abilityCooldown = 2;
                 shieldBashAbility.abilityCost = 5;
                 //shieldBashAbility.abilityIcon = ;
                 //shieldBashAbility.abilitySound = ;
                 return shieldBashAbility;
 
-            case "LONG_SHOT":
+            case "Hit":
+                AbilityFlyweight hitAbility = new AbilityFlyweight();
+                hitAbility.abilityID = abilityID;
+                hitAbility.abilityDamage = Blox.GetAttack();
+                hitAbility.abilityRange = Blox.GetRange();
+                hitAbility.abilityCooldown = 1;
+                hitAbility.abilityCost = 0;
+                //icon and sound
+                return hitAbility;
+
+            case "Defend":
+                AbilityFlyweight defendAbility = new AbilityFlyweight();
+                defendAbility.abilityID = abilityID;
+                defendAbility.abilityDamage = 0;
+                defendAbility.abilityRange = 1;
+                defendAbility.abilityCooldown = 1;
+                defendAbility.abilityCost = 0;
+                //icon and sound
+                return defendAbility;
+
+            case "Long Shot":
                 AbilityFlyweight longShotAbility = new AbilityFlyweight();
                 longShotAbility.abilityID = abilityID;
-                longShotAbility.abilityDamage = 8;
+                longShotAbility.abilityDamage = Blox.GetAttack() * 2;
                 longShotAbility.abilityRange = 10;
                 longShotAbility.abilityCooldown = 2;
                 longShotAbility.abilityCost = 4;
@@ -103,7 +142,17 @@ public class AbilityFlyweightFactory
                 //longShotAbility.abilitySound = ;
                 return longShotAbility;
 
-            case "SPEED_DEMON":
+            case "Shoot":
+                AbilityFlyweight shootAbility = new AbilityFlyweight();
+                shootAbility.abilityID = abilityID;
+                shootAbility.abilityDamage = Blox.GetAttack();
+                shootAbility.abilityRange = Blox.GetRange();
+                shootAbility.abilityCooldown = 1;
+                shootAbility.abilityCost = 0;
+                //icon and sound
+                return shootAbility;
+
+            case "Speed Demon":
                 AbilityFlyweight speedDemonAbility = new AbilityFlyweight(); 
                 speedDemonAbility.abilityID = abilityID;
                 speedDemonAbility.abilityDamage = 0;
@@ -114,18 +163,38 @@ public class AbilityFlyweightFactory
                 //speedDemonAbility.abilitySound = ;
                 return speedDemonAbility;
 
-            case "LIFE_DRAIN":
+            case "Life Drain":
                 AbilityFlyweight lifeDrainAbility = new AbilityFlyweight();
                 lifeDrainAbility.abilityID = abilityID;
                 lifeDrainAbility.abilityDamage = 6;
-                lifeDrainAbility.abilityRange = 4;
+                lifeDrainAbility.abilityRange = Blox.GetRange();
                 lifeDrainAbility.abilityCooldown = 3;
                 lifeDrainAbility.abilityCost = 5;
                 //lifeDrainAbility.abilityIcon = ;
                 //lifeDrainAbility.abilitySound = ;
                 return lifeDrainAbility;
 
-            case "HYPE_TRAIN":
+            case "Heal":
+                AbilityFlyweight healAbility = new AbilityFlyweight();
+                healAbility.abilityID = abilityID;
+                healAbility.abilityDamage = 0;
+                healAbility.abilityRange = 1;
+                healAbility.abilityCooldown = 1;
+                healAbility.abilityCost = 1;
+                //icon
+                return healAbility;
+
+            case "Shock":
+                AbilityFlyweight shockAbility = new AbilityFlyweight();
+                shockAbility.abilityID = abilityID;
+                shockAbility.abilityDamage = 4;
+                shockAbility.abilityRange = Blox.GetRange();
+                shockAbility.abilityCooldown = 1;
+                shockAbility.abilityCost = 2;
+                //icon
+                return shockAbility;
+
+            case "Hype Train":
                 AbilityFlyweight hypeTrainAbility = new AbilityFlyweight();
                 hypeTrainAbility.abilityID = abilityID;
                 hypeTrainAbility.abilityDamage = 0;
@@ -136,18 +205,68 @@ public class AbilityFlyweightFactory
                 //hypeTrainAbility.abilitySound = ;
                 return hypeTrainAbility;
 
-            case "CAUGHT":
+            case "Joke":
+                AbilityFlyweight jokeAbility = new AbilityFlyweight();
+                jokeAbility.abilityID = abilityID;
+                jokeAbility.abilityDamage = 0;
+                jokeAbility.abilityRange = 0;
+                jokeAbility.abilityCooldown = 1;
+                jokeAbility.abilityCost = 1;
+                //icon and sound
+                return jokeAbility;
+
+            case "Throw Pie":
+                AbilityFlyweight throwPieAbility = new AbilityFlyweight();
+                throwPieAbility.abilityID = abilityID;
+                throwPieAbility.abilityDamage = Blox.GetAttack();
+                throwPieAbility.abilityRange = Blox.GetRange();
+                throwPieAbility.abilityCooldown = 1;
+                throwPieAbility.abilityCost = 0;
+                //icon and sound
+                return throwPieAbility;
+
+            case "Eat Pie":
+                AbilityFlyweight eatPieAbility = new AbilityFlyweight();
+                eatPieAbility.abilityID = abilityID;
+                eatPieAbility.abilityDamage = 0;
+                eatPieAbility.abilityRange = 0;
+                eatPieAbility.abilityCooldown = 2;
+                eatPieAbility.abilityCost = 2;
+                //icon and sound
+                return eatPieAbility;
+
+            case "Caught":
                 AbilityFlyweight caughtAbility = new AbilityFlyweight();
                 caughtAbility.abilityID = abilityID;
-                caughtAbility.abilityDamage = 3;
-                caughtAbility.abilityRange = 3; 
+                caughtAbility.abilityDamage = 5;
+                caughtAbility.abilityRange = Blox.GetRange(); 
                 caughtAbility.abilityCooldown = 3;
                 caughtAbility.abilityCost = 8;
                 //caughtAbility.abilityIcon = ;
                 //caughtAbility.abilitySound = ;
                 return caughtAbility;
 
-            case "SEA_SHANTY":
+            case "Whip":
+                AbilityFlyweight whipAbility = new AbilityFlyweight();
+                whipAbility.abilityID = abilityID;  
+                whipAbility.abilityDamage = Blox.GetAttack();
+                whipAbility.abilityRange = Blox.GetRange();
+                whipAbility.abilityCooldown = 1;
+                whipAbility.abilityCost = 0;
+                //icon and sound
+                return whipAbility;
+
+            case "Six Shooter":
+                AbilityFlyweight sixShooterAbility = new AbilityFlyweight();
+                sixShooterAbility.abilityID = abilityID;
+                sixShooterAbility.abilityDamage = Blox.GetAttack() + 2;
+                sixShooterAbility.abilityRange = Blox.GetRange();
+                sixShooterAbility.abilityCooldown = 2;
+                sixShooterAbility.abilityCost = 2;
+                //icon and sound
+                return sixShooterAbility;
+
+            case "Sea Shanty":
                 AbilityFlyweight seaShantyAbility = new AbilityFlyweight();
                 seaShantyAbility.abilityID = abilityID;
                 seaShantyAbility.abilityDamage = 0;
@@ -157,6 +276,26 @@ public class AbilityFlyweightFactory
                 //seaShantyAbility.abilityIcon = ;
                 //seaShantyAbility.abilitySound = ;
                 return seaShantyAbility;
+
+            case "En Guard":
+                AbilityFlyweight enGuardAbility = new AbilityFlyweight();
+                enGuardAbility.abilityID = abilityID;
+                enGuardAbility.abilityDamage = Blox.GetAttack();
+                enGuardAbility.abilityRange = Blox.GetRange();
+                enGuardAbility.abilityCooldown = 1;
+                enGuardAbility.abilityCost = 0;
+                //icon
+                return enGuardAbility;
+
+            case "Hum":
+                AbilityFlyweight humAbility = new AbilityFlyweight();
+                humAbility.abilityID = abilityID;
+                humAbility.abilityDamage = 0;
+                humAbility.abilityRange = 0;
+                humAbility.abilityCooldown = 1;
+                humAbility.abilityCost = 1;
+                //icon
+                return humAbility;
 
             case "DEFAULT_TEST":
                 AbilityFlyweight defaultTestAbility = new AbilityFlyweight();
@@ -168,6 +307,8 @@ public class AbilityFlyweightFactory
                 //seaShantyAbility.abilityIcon = ;
                 //seaShantyAbility.abilitySound = ;
                 return defaultTestAbility;
+
+                
         }//end switch
 
         return abilityplaceholdersocodecompiles;

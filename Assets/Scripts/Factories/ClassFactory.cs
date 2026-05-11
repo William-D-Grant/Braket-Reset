@@ -49,7 +49,7 @@ public static class ClassFactory
             string abilityID = className.abilityArray[i];
 
             //Gets the AbilityFlyweight each ability in the array and adds it to the Blox's ability array
-            AbilityFlyweight abilityStats = AbilityFlyweightFactory.RetrieveAbility(abilityID);
+            AbilityFlyweight abilityStats = AbilityFlyweightFactory.RetrieveAbility(abilityID, blox);
             abilities[i] = new AbilityInstance(abilityStats);
         }//end foreach
 
