@@ -17,9 +17,6 @@ public class DialogueManager : MonoBehaviour
     private Sprite _playerSad;
 
     [SerializeField]
-    private Sprite _playerWappy;
-
-    [SerializeField]
     private Sprite _jokerboyIdle;
 
     [SerializeField]
@@ -84,6 +81,13 @@ public class DialogueManager : MonoBehaviour
 
     private List<DialogueData> _currentDialogue;
     private int _index;
+
+
+    public void Awake()
+    {
+        BeginDialogue(EnemyTeamSelector._singletonInstance.currentEnemyTeam.enemyName);
+    }
+
 
     public void BeginDialogue(string enemyName)
     {

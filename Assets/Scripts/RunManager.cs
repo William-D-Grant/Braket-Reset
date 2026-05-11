@@ -49,6 +49,7 @@ public class RunManager : MonoBehaviour
     //The player's current match
     private int _bracketNumber;
 
+
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: Awake                                                           */

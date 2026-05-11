@@ -4,13 +4,16 @@ using UnityEngine.UI;
 
 public class DialogueUIHandler : MonoBehaviour
 {
-  
+    [SerializeField]
     private Image _playerSprite;
 
+    [SerializeField]
     private Image _enemySprite;
 
+    [SerializeField]
     private TextMeshProUGUI _talkingName;
 
+    [SerializeField]
     private TextMeshProUGUI _talkingDialogue;
 
     public void DisplayText(DialogueData data)

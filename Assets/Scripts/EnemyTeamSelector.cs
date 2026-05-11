@@ -31,7 +31,7 @@ public class EnemyTeamSelector : MonoBehaviour
     private List<EnemyTeam> _currentBracketTeams;
 
     //The current enemy team the player is fighting against
-    private EnemyTeam _currentEnemyTeam;
+    public EnemyTeam currentEnemyTeam { get; private set; }
 
 
 
@@ -73,13 +73,13 @@ public class EnemyTeamSelector : MonoBehaviour
     {
         //Generates a random number from 0 to the current number of teams in bracket and assigns the _currentEnemyTeam to the team randomly generated
         int randomNumber = Random.Range(0, _currentBracketTeams.Count);
-        _currentEnemyTeam = _currentBracketTeams[randomNumber];
+        currentEnemyTeam = _currentBracketTeams[randomNumber];
 
         //Removes that team from _currentBracketTeams
-        RemoveFromBracket(_currentEnemyTeam);
+        RemoveFromBracket(currentEnemyTeam);
 
         //Return the _currentEnemyTeam
-        return _currentEnemyTeam;
+        return currentEnemyTeam;
 
     }//end GetRandomTeam
 
