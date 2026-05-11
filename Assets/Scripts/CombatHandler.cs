@@ -90,7 +90,7 @@ public class CombatHandler : MonoBehaviour
             addingEnemyBlox.GetComponent<ClassVitals>()._team = Team.Enemy;
             _turnList.Add(addingEnemyBlox);
         }*/
-        //_turnList.AddRange(_runManager.enemyTeam);
+        //_turnList.AddRange(_currentEnemyBlox); //was _runManager.enemyTeam
 
         //Sorts the turn list by the Blox's speed value
         _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
