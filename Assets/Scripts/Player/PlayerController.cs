@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
                         if (mouseTarget.collider.tag == "Tile")
                         {
                             selectedTile = mouseTarget.collider.gameObject.GetComponent<Tile>();
+                            selectedTile.transform.Find("Highlight").gameObject.SetActive(true);
                             CheckTile();
                         }
                         else
@@ -88,11 +89,14 @@ public class PlayerController : MonoBehaviour
 
     private void DeselectAll()
     {
-        if(targetUnit != null)
+        if (targetUnit != null)
         {
             targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
         }
-        
+        if (selectedTile != null)
+        {
+            selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
+        }
         selectedTile = null;
         targetUnit = null;
     }
@@ -116,6 +120,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         Debug.Log("Bad tile");
+        selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         selectedTile = null;
         return;
     }
@@ -137,6 +142,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(remainingTM + " TM Left");
             _playerGUI.UpdatePlayerDisplay();
         }
+        selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         selectedTile = null;
     }
 
@@ -199,6 +205,7 @@ public class PlayerController : MonoBehaviour
         {
             targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
         }
+        selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         activeUnit = null;
         selectedTile = null;
         targetUnit = null;
