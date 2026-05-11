@@ -122,7 +122,7 @@ public class ClassSelectorMenu : MonoBehaviour
         RunManager._singletonInstance.SelectEnemies();
 
         //Load the first fight
-        SceneManager.LoadScene("Arena");
+        SceneManager.LoadScene("DialogueRoom");
     }//end FinishedSelection
 
 
