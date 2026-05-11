@@ -33,7 +33,7 @@ public class FighterClass : ClassAbstract
         className = "FIGHTER";
 
         //The fighter's maximum health points
-        classMaxHP = 60;
+        classMaxHP = 30;
 
         //The fighter's speed
         classSPD = 3;

@@ -75,7 +75,7 @@ public static class EffectFactory
                 EffectFlyweight shieldBashEffect = new EffectFlyweight();
                 shieldBashEffect.effectID = effectID;
                 //shieldBashEffect.effectIcon = effecticon;
-                shieldBashEffect.effectDuration = 0; //duration doesnt matter
+                shieldBashEffect.effectDuration = 2; //duration doesnt matter
                 return shieldBashEffect;
 
             case "SPEED_DEMON":

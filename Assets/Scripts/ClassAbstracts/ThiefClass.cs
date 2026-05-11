@@ -33,7 +33,7 @@ public class ThiefClass : ClassAbstract
         className = "THIEF";
 
         //The Thief's maximum health points
-        classMaxHP = 70;
+        classMaxHP = 35;
 
         //The Thief's speed
         classSPD = 6;

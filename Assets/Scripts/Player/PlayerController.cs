@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
+        //_mapHandler = FindFirstObjectByType<MapHandler>();
+       //_combatHandler = FindFirstObjectByType<CombatHandler>();
+
     }
 
     private void Update()

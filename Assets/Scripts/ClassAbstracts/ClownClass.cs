@@ -34,7 +34,7 @@ public class ClownClass : ClassAbstract
         className = "CLOWN";
 
         //The Clown's maximum health points
-        classMaxHP = 50;
+        classMaxHP = 25;
 
         //The Clown's speed
         classSPD = 2;

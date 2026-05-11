@@ -33,7 +33,7 @@ public class CowboyClass : ClassAbstract
         className = "COWBOY";
 
         //The Cowboy's maximum health points
-        classMaxHP = 60;
+        classMaxHP = 30;
 
         //The Cowboy's speed
         classSPD = 5;

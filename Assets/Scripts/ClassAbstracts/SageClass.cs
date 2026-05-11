@@ -33,7 +33,7 @@ public class SageClass : ClassAbstract
         className = "SAGE";
 
         //The Sage's maximum health points
-        classMaxHP = 100;
+        classMaxHP = 50;
 
         //The Sage's speed
         classSPD = 2;

@@ -42,6 +42,8 @@ public class CombatHandler : MonoBehaviour
     //Player controller to pass turn to
     private PlayerController _playerController;
 
+    private List<GameObject> _currentPlayerBlox = new List<GameObject>();
+    private List<GameObject> _currentEnemyBlox = new List<GameObject>();
 
     /**********************************************************************************/
     /*                                                                                */
@@ -81,7 +83,7 @@ public class CombatHandler : MonoBehaviour
             addingPlayerBlox.GetComponent<ClassVitals>()._team = Team.Player;
             _turnList.Add(addingPlayerBlox);
         }*/
-        _turnList.AddRange(_runManager.playerTeam);
+        _turnList.AddRange(_currentPlayerBlox); //was _runManager.PlayerTeam
         /*foreach (GameObject enemyBlox in _runManager.enemyTeam)
         {
             GameObject addingEnemyBlox = Instantiate(enemyBlox);
@@ -193,11 +195,13 @@ public class CombatHandler : MonoBehaviour
         //If the Blox was on the Player's team, remove it from their team
         if (killedUnit.GetTeam() == Team.Player)
         {
-            _runManager.playerTeam.Remove(killedUnit.gameObject);
+            _currentPlayerBlox.Remove(killedUnit.gameObject);
+            //_runManager.playerTeam.Remove(killedUnit.gameObject);
         }//end if
         else 
         { //If the Blox was on the Enemy's team, remove it from their team
-            _runManager.enemyTeam.Remove(killedUnit.gameObject);
+            _currentEnemyBlox.Remove(killedUnit.gameObject);
+            //_runManager.enemyTeam.Remove(killedUnit.gameObject);
         }//end else
         
         Destroy(killedUnit.gameObject);
@@ -226,12 +230,12 @@ public class CombatHandler : MonoBehaviour
     public Team CheckVictor()
     {
         //If the player ran out of Blox, return the enemy won
-        if(_runManager.playerTeam.Count == 0)
+        if(_currentPlayerBlox.Count == 0)  //was runManager.playerTeam.Count
         {
             return Team.Enemy;
         }//end if
         //If the enemy ran out of Blox, return the player won
-        else if (_runManager.enemyTeam.Count == 0)
+        else if (_currentEnemyBlox.Count == 0)
         {
             return Team.Player;
         }
@@ -287,5 +291,31 @@ public class CombatHandler : MonoBehaviour
         }
     }
 
+
+    public void AddCurrentBlox(GameObject blox)
+    {
+        if (blox.GetComponent<ClassVitals>().GetTeam() == Team.Player)
+        {
+            _currentPlayerBlox.Add(blox);
+        }
+        else
+        {
+            _currentEnemyBlox.Add(blox);
+        }
+
+        _turnList.Add(blox);
+
+        blox.GetComponent<ClassVitals>().onDefeated += DefeatUnit;
+    }
+
+    public void ClearCurrentBlox()
+    {
+        _turnList.Clear();
+        _currentPlayerBlox.Clear();
+        _currentEnemyBlox.Clear();
+
+        _turn = -1;
+        _round = 1;
+    }
 }
 

@@ -33,16 +33,19 @@ public class ClassVitals : MonoBehaviour
     public ClassAbstract _class { get; private set; }
 
     //The Blox's current health points
-    public float _currHP { get; private set; }
+    public float _currHP; //{ get; private set; }
 
     //The Blox's current speed
-    private int _currSPD;
+    //private
+    public int _currSPD;
 
     //The Blox's current attack
-    private int _currATK;
+    //private
+    public int _currATK;
 
     //The Blox's current defense
-    private int _currDEF;
+    //private 
+    public int _currDEF;
 
     //The Blox's current tile movement value
     public int _currTM { get; private set; }
@@ -51,10 +54,12 @@ public class ClassVitals : MonoBehaviour
     private int _currHype;
 
     //The Blox's current Range
-    private int _currRange;
+    //private
+    public int _currRange;
 
     //The Blox's current Luck
-    private int _currLuck;
+    //private
+    public int _currLuck;
 
     //The Blox's current abilities
     public AbilityInstance[] _currAbilities;
@@ -409,37 +414,41 @@ public class ClassVitals : MonoBehaviour
 
             effect.EffectTick(this);
 
-            if (effect.IsExpired())
+            if (effect.IsExpired() == true)
             {
                 switch (_currEffects[i]._effectID)
                 {
-                    case "SHIELD_BASH":
+                    /*case "SHIELD_BASH":
+                        this.UpdateSpeed(2);
+                        break;*/
+
+                    case "Shield Bash":
                         this.UpdateSpeed(2);
                         break;
 
-                    case "DEFEND":
+                    case "Defend":
                         this.UpdateDefense(-2);
                         break;
 
-                    case "SPEED_DEMON":
+                    case "Speed Demon":
                         this.UpdateTileMovement(-3);
                         this.UpdateAttack(-1);
                         break;
 
-                    case "HYPE_TRAIN":
+                    case "Hype Train":
                         this.UpdateDefense(1);
                         this.UpdateHype(-3);
                         break;
 
-                    case "CAUGHT":
+                    case "Caught":
                         this.UpdateTileMovement(90);
                         break;
 
-                    case "JOKE":
+                    case "Joke":
                         this.UpdateHype(-2);
                         break;
 
-                    case "SEA_SHANTY":
+                    case "Sea Shanty":
                         if(this.GetTeam() == _currEffects[i]._casterTeam)
                         {
                             this.UpdateLuck(-2);
@@ -452,7 +461,7 @@ public class ClassVitals : MonoBehaviour
                         }
                         break;
 
-                    case "HUM":
+                    case "Hum":
                         this.UpdateLuck(-1);
                         break;
                 }

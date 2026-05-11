@@ -33,7 +33,7 @@ public class TankClass : ClassAbstract
         className = "TANK";
 
         //The Tank's maximum health points
-        classMaxHP = 90;
+        classMaxHP = 45;
 
         //The Tank's speed
         classSPD = 1;

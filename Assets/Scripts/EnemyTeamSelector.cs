@@ -220,7 +220,7 @@ public class EnemyTeamSelector : MonoBehaviour
         {
             BloxClass.Sage,
             BloxClass.Tank,
-            BloxClass.Clown
+                BloxClass.Clown
         }));
 
         //Set the team to Enemy

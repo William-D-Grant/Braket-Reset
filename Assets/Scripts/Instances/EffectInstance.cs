@@ -62,10 +62,11 @@ public class EffectInstance
         {
             return false;
         }
-        else
+        else if (_duration <= 0)
         {
             return true;
         }
+        return false;
     }
 
 }//end EffectInstance

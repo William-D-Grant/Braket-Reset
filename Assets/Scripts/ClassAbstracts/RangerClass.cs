@@ -33,7 +33,7 @@ public class RangerClass : ClassAbstract
         className = "RANGER";
 
         //The Ranger's maximum health points
-        classMaxHP = 70;
+        classMaxHP = 35;
 
         //The Ranger's speed
         classSPD = 3;

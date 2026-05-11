@@ -33,7 +33,7 @@ public class PirateClass : ClassAbstract
         className = "PIRATE";
 
         //The Pirate's maximum health points
-        classMaxHP = 60;
+        classMaxHP = 30;
 
         //The Pirate's speed
         classSPD = 4;

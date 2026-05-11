@@ -96,7 +96,7 @@ public class AbilityFlyweightFactory
                 slashAbility.abilityID = abilityID;
                 slashAbility.abilityDamage = Blox.GetAttack() + 2;
                 slashAbility.abilityRange = Blox.GetRange();
-                slashAbility.abilityCooldown = 1;
+                slashAbility.abilityCooldown = 2;
                 slashAbility.abilityCost = 2;
                 return slashAbility;
 
@@ -121,7 +121,7 @@ public class AbilityFlyweightFactory
                 //icon and sound
                 return hitAbility;
 
-            case "Defend":
+            case "Defend": //not working
                 AbilityFlyweight defendAbility = new AbilityFlyweight();
                 defendAbility.abilityID = abilityID;
                 defendAbility.abilityDamage = 0;

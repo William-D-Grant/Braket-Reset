@@ -14,6 +14,7 @@ public class MapHandler : MonoBehaviour
 
     public void PlaceUnits()
     {
+        _combatHandler.ClearCurrentBlox();
         List<GameObject> playerTeam = _combatHandler.PlayerList();
         Debug.Log(playerTeam[0].name);
         int playerCount = 0;
@@ -36,13 +37,15 @@ public class MapHandler : MonoBehaviour
                         //bloxSpawned.transform.SetParent(transform);
                         //playerTeam[playerCount].GetComponent<ClassVitals>()._currPos = new Vector2(i, j);
                         GameObject bloxSpawned = Instantiate(playerTeam[playerCount], tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
+                        
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         //bloxSpawned.GetComponent<ClassVitals>().InitializeBlox(playerTeam[playerCount].GetComponent<ClassVitals>().
                         bloxSpawned.GetComponent<ClassVitals>()._currPos = new Vector2(i, j);
                         bloxSpawned.GetComponent<ClassVitals>()._team = Team.Player;
-                        playerTeam[playerCount] = bloxSpawned;
+                        //            playerTeam[playerCount] = bloxSpawned;
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         playerCount++;
+                        _combatHandler.AddCurrentBlox(bloxSpawned);
                     }
                     else
                     {
@@ -54,16 +57,17 @@ public class MapHandler : MonoBehaviour
                         unitGrid[i, j] = bloxSpawned;        //^change to a blox prefab
                         bloxSpawned.GetComponent<ClassVitals>()._currPos = new Vector2(i, j);
                         bloxSpawned.GetComponent<ClassVitals>()._team = Team.Enemy;
-                        enemyTeam[enemyCount] = bloxSpawned;
+                        //              enemyTeam[enemyCount] = bloxSpawned;
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         enemyCount++;
+                        _combatHandler.AddCurrentBlox(bloxSpawned);
                     }
                     
                 }
             }
         }
 
-        _combatHandler.RegisterDefeatEvent();
+        //_combatHandler.RegisterDefeatEvent();
     }
 
 
