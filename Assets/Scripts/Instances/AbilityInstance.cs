@@ -64,14 +64,14 @@ public class AbilityInstance
             {
                 case "SHIELD_BASH":
                     EffectFlyweight shieldBashEffect = EffectFactory.RetrieveEffect("SHIELD_BASH");
-                    EffectInstance shieldBashInstance = new EffectInstance(shieldBashEffect);
+                    EffectInstance shieldBashInstance = new EffectInstance(shieldBashEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateSpeed(-2);
                     abilityTarget.ApplyStatus(shieldBashInstance);
                     break;
 
                 case "SPEED_DEMON":
                     EffectFlyweight speedDemonEffect = EffectFactory.RetrieveEffect("SPEED_DEMON");
-                    EffectInstance speedDemonInstance = new EffectInstance(speedDemonEffect);
+                    EffectInstance speedDemonInstance = new EffectInstance(speedDemonEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateTileMovement(3);
                     abilityTarget.UpdateAttack(1);
                     abilityTarget.ApplyStatus(speedDemonInstance);
@@ -83,7 +83,7 @@ public class AbilityInstance
 
                 case "HYPE_TRAIN":
                     EffectFlyweight hypeTrainEffect = EffectFactory.RetrieveEffect("HYPE_TRAIN");
-                    EffectInstance hypeTrainInstance = new EffectInstance(hypeTrainEffect);
+                    EffectInstance hypeTrainInstance = new EffectInstance(hypeTrainEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityCaster.UpdateDefense(-1);
                     abilityCaster.UpdateHype(3);
                     abilityCaster.ApplyStatus(hypeTrainInstance);
@@ -91,15 +91,15 @@ public class AbilityInstance
 
                 case "CAUGHT":
                     EffectFlyweight caughtEffect = EffectFactory.RetrieveEffect("HYPE");
-                    EffectInstance caughtInstance = new EffectInstance(caughtEffect);
+                    EffectInstance caughtInstance = new EffectInstance(caughtEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateTileMovement(-90);
                     abilityTarget.ApplyStatus(caughtInstance);
                     break;
 
                 case "SEA_SHANTY":
                     EffectFlyweight seaShantyEffect = EffectFactory.RetrieveEffect("SEA_SHANTY");
-                    EffectInstance seaShantyInstance = new EffectInstance(seaShantyEffect);
-                    if (abilityTarget.GetTeam() == Team.Player)
+                    EffectInstance seaShantyInstance = new EffectInstance(seaShantyEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
+                    if ((abilityTarget.GetTeam() == Team.Player && abilityCaster.GetTeam() == Team.Player) || (abilityTarget.GetTeam() == Team.Enemy && abilityCaster.GetTeam() == Team.Enemy))
                     {
                         abilityTarget.UpdateLuck(2);
                         abilityTarget.UpdateHype(2);

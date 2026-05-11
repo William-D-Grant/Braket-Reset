@@ -2,8 +2,8 @@
 * Filename:       	ClassVitals.cs                             *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.1.1                                      *
-* Previous Version: 0.1.0                                      *
+* Current Version:  0.4.1                                      *
+* Previous Version: 0.4.0                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	May 5, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -15,7 +15,8 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-* Version Changes:	Added ClearStatus                          *
+* Version Changes:	Updated TurnTick to handle reversing       *
+*                   effects when they wear off                 *
 ****************************************************************/
 
 using System.Collections.Generic;
@@ -305,8 +306,9 @@ public class ClassVitals
     /*                                                                                */
     /* Function name: TurnTick                                                        */
     /* Description: Goes through every effect on the Blox and updates their duration  */
-    /*              and other effects, also removes an effect if it expired. Also     */
-    /*              goes through every ability and updates their cooldowns            */
+    /*              and other effects, also removes an effect and any stat changes    */
+    /*              if it expired. Also  goes through every ability and updates       */
+    /*              their cooldowns                                                   */
     /* Parameters: N/A                                                                */
     /* Return Value: N/A                                                              */
     /*                                                                                */
@@ -321,6 +323,39 @@ public class ClassVitals
 
             if (effect.IsExpired())
             {
+                switch (_currEffects[i]._effectID)
+                {
+                    case "SHIELD_BASH":
+                        this.UpdateSpeed(2);
+                        break;
+
+                    case "SPEED_DEMON":
+                        this.UpdateTileMovement(-3);
+                        this.UpdateAttack(-1);
+                        break;
+
+                    case "HYPE_TRAIN":
+                        this.UpdateDefense(1);
+                        this.UpdateHype(-3);
+                        break;
+
+                    case "CAUGHT":
+                        this.UpdateTileMovement(90);
+                        break;
+
+                    case "SEA_SHANTY":
+                        if(this.GetTeam() == _currEffects[i]._casterTeam)
+                        {
+                            this.UpdateLuck(-2);
+                            this.UpdateHype(-2);
+                        }
+                        else if (this.GetTeam() != _currEffects[i]._casterTeam)
+                        {
+                            this.UpdateLuck(2);
+                            this.UpdateHype(2);
+                        }
+                        break;
+                }
                 _currEffects.RemoveAt(i);
             }//end if
         }//end for

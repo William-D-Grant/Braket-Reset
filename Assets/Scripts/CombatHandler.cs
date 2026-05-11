@@ -2,8 +2,8 @@
 * Filename:       	CombatHandler.cs                           *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.0.1                                      *
-* Previous Version: 0.0.0                                      *
+* Current Version:  0.2.1                                      *
+* Previous Version: 0.1.3                                      *
 * Creation Date:  	May 4, 2026                                *
 * Last Modified:  	May 4, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -12,7 +12,9 @@
 * Project:        	Braket Reset                               *
 * Purpose:        	Handles a single combat between the player *
 *                   and an enemy                               *
-* Version Changes:	Created and finished                       *
+* Version Changes:	Updated ShiftTurn to handle between turn   *
+*                   logic like ability and effect ticks and    *
+*                   repopulating the turns                     *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -96,6 +98,11 @@ public class CombatHandler : MonoBehaviour
         {
             _turn = 0;
             _round++;
+            foreach(ClassVitals blox in _turnList)
+            {
+                blox.TurnTick();
+                PopulateTurns();
+            }
         }
 
         return _turnList[_turn].GetTeam();

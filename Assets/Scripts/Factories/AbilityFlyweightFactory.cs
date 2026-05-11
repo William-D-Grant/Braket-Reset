@@ -2,8 +2,8 @@
 * Filename:       	AbilityFlyweightFactory.cs                 *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.1.1                                      *
-* Previous Version: 0.1.0                                      *
+* Current Version:  0.1.2                                      *
+* Previous Version: 0.1.1                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	April 31, 2026                             *
 * Due Date:       	May 14th, 2026                             *
@@ -14,7 +14,8 @@
 *                   Makes sure a new ability is created and    *
 *                   stored in a dictionary each time so        *
 *                   AbilityFlyweights can be resused           *
-* Version Changes:	Created BuildAbility to move switch logic  *
+* Version Changes:	Changed build ability calls to account for *
+*                   updated effect instance logic              *
 ****************************************************************/
 
 using System.Collections.Generic;
