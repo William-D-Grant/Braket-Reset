@@ -25,14 +25,13 @@ using UnityEngine;
 public class ClassVitals : MonoBehaviour
 {
 
-    [SerializeField]
-    public BloxClass _bloxClass;
+    public BloxClass _bloxClass { get; private set; }
 
     //The class of the Blox
-    public ClassAbstract _class;
+    private ClassAbstract _class;
 
     //The Blox's current health points
-    private float _currHP;
+    public float _currHP { get; private set; }
 
     //The Blox's current speed
     private int _currSPD;

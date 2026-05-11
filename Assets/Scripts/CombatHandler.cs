@@ -132,6 +132,17 @@ public class CombatHandler : MonoBehaviour
             _playerController.EnablePlayer(_turnList[_turn]);
         }
 
+        foreach (GameObject bloxUnit in _turnList)
+        {
+            foreach (AbilityInstance cooledDown in bloxUnit.GetComponent<ClassVitals>()._currAbilities)
+            {
+                if (cooledDown._currCooldown > 0)
+                {
+                    cooledDown._currCooldown--;
+                }
+            }
+        }
+
         //return _turnList[_turn].GetTeam();
     }//end shiftTurn
 

@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerGUIHandler _playerGUI;
 
-    private int remainingTM;
-    private bool hasAction;
-    private GameObject activeUnit;
-    private GameObject targetUnit;
-    private Tile selectedTile;
+    public int remainingTM;
+    public bool hasAction;
+    public GameObject activeUnit;
+    public GameObject targetUnit;
+    public Tile selectedTile;
     public AbilityInstance abilitySelected;
     private int abilityIndex;
 
@@ -158,21 +158,36 @@ public class PlayerController : MonoBehaviour
 
     public void UseAbility()
     {
-        if (hasAction && targetUnit != null)
+        Debug.Log(abilitySelected._currCooldown); 
+        if (hasAction && targetUnit != null && abilitySelected._currCooldown == 0)
         {
-            for (int i = (int)activeUnit.GetComponent<ClassVitals>()._currPos.x - abilitySelected.GetRange(); i < (int)activeUnit.GetComponent<ClassVitals>()._currPos.x + abilitySelected.GetRange(); i++)
+            if (Mathf.Abs(activeUnit.GetComponent<ClassVitals>()._currPos.x - targetUnit.GetComponent<ClassVitals>()._currPos.x) + Mathf.Abs(activeUnit.GetComponent<ClassVitals>()._currPos.y - targetUnit.GetComponent<ClassVitals>()._currPos.y) <= abilitySelected.GetRange())
+            {
+                Debug.Log("Move used");
+                Debug.Log(targetUnit.GetComponent<ClassVitals>()._currHP);
+                abilitySelected.UseAbility(activeUnit.GetComponent<ClassVitals>(), targetUnit.GetComponent<ClassVitals>());
+                hasAction = false;
+                Debug.Log(hasAction + " hasAction");
+                Debug.Log(targetUnit.GetComponent<ClassVitals>()._currHP);
+                targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
+                targetUnit = null;
+            }
+            /*for (int i = (int)activeUnit.GetComponent<ClassVitals>()._currPos.x - abilitySelected.GetRange(); i < (int)activeUnit.GetComponent<ClassVitals>()._currPos.x + abilitySelected.GetRange(); i++)
             {
                 for (int j = (int)activeUnit.GetComponent<ClassVitals>()._currPos.y - abilitySelected.GetRange(); j < (int)activeUnit.GetComponent<ClassVitals>()._currPos.y + abilitySelected.GetRange(); j++)
                 {
-                    if (targetUnit == _mapHandler.unitGrid[i, j])
+                    if (i >= 0 && i < 9 && j >= 0 && j < 9)
                     {
-                        Debug.Log("Move used");
-                        abilitySelected.UseAbility(activeUnit.GetComponent<ClassVitals>(), targetUnit.GetComponent<ClassVitals>());
-                        hasAction = false;
-                        Debug.Log(hasAction + " hasAction");
+                        if (targetUnit == _mapHandler.unitGrid[i, j])
+                        {
+                            Debug.Log("Move used");
+                            abilitySelected.UseAbility(activeUnit.GetComponent<ClassVitals>(), targetUnit.GetComponent<ClassVitals>());
+                            hasAction = false;
+                            Debug.Log(hasAction + " hasAction");
+                        }
                     }
                 }
-            }
+            }*/
             _playerGUI.UpdatePlayerDisplay();
         }
     }
@@ -180,6 +195,10 @@ public class PlayerController : MonoBehaviour
     public void EndTurn()
     {
         activeUnit.transform.Find("HighlightActive").gameObject.SetActive(false);
+        if (targetUnit != null)
+        {
+            targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
+        }
         activeUnit = null;
         selectedTile = null;
         targetUnit = null;
@@ -195,7 +214,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._currTM + " TM");
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._team + " Team");
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._bloxClass + " Class");
-        Debug.Log(activeUnit.GetComponent<ClassVitals>()._class + " Abstract");
         hasAction = true;
         abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[0];
         _playerGUI.UpdatePlayerDisplay();
