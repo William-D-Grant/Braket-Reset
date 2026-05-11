@@ -22,6 +22,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 
 public class CombatHandler : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class CombatHandler : MonoBehaviour
     private void Start()
     {
         _runManager = RunManager._singletonInstance;
+        //RegisterDefeatEvent();
     }//end Start
 
     /**********************************************************************************/
@@ -127,8 +129,8 @@ public class CombatHandler : MonoBehaviour
             foreach(GameObject blox in _turnList)
             {
                 blox.GetComponent<ClassVitals>().TurnTick();
-                PopulateTurns();
             }
+            PopulateTurns();
         }
 
         Debug.Log("Checking if unity is player");
@@ -139,7 +141,7 @@ public class CombatHandler : MonoBehaviour
             _playerController.EnablePlayer(_turnList[_turn]);
         }
 
-        foreach (GameObject bloxUnit in _turnList)
+        /*foreach (GameObject bloxUnit in _turnList)
         {
             foreach (AbilityInstance cooledDown in bloxUnit.GetComponent<ClassVitals>()._currAbilities)
             {
@@ -148,7 +150,7 @@ public class CombatHandler : MonoBehaviour
                     cooledDown._currCooldown--;
                 }
             }
-        }
+        }*/
 
         //return _turnList[_turn].GetTeam();
     }//end shiftTurn
@@ -178,6 +180,7 @@ public class CombatHandler : MonoBehaviour
     /**********************************************************************************/
     public void DefeatUnit(ClassVitals killedUnit)
     {
+        Debug.Log("went off HEREHRHERHERHHER");
         //remove the blox from the turn order
         _turnList.Remove(killedUnit.gameObject);
 
@@ -199,10 +202,10 @@ public class CombatHandler : MonoBehaviour
         {
             _runManager.EndCombat(killedUnit.GetTeam());
         }//end if
-        else
+        else if (CheckVictor() == Team.Enemy)
         {//If the enemy won, end the Run
             _runManager.EndRun(killedUnit.GetTeam());
-        }//end if else
+        }
 
     }//end DefeatUnit
 
@@ -261,6 +264,23 @@ public class CombatHandler : MonoBehaviour
     {
         return _runManager.enemyTeam;
     }//end EnemyList
+
+
+
+    public void RegisterDefeatEvent()
+    {
+        foreach(GameObject bloxGameObject in _runManager.playerTeam)
+        {
+            ClassVitals blox = bloxGameObject.GetComponent<ClassVitals>();
+            blox.onDefeated += DefeatUnit;
+        }
+
+        foreach(GameObject bloxGameObject in _runManager.enemyTeam)
+        {
+            ClassVitals blox = bloxGameObject.GetComponent<ClassVitals>();
+            blox.onDefeated += DefeatUnit;
+        }
+    }
 
 }
 

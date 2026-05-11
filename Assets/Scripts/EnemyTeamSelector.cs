@@ -71,6 +71,7 @@ public class EnemyTeamSelector : MonoBehaviour
     //# Taken from John French on https://gamedevbeginner.com/how-to-use-random-values-in-unity-with-examples/
     public EnemyTeam GetRandomTeam()
     {
+        currentEnemyTeam = null;
         //Generates a random number from 0 to the current number of teams in bracket and assigns the _currentEnemyTeam to the team randomly generated
         int randomNumber = Random.Range(0, _currentBracketTeams.Count);
         currentEnemyTeam = _currentBracketTeams[randomNumber];

@@ -36,6 +36,7 @@ public static class ClassFactory
     {
         //Sets the Blox's stats based on the passed Abstract Class' stats
         blox.SetBloxStats(className.classMaxHP, className.classSPD, className.classATK, className.classDEF, className.classTM, className.classHype, className.classRange, className.classLuck);
+        
 
         //Creates an array for the abilities of the blox
         AbilityInstance[] abilities = new AbilityInstance[className.abilityArray.Length];
