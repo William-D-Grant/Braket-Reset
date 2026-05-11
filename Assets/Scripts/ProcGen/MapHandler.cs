@@ -62,6 +62,8 @@ public class MapHandler : MonoBehaviour
                 }
             }
         }
+
+        _combatHandler.RegisterDefeatEvent();
     }
 
 

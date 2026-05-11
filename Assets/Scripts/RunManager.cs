@@ -133,7 +133,7 @@ public class RunManager : MonoBehaviour
             }
             ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             //bloxVitals._team = Team.Player;
-            //bloxVitals.InitializeBlox(bloxClass, Team.Player);
+            bloxVitals.InitializeBlox(bloxClass, Team.Player);  //was commented
             //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
             playerTeam.Add(bloxGameObject);
@@ -234,7 +234,7 @@ public class RunManager : MonoBehaviour
         //Increment what battle the player is one
         _bracketNumber++;
 
-        //If the palyer fought everyone, end the run
+        //If the player fought everyone, end the run
         if(_bracketNumber == 7)
         {
             EndRun(playerWon);
@@ -244,7 +244,7 @@ public class RunManager : MonoBehaviour
         //Heal the player and get the next opponent otherwise
         HealPlayer();
         SelectEnemies();
-        SceneManager.LoadScene("Arena");
+        SceneManager.LoadScene("DialogueRoom");
 
     }//end EndCombat
 

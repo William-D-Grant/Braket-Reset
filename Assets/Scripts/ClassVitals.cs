@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class ClassVitals : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class ClassVitals : MonoBehaviour
     public BloxClass _bloxClass;
 
     //The class of the Blox
-    private ClassAbstract _class;
+    public ClassAbstract _class { get; private set; }
 
     //The Blox's current health points
     public float _currHP { get; private set; }
@@ -70,6 +71,7 @@ public class ClassVitals : MonoBehaviour
     //The associated Blox's GameObject
     public GameObject _bloxObject;
 
+    public event Action<ClassVitals> onDefeated;
 
     /**********************************************************************************/
     /*                                                                                */
@@ -128,7 +130,7 @@ public class ClassVitals : MonoBehaviour
                 break;
 
             default:
-                _class = new FighterClass();
+                _class = new CowboyClass();
                 break;
 
         }
@@ -157,6 +159,12 @@ public class ClassVitals : MonoBehaviour
     {
         float damageReduced = Mathf.Max(attackDamage - _currDEF, 1);
         _currHP -= damageReduced;
+
+        if(this._currHP <= 0)
+        {
+            onDefeated?.Invoke(this);
+            Debug.Log("Invoked HEREHEREHREHRE");
+        }
     }//end TakeDamage
 
 
