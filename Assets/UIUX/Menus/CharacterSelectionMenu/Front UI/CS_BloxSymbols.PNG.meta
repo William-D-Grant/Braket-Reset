@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0b7d80f29319f24280497881ae0e4de
+guid: 4e18258f749c86a45a393e78ef82b033
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Cowboy
+      name: CS_BloxSymbols_Blank
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 635
+        width: 279
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1981091b2714d5c4a848666a8fa46f96
+      internalID: 695923629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CS_BloxSymbols_Cowboy
       rect:
         serializedVersion: 2
         x: 320
@@ -112,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbd85e428dbd4a64e897937136e58ba9
-      internalID: 819733281
+      spriteID: 7a8086508bfbbce48842ae2d4d15e2a2
+      internalID: -1421161993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Pirate
+      name: CS_BloxSymbols_Pirate
       rect:
         serializedVersion: 2
         x: 622
@@ -134,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64fd7ce4e0db94f4daea4a6161117bda
-      internalID: 1665051359
+      spriteID: 11aa29eb70ea94d45b502f5fe3a067a9
+      internalID: -1500649915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Clown
+      name: CS_BloxSymbols_Clown
       rect:
         serializedVersion: 2
         x: 920
@@ -156,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087893b8ebf800c40841ae494b399089
-      internalID: -1547360038
+      spriteID: f4c34500c6c17464f9f652ae87cb7d45
+      internalID: -308957068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Thief
+      name: CS_BloxSymbols_Thief
       rect:
         serializedVersion: 2
         x: 1220
@@ -178,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62356914c341b3e44a238fd7dd8f7d45
-      internalID: -1764974229
+      spriteID: a21a63cd383cc2c4b8acbced478b934a
+      internalID: -1332012390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Tank
+      name: CS_BloxSymbols_Tank
       rect:
         serializedVersion: 2
         x: 311
@@ -200,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5650ac92ad2158246b809f087fa9e4a2
-      internalID: -1602037758
+      spriteID: 85190f9012063264b87bee0cbef94031
+      internalID: -438880291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Fighter
+      name: CS_BloxSymbols_Fighter
       rect:
         serializedVersion: 2
         x: 613
@@ -222,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b0e70f00ccc0a24bbd1550152bb9e34
-      internalID: -1692622025
+      spriteID: eaede9827b3557d4384d29f07b7f8283
+      internalID: 1149189281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Ranger
+      name: CS_BloxSymbols_Ranger
       rect:
         serializedVersion: 2
         x: 911
@@ -244,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 618dd2078670c4649b40ee41f0be665e
-      internalID: -2080737772
+      spriteID: 471d506c9fdcacf4d98cb4b0571c798b
+      internalID: 1924719969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_BloxSymbols_Sage
+      name: CS_BloxSymbols_Sage
       rect:
         serializedVersion: 2
         x: 1211
@@ -266,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ead863af1b818c4b947aa7a583e5e32
-      internalID: 2091161781
+      spriteID: 4b68ae85b6dbc854bb61b6a4741a9d31
+      internalID: -180663393
       vertices: []
       indices: 
       edges: []
@@ -276,7 +298,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 19d40c0945df0aa45af4417aa6cfcc98
+    spriteID: 4eb3ddf6727628d4389ec3f2e43f57d3
     internalID: 0
     vertices: []
     indices: 
@@ -286,23 +308,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":500.0,"y":300.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      GUI_BloxSymbols_0: -43178523
-      GUI_BloxSymbols_2: -2762259
-      GUI_BloxSymbols_3: 194964119
-      GUI_BloxSymbols_4: -1979073202
-      GUI_BloxSymbols_5: -1461519833
-      GUI_BloxSymbols_6: -648115405
-      GUI_BloxSymbols_7: 475881191
-      GUI_BloxSymbols_Clown: -1547360038
-      GUI_BloxSymbols_Cowboy: 819733281
-      GUI_BloxSymbols_Fighter: -1692622025
-      GUI_BloxSymbols_Pirate: 1665051359
-      GUI_BloxSymbols_Ranger: -2080737772
-      GUI_BloxSymbols_Sage: 2091161781
-      GUI_BloxSymbols_Tank: -1602037758
-      GUI_BloxSymbols_Thief: -1764974229
+      CS_BloxSymbols_Blank: 695923629
+      CS_BloxSymbols_Clown: -308957068
+      CS_BloxSymbols_Cowboy: -1421161993
+      CS_BloxSymbols_Fighter: 1149189281
+      CS_BloxSymbols_Pirate: -1500649915
+      CS_BloxSymbols_Ranger: 1924719969
+      CS_BloxSymbols_Sage: -180663393
+      CS_BloxSymbols_Tank: -438880291
+      CS_BloxSymbols_Thief: -1332012390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
