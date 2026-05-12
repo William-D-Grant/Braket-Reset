@@ -18,7 +18,7 @@
 ****************************************************************/
 
 using System.Collections.Generic;
-using UnityEditorInternal;
+//using UnityEditorInternal;
 using UnityEngine;
 
 public static class EffectFactory
