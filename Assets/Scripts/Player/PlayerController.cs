@@ -207,19 +207,22 @@ public class PlayerController : MonoBehaviour
 
     public void EndTurn()
     {
-        activeUnit.transform.Find("HighlightActive").gameObject.SetActive(false);
-        if (targetUnit != null)
+        if (activeUnit != null)
         {
-            targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
+            activeUnit.transform.Find("HighlightActive").gameObject.SetActive(false);
+            if (targetUnit != null)
+            {
+                targetUnit.transform.Find("HighlightTarget").gameObject.SetActive(false);
+            }
+            if (selectedTile != null)
+            {
+                selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
+            }
+            activeUnit = null;
+            selectedTile = null;
+            targetUnit = null;
+            _combatHandler.ShiftTurn();
         }
-        if (selectedTile != null)
-        {
-            selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
-        }
-        activeUnit = null;
-        selectedTile = null;
-        targetUnit = null;
-        _combatHandler.ShiftTurn();
     }
 
     public void EnablePlayer(GameObject currentPlayer)

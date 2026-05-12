@@ -42,7 +42,11 @@ public class CombatHandler : MonoBehaviour
     //Player controller to pass turn to
     private PlayerController _playerController;
 
-    private List<GameObject> _currentPlayerBlox = new List<GameObject>();
+    [SerializeField]
+    //Player controller to pass turn to
+    private EnemyController _enemyHandler;
+
+    public List<GameObject> _currentPlayerBlox = new List<GameObject>();
     private List<GameObject> _currentEnemyBlox = new List<GameObject>();
 
     /**********************************************************************************/
@@ -90,7 +94,7 @@ public class CombatHandler : MonoBehaviour
             addingEnemyBlox.GetComponent<ClassVitals>()._team = Team.Enemy;
             _turnList.Add(addingEnemyBlox);
         }*/
-        //_turnList.AddRange(_currentEnemyBlox); //was _runManager.enemyTeam
+        _turnList.AddRange(_currentEnemyBlox); //was _runManager.enemyTeam
 
         //Sorts the turn list by the Blox's speed value
         _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
@@ -146,6 +150,12 @@ public class CombatHandler : MonoBehaviour
         {
             Debug.Log("Enabling Player");
             _playerController.EnablePlayer(_turnList[_turn]);
+        }
+
+        if (_turnList[_turn].GetComponent<ClassVitals>().GetTeam() == Team.Enemy)
+        {
+            Debug.Log("Enabling Enemmy");
+            _enemyHandler.EnableEnemy(_turnList[_turn]);
         }
 
         /*foreach (GameObject bloxUnit in _turnList)

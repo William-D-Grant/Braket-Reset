@@ -110,6 +110,30 @@ public class MapHandler : MonoBehaviour
         return nearbyTiles;
     }
 
+    public List<Tile> FindTilesNearTile(Tile referenceTile)
+    {
+        List<Tile> nearbyTiles = new List<Tile>();
+        //int tileNumber = 0;
+        if (referenceTile.position.x - 1 >= 0)
+        {
+            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y]);
+        }
+        if (referenceTile.position.x + 1 < 9)
+        {
+            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y]);
+        }
+        if (referenceTile.position.y - 1 >= 0)
+        {
+            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1]);
+        }
+        if (referenceTile.position.y + 1 < 9)
+        {
+            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1]);
+
+        }
+        return nearbyTiles;
+    }
+
     public void Populate()
     {
         _combatHandler.PopulateTurns();

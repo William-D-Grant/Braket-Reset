@@ -48,6 +48,11 @@ public class AbilityInstance
     {
         return _abilityStats.abilityID;
     }
+    
+    public float GetDamage()
+    {
+        return _abilityStats.abilityDamage;
+    }
 
 
     public void UseAbility(ClassVitals abilityCaster, ClassVitals abilityTarget)
