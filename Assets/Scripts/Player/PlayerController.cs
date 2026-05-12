@@ -144,6 +144,10 @@ public class PlayerController : MonoBehaviour
             remainingTM--;
             Debug.Log(remainingTM + " TM Left");
             _playerGUI.UpdatePlayerDisplay();
+            
+        }
+        if (selectedTile != null)
+        {
             selectedTile.transform.Find("Highlight").gameObject.SetActive(false);
         }
         selectedTile = null;
@@ -229,6 +233,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._bloxClass + " Class");
         hasAction = true;
         abilitySelected = activeUnit.GetComponent<ClassVitals>()._currAbilities[0];
+        abilityIndex = 0;
         _playerGUI.UpdatePlayerDisplay();
     }
 }
