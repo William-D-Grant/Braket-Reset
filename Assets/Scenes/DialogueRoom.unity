@@ -1371,6 +1371,10 @@ MonoBehaviour:
   _playerIdle: {fileID: 21300000, guid: 05c8899991f85c64e874844247515a72, type: 3}
   _playerHappy: {fileID: 21300000, guid: ae13f2ba0392e194ea6c4e1a8fc6bb14, type: 3}
   _playerSad: {fileID: 21300000, guid: aca542f3efb40ac41b49a1d0c2a66568, type: 3}
+  _playerYeahNo: {fileID: 21300000, guid: a04de34beddd9ef4e988c0f260d86b7d, type: 3}
+  _playerErm: {fileID: 21300000, guid: 180277d265a5b4541a73fe4dc58c4043, type: 3}
+  _playerIdleTalking: {fileID: 21300000, guid: f54f949cf5ddbc04dbeb5a4b61cb9c52, type: 3}
+  _playerYeahNoTalking: {fileID: 21300000, guid: bf16e3015e853d54fb3bd6e7d5671ac0, type: 3}
   _jokerboyIdle: {fileID: 21300000, guid: e09126a8e40aa5e49bb23d05bdd7c540, type: 3}
   _jokerboyHappy: {fileID: 21300000, guid: d96b24e9af567984984fee43a9463e47, type: 3}
   _jokerboySad: {fileID: 21300000, guid: 6da36ab1a852d2b4ba222f9b931664da, type: 3}
@@ -1383,15 +1387,15 @@ MonoBehaviour:
   _hatchetIdle: {fileID: 21300000, guid: 02abf90c5d6f7c64e86f4a5922ee790e, type: 3}
   _hatchetHappy: {fileID: 21300000, guid: e6191d1239f5e214a9a82a8e0a17390c, type: 3}
   _hatchetSad: {fileID: 21300000, guid: d697c1488742a5d48ac3cfbd57adbb34, type: 3}
-  _computerRoomIdle: {fileID: 21300000, guid: e09126a8e40aa5e49bb23d05bdd7c540, type: 3}
-  _computerRoomHappy: {fileID: 21300000, guid: d96b24e9af567984984fee43a9463e47, type: 3}
-  _computerRoomSad: {fileID: 21300000, guid: 6da36ab1a852d2b4ba222f9b931664da, type: 3}
-  _strawBoaterIdle: {fileID: 21300000, guid: e09126a8e40aa5e49bb23d05bdd7c540, type: 3}
-  _strawBoaterHappy: {fileID: 21300000, guid: d96b24e9af567984984fee43a9463e47, type: 3}
-  _strawBoaterSad: {fileID: 21300000, guid: 6da36ab1a852d2b4ba222f9b931664da, type: 3}
-  _hollytreeIdle: {fileID: 21300000, guid: e09126a8e40aa5e49bb23d05bdd7c540, type: 3}
-  _hollytreeHappy: {fileID: 21300000, guid: d96b24e9af567984984fee43a9463e47, type: 3}
-  _hollytreeSad: {fileID: 21300000, guid: 6da36ab1a852d2b4ba222f9b931664da, type: 3}
+  _computerRoomIdle: {fileID: 21300000, guid: c80f90a97f3804745a1affb3b01ac22c, type: 3}
+  _computerRoomHappy: {fileID: 21300000, guid: 6d02db8bc3eb8f94fa65ae4c2199aabd, type: 3}
+  _computerRoomSad: {fileID: 21300000, guid: 32a83cd5631b1494383b20768e862c65, type: 3}
+  _strawBoaterIdle: {fileID: 21300000, guid: 412f6a2db966dd44fb22d83d70d724d9, type: 3}
+  _strawBoaterHappy: {fileID: 21300000, guid: 3566ef7146626fa4e886964313562a18, type: 3}
+  _strawBoaterSad: {fileID: 21300000, guid: a5be8011778aa2b40b4086b4943d3b09, type: 3}
+  _hollytreeIdle: {fileID: 21300000, guid: 146c375a2f8c7714482765478bc0226e, type: 3}
+  _hollytreeHappy: {fileID: 21300000, guid: ff4bf4b5d1a7cba4693883de461a005f, type: 3}
+  _hollytreeSad: {fileID: 21300000, guid: d500dc2ba798399478fc097e03ac59ee, type: 3}
 --- !u!4 &2027617719
 Transform:
   m_ObjectHideFlags: 0

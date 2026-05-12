@@ -39,7 +39,7 @@ public class TankClass : ClassAbstract
         classSPD = 1;
 
         //The Tank's attack
-        classATK = 2;
+        classATK = 3;
 
         //The Tank's defense
         classDEF = 5;
