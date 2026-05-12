@@ -271,6 +271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassVitals
   _bloxClass: 0
+  _currHP: 0
+  _currSPD: 0
+  _currATK: 0
+  _currDEF: 0
+  _currRange: 0
+  _currLuck: 0
   _team: 0
   _currPos: {x: 0, y: 0}
   _bloxObject: {fileID: 0}
