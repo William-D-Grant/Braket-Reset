@@ -54,7 +54,6 @@ public class EnemyController : MonoBehaviour
                 _closestTarget = playerBlox;
             }//end if
         }//end foreach
-
     }//end FindClosetTarget
 
 
@@ -94,9 +93,11 @@ public class EnemyController : MonoBehaviour
         if (remainingTM > 0 && path.Count > 1)
         {
             Debug.Log("Enemy attempting to move to " + _closestTarget);
-            Tile _currentTile = path.Dequeue();
-            _currentEnemy.transform.position = _currentTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
-            _currentEnemy.GetComponent<ClassVitals>()._currPos = _currentTile.position;
+            Tile currentTile = path.Dequeue();
+            Debug.Log("Going to " + currentTile.position + "on the grid, which is  " + currentTile.transform.position + " in the world.");
+            _currentEnemy.transform.position = currentTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
+            _mapHandler.ChangePosition(_currentEnemy, currentTile.position);
+            //_currentEnemy.GetComponent<ClassVitals>()._currPos = _currentTile.position;
 
             //_mapHandler.ChangePosition(_activeEnemy.gameObject, nextTile);
 
@@ -144,7 +145,15 @@ public class EnemyController : MonoBehaviour
 
         while (!pathFound && pathLength <= 30)
         {
-            List<Tile> nearbyTiles = _mapHandler.FindTilesNearTile(currentTile);
+            if (_mapHandler.unitGrid[(int)currentTile.position.x, (int)currentTile.position.y] != null)
+            {
+                if (_mapHandler.unitGrid[(int)currentTile.position.x, (int)currentTile.position.y].GetComponent<ClassVitals>()._team == Team.Player)
+                {
+                    pathFound = true;
+                    break;
+                }
+            }
+            List<Tile> nearbyTiles = _mapHandler.FindAttackTilesNearTile(currentTile);
             float closestDistance = Mathf.Infinity;
             foreach (Tile option in nearbyTiles)
             {
@@ -158,16 +167,9 @@ public class EnemyController : MonoBehaviour
             }
             path.Enqueue(currentTile);
             pathLength++;
-
-            if (_mapHandler.unitGrid[(int)currentTile.position.x, (int)currentTile.position.y] != null)
-            {
-                if (_mapHandler.unitGrid[(int)currentTile.position.x, (int)currentTile.position.y].GetComponent<ClassVitals>()._team == Team.Player)
-                {
-                    pathFound = true;
-                }
-            }
         }
         Debug.Log(pathLength);
+        
 
     }//end PathToTarget
 

@@ -70,6 +70,13 @@ public class MapHandler : MonoBehaviour
         //_combatHandler.RegisterDefeatEvent();
     }
 
+    public void ChangePosition(GameObject referenceUnit, Vector2 newPosition)
+    {
+        unitGrid[(int)referenceUnit.GetComponent<ClassVitals>()._currPos.x, (int)referenceUnit.GetComponent<ClassVitals>()._currPos.y] = null;
+        referenceUnit.GetComponent<ClassVitals>()._currPos = newPosition;
+        unitGrid[(int)newPosition.x, (int)newPosition.y] = referenceUnit;
+    }
+
 
     public Tile[] FindTilesNearUnit(ClassVitals referenceUnit)
     {
@@ -110,26 +117,53 @@ public class MapHandler : MonoBehaviour
         return nearbyTiles;
     }
 
-    public List<Tile> FindTilesNearTile(Tile referenceTile)
+    public List<Tile> FindAttackTilesNearTile(Tile referenceTile)
     {
         List<Tile> nearbyTiles = new List<Tile>();
         //int tileNumber = 0;
         if (referenceTile.position.x - 1 >= 0)
         {
-            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y]);
+            if (unitGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y] == null)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y]);
+            }
+            else if (unitGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y].GetComponent<ClassVitals>()._team == Team.Player)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x - 1, (int)referenceTile.position.y]);
+            }
         }
         if (referenceTile.position.x + 1 < 9)
         {
-            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y]);
+            if (unitGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y] == null)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y]);
+            }
+            else if (unitGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y].GetComponent<ClassVitals>()._team == Team.Player)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x + 1, (int)referenceTile.position.y]);
+            }
         }
         if (referenceTile.position.y - 1 >= 0)
         {
-            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1]);
+            if (unitGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1] == null)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1]);
+            }
+            else if (unitGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1].GetComponent<ClassVitals>()._team == Team.Player)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y - 1]);
+            }
         }
         if (referenceTile.position.y + 1 < 9)
         {
-            nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1]);
-
+            if (unitGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1] == null)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1]);
+            }
+            else if (unitGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1].GetComponent<ClassVitals>()._team == Team.Player)
+            {
+                nearbyTiles.Add(tileGrid[(int)referenceTile.position.x, (int)referenceTile.position.y + 1]);
+            }
         }
         return nearbyTiles;
     }

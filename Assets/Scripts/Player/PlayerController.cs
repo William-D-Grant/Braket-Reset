@@ -140,7 +140,8 @@ public class PlayerController : MonoBehaviour
         if (remainingTM > 0 && selectedTile != null)
         {
             activeUnit.transform.position = selectedTile.transform.position + new Vector3(0, _mapHandler.playerOffset + 0.2f, 0);
-            activeUnit.GetComponent<ClassVitals>()._currPos = selectedTile.position;
+            _mapHandler.ChangePosition(activeUnit, selectedTile.position);
+            //activeUnit.GetComponent<ClassVitals>()._currPos = selectedTile.position;
             remainingTM--;
             Debug.Log(remainingTM + " TM Left");
             _playerGUI.UpdatePlayerDisplay();
