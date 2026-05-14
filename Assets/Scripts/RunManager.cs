@@ -36,7 +36,7 @@ public class RunManager : MonoBehaviour
     private LossHandler _lossHandler;
 
     [SerializeField]
-    private ClassAbstract[] _bloxPrefabs = new ClassAbstract[8];
+    private ClassAbstract[] _bloxPrefabs = new ClassAbstract[9];
 
     //The EnemyTeam selector to hold all possible enemy teams, an retrieve team being fought
     private EnemyTeamSelector _enemyTeamSelector;
@@ -82,6 +82,7 @@ public class RunManager : MonoBehaviour
         _bloxPrefabs[5] = new SageClass();
         _bloxPrefabs[6] = new TankClass();
         _bloxPrefabs[7] = new ThiefClass();
+        _bloxPrefabs[8] = new TestingClass();
     }//end void
 
 
@@ -125,6 +126,9 @@ public class RunManager : MonoBehaviour
                     break;
                 case BloxClass.Thief:
                     bloxGameObject = _bloxPrefabs[7].bloxObject;
+                    break;
+                case BloxClass.Test:
+                    bloxGameObject = _bloxPrefabs[8].bloxObject;
                     break;
                 default:
                     bloxGameObject = _bloxPrefabs[2].bloxObject;
@@ -206,6 +210,9 @@ public class RunManager : MonoBehaviour
                 case BloxClass.Thief:
                     enemyBloxGameObject = _bloxPrefabs[7].bloxObject;
                     break;
+                case BloxClass.Test:
+                    enemyBloxGameObject = _bloxPrefabs[8].bloxObject;
+                    break;
                 default:
                     enemyBloxGameObject = _bloxPrefabs[2].bloxObject;
                     break;
@@ -237,7 +244,12 @@ public class RunManager : MonoBehaviour
         //If the player fought everyone, end the run
         if(_bracketNumber == 7)
         {
-            EndRun(playerWon);
+            //EndRun(playerWon);
+            //return;
+            HealPlayer();
+            EnemyTeamSelector._singletonInstance.BuildWarden();
+            SelectEnemies();
+            SceneManager.LoadScene("DialogueRoom");
             return;
         }//end if
 

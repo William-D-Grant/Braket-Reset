@@ -134,6 +134,10 @@ public class ClassVitals : MonoBehaviour
                 _class = new PirateClass();
                 break;
 
+            case BloxClass.Test:
+                _class = new TestingClass();
+                break;
+
             default:
                 _class = new CowboyClass();
                 break;

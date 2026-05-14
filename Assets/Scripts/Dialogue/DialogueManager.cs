@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
@@ -90,6 +91,15 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField]
     private Sprite _hollytreeSad;
+
+    [SerializeField]
+    private Sprite _wardenHappy;
+
+    [SerializeField]
+    private Sprite _wardenSad;
+
+    [SerializeField]
+    private Sprite _wardenIdle;
 
     private List<DialogueData> _currentDialogue;
     private int _index;
@@ -218,8 +228,35 @@ public class DialogueManager : MonoBehaviour
                 currentDialogue.Add(new DialogueData("Holly Warmheart", "I’m pretty good, haha! Everyone here is so nice once you get to know them.", _hollytreeHappy, false));
                 currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Is that so...", _playerErm, true));
                 break;
-        }
 
+            case "WARREN_T_WARDEN":
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "You know, I thought the only point of being here would be leaving as soon as possible. Now though, I see through you", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "WHY WHY, MY MY! Our DARLING DEARY BUTTERFLY has gone through the trials and tribulations of the bracket, making it to thugless finals! Do you have any words, my dear dearie dew?", _wardenHappy, false));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Do you have any words, my dear dearie dew?", _wardenIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Sure do, boss.", _playerIdleTalking, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Well, let your words ring! I’m dying to know how rehabilitation’s been treating you, and I’m sure the world is too!", _wardenHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "To all members of the audience hearing me now, I ask you. Never, ever call me butterfly again.", _playerYeahNo, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "?", _wardenIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "The titular Warenn of Warenn T. Warden’s Betterment Palace is nothing but a crook and a fraud, seeking to systematically erase and defile identity. In giving us these names, titles, uniform outfits, and reasons to mindlessly fight each other, he aims to-", _playerYeahNoTalking, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "CUT! CUT, I SAY!", _playerYeahNo, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "What the hell was that? Butterfly, I thought we had a good thing going here.", _wardenSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "...", _playerSad, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Cut the shit or I cut the mikes. I gave you maggots everything. You were all low-lifes before me. Now, you live a fulfilling life, loved by thousands, on a stage that never ends. Be. Happy.", _wardenSad, false));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "So, will you play nice, or do you want me to just play the game?", _wardenIdle, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "...", _playerSad, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Well? What’ll it be?", _wardenSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Put my mike back on.", _playerSad, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Good girl. SO OH SORRY, my loyal patrons of healing, we had encountered some technica-", _wardenHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "EVERYONE! LOOK INTO WARENN! This man just silenced me without remorse! We can’t win! We need you to fight too! Fight with us! And to all the other outlaws here, tha-", _playerIdleTalking, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "That’s enough.", _wardenSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "You-.", _playerIdle, true));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Just play the game.", _wardenSad, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "...", _wardenIdle, false));
+                currentDialogue.Add(new DialogueData("Warren T. Warden", "Haha. You’re so stupid, looking forward like that. You’re like a mad bug. You can’t do anything to me.", _wardenHappy, false));
+                currentDialogue.Add(new DialogueData("Jocelyne Waybright", "Haha…hahaha…whahaha… WARENN! Let’s play the game! You won’t last a second with me!", _playerHappy, true));
+                currentDialogue.Add(new DialogueData("WARDEN", "ENOUGH! And…call me by my name! I AM WARDEN!", _wardenHappy, false));
+                break;
+        }
         return currentDialogue;
     }
 }

@@ -9,5 +9,6 @@ public enum BloxClass
     Sage,
     Pirate,
     Cowboy,
-    Clown
+    Clown,
+    Test
 }
