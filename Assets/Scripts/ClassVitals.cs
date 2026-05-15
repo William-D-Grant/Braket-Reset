@@ -2,8 +2,8 @@
 * Filename:       	ClassVitals.cs                             *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.4.1                                      *
-* Previous Version: 0.4.0                                      *
+* Current Version:  0.4.2                                      *
+* Previous Version: 0.4.1                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	May 5, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -15,8 +15,7 @@
 *                   and ability effects. Also contains         *
 *                   functions to take damage, heal, and apply  *
 *                   statuses to Blox                           *
-* Version Changes:	Updated TurnTick to handle reversing       *
-*                   effects when they wear off                 *
+* Version Changes:	Added Upgrade___ set of functions          *
 ****************************************************************/
 
 using System.Collections.Generic;
@@ -33,33 +32,33 @@ public class ClassVitals : MonoBehaviour
     public ClassAbstract _class { get; private set; }
 
     //The Blox's current health points
-    public float _currHP; //{ get; private set; }
+    public float _currHP { get; private set; }
 
     //The Blox's current speed
     //private
-    public int _currSPD;
+    private int _currSPD;
 
     //The Blox's current attack
     //private
-    public int _currATK;
+    private int _currATK;
 
     //The Blox's current defense
     //private 
-    public int _currDEF;
+    private int _currDEF;
 
     //The Blox's current tile movement value
-    public int _currTM { get; private set; }
+    private int _currTM;
 
     //The Blox's current Hype generation
     private int _currHype;
 
     //The Blox's current Range
     //private
-    public int _currRange;
+    private int _currRange;
 
     //The Blox's current Luck
     //private
-    public int _currLuck;
+    private int _currLuck;
 
     //The Blox's current abilities
     public AbilityInstance[] _currAbilities;
@@ -76,7 +75,20 @@ public class ClassVitals : MonoBehaviour
     //The associated Blox's GameObject
     public GameObject _bloxObject;
 
+    //On defeat action for blox
     public event Action<ClassVitals> onDefeated;
+
+    //An attack bonus, what is actually upgraded each run
+    private int _bonusATK;
+
+    //A TM bonus, what is actually upgraded each run
+    private int _bonusTM;
+
+    //A defense bonus, what is actually upgraded each run
+    private int _bonusDEF;
+
+    //A hype bonus, what is actually upgraded each run
+    private int _bonusHype;
 
     /**********************************************************************************/
     /*                                                                                */
@@ -142,7 +154,7 @@ public class ClassVitals : MonoBehaviour
                 _class = new CowboyClass();
                 break;
 
-        }
+        }//end switch
 
         //Store what class is passed
         //_class = className;
@@ -161,19 +173,31 @@ public class ClassVitals : MonoBehaviour
     /* Function name: TakeDamage                                                      */
     /* Description: Deals damage to a Blox                                            */
     /* Parameters: float attackDamage: the amount of damage being done                */
+    /*             bool isCrit: True if the attack crit, false otherwise              */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void TakeDamage(float attackDamage)
+    public void TakeDamage(float attackDamage, bool isCrit)
     {
-        float damageReduced = Mathf.Max(attackDamage - _currDEF, 1);
-        _currHP -= damageReduced;
+        if (attackDamage == 0)
+        {
+            return;
+        }//end if
+        if (isCrit == true)
+        {
+            _currHP -= attackDamage;
+        }//end if
+        else if (isCrit == false)
+        {
+            float damageReduced = Mathf.Max(attackDamage - _currDEF, 1);
+            _currHP -= damageReduced;
+        }//end if
 
         if(this._currHP <= 0)
         {
             onDefeated?.Invoke(this);
-            Debug.Log("Invoked HEREHEREHREHRE");
-        }
+        }//end if
+
     }//end TakeDamage
 
 
@@ -202,7 +226,21 @@ public class ClassVitals : MonoBehaviour
     public void UpdateSpeed(int speedModifier)
     {
         _currSPD += speedModifier;
-    }//end TakeDamage
+    }//end UpdateSpeed
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpdateHealth                                                    */
+    /* Description: Updates a Blox's health                                           */
+    /* Parameters: int speedModifier: the amount the Blox's speed will change         */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void UpdateHealth(int healthModifier)
+    {
+        _currHP += healthModifier;
+    }//end UpdateHealth
 
 
     /**********************************************************************************/
@@ -216,7 +254,7 @@ public class ClassVitals : MonoBehaviour
     public void UpdateTileMovement(int tileMovementModifier)
     {
         _currTM += tileMovementModifier;
-    }//end TakeDamage
+    }//end UpdateTileMovement
 
 
     /**********************************************************************************/
@@ -230,7 +268,7 @@ public class ClassVitals : MonoBehaviour
     public void UpdateHype(int hypeModifier)
     {
         _currHype += hypeModifier;
-    }//end TakeDamage
+    }//end UpdateHype
 
 
     /**********************************************************************************/
@@ -244,7 +282,7 @@ public class ClassVitals : MonoBehaviour
     public void UpdateDefense(int defenseModifier)
     {
         _currDEF += defenseModifier;
-    }//end TakeDamage
+    }//end UpdateDefense
 
 
     /**********************************************************************************/
@@ -258,7 +296,7 @@ public class ClassVitals : MonoBehaviour
     public void UpdateLuck(int luckModifier)
     {
         _currLuck += luckModifier;
-    }//end TakeDamage
+    }//end UpdateLuck
 
 
     /**********************************************************************************/
@@ -272,7 +310,78 @@ public class ClassVitals : MonoBehaviour
     public void UpdateAttack(int attackModifier)
     {
         _currATK += attackModifier;
-    }//end TakeDamage
+    }//end UpdateAttack
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpgradeAttack                                                   */
+    /* Description: Upgrades a Blox's attack, increasing the bonus amount of attack   */
+    /*              instead of the actual attack so spawning logic remains the same   */
+    /* Parameters: int attackModifier: the amount the Blox's bonus attack will change */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void UpgradeAttack(int attackModifier)
+    {
+        _bonusATK += attackModifier;
+    }//end UpgradeAttack
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetBonusAttack                                                  */
+    /* Description: A gettor the the bonus attack                                     */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetBonusAttack()
+    {
+        return _bonusATK;
+    }//end UpgradeAttack
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpgradeDefense                                                  */
+    /* Description: Upgrades a Blox's defense, increasing the bonus amount of defense */
+    /*              instead of the actual defense so spawning logic remains the same  */
+    /* Parameters: int defenseModifier: the amount the Blox's bonus defense will change*/
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void UpgradeDefense(int defenseModifier)
+    {
+        _bonusDEF += defenseModifier;
+    }//end UpgradeDefense
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpgradeTileMovement                                             */
+    /* Description: Upgrades a Blox's TM, increasing the bonus amount of TM           */
+    /*              instead of the actual TM so spawning logic remains the same       */
+    /* Parameters: int tileMovementModifier: the amount the Blox's bonus TM will change*/
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void UpgradeTileMovement(int tileMovementModifier)
+    {
+        _bonusTM += tileMovementModifier;
+    }//end UpgradeTileMovement
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpgradeHype                                                     */
+    /* Description: Upgrades a Blox's hype, increasing the bonus amount of hype       */
+    /*              instead of the actual hype so spawning logic remains the same     */
+    /* Parameters: int hypeModifier: the amount the Blox's bonus hype will change     */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void UpgradeHype(int hypeModifier)
+    {
+        _bonusHype += hypeModifier;
+    }//end UpgradeHype
 
 
     /**********************************************************************************/
@@ -286,7 +395,7 @@ public class ClassVitals : MonoBehaviour
     public Team GetTeam()
     {
         return _team;
-    }
+    }//end GetTeam
 
 
     /**********************************************************************************/
@@ -357,7 +466,7 @@ public class ClassVitals : MonoBehaviour
     public void ClearStatus()
     {
         _currEffects.Clear();
-    }
+    }//end ClearStatus
 
 
     /**********************************************************************************/
@@ -371,7 +480,8 @@ public class ClassVitals : MonoBehaviour
     public int GetSpeed()
     {
         return _currSPD;
-    }
+    }//end GetSpeed
+
 
     /**********************************************************************************/
     /*                                                                                */
@@ -383,8 +493,9 @@ public class ClassVitals : MonoBehaviour
     /**********************************************************************************/
     public int GetAttack()
     {
-        return _currATK;
-    }
+        return _currATK + _bonusATK;
+    }//end GetAttack
+
 
     /**********************************************************************************/
     /*                                                                                */
@@ -397,7 +508,48 @@ public class ClassVitals : MonoBehaviour
     public int GetRange()
     {
         return _currRange;
-    }
+    }//end GetRange
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetLuck                                                         */
+    /* Description: A gettor for the Blox's luck                                      */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetLuck()
+    {
+        return _currLuck;
+    }//end GetLuck
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetDefense                                                      */
+    /* Description: A gettor for the Blox's defense                                   */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetDefense()
+    {
+        return _currDEF + _bonusDEF;
+    }//end GetDefense
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetDefense                                                      */
+    /* Description: A gettor for the Blox's defense                                   */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetTileMovement()
+    {
+        return _currTM + _bonusTM;
+    }//end GetDefense
 
     /**********************************************************************************/
     /*                                                                                */
@@ -422,7 +574,6 @@ public class ClassVitals : MonoBehaviour
             {
                 switch (_currEffects[i]._effectID)
                 {
-
                     case "SHIELD_BASH":
                         this.UpdateSpeed(2);
                         break;
@@ -454,20 +605,24 @@ public class ClassVitals : MonoBehaviour
                         {
                             this.UpdateLuck(-2);
                             this.UpdateHype(-2);
-                        }
+                        }//end if
                         else if (this.GetTeam() != _currEffects[i]._casterTeam)
                         {
                             this.UpdateLuck(2);
                             this.UpdateHype(2);
-                        }
+                        }//end if
                         break;
 
                     case "HUM":
                         this.UpdateLuck(-1);
                         break;
-                }
+
+                }//end switch
+
                 _currEffects.RemoveAt(i);
+
             }//end if
+
         }//end for
 
         for (int i = 0; i < _currAbilities.Length; i++)

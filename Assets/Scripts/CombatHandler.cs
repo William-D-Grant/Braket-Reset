@@ -17,11 +17,12 @@
 *                   repopulating the turns                     *
 ****************************************************************/
 
-using NUnit.Framework;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UIElements;
 //using UnityEditor.Experimental.GraphView;
 
 public class CombatHandler : MonoBehaviour
@@ -52,7 +53,7 @@ public class CombatHandler : MonoBehaviour
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: Start                                                           */
-    /* Description: Sets the RunManager and determines turn order                     */
+    /* Description: Sets the RunManager                                               */
     /* Parameters: N/A                                                                */
     /* Return Value: N/A                                                              */
     /*                                                                                */
@@ -60,7 +61,7 @@ public class CombatHandler : MonoBehaviour
     private void Start()
     {
         _runManager = RunManager._singletonInstance;
-        //RegisterDefeatEvent();
+
     }//end Start
 
     /**********************************************************************************/
@@ -87,14 +88,14 @@ public class CombatHandler : MonoBehaviour
             addingPlayerBlox.GetComponent<ClassVitals>()._team = Team.Player;
             _turnList.Add(addingPlayerBlox);
         }*/
-        _turnList.AddRange(_currentPlayerBlox); //was _runManager.PlayerTeam
+        _turnList.AddRange(_currentPlayerBlox);
         /*foreach (GameObject enemyBlox in _runManager.enemyTeam)
         {
             GameObject addingEnemyBlox = Instantiate(enemyBlox);
             addingEnemyBlox.GetComponent<ClassVitals>()._team = Team.Enemy;
             _turnList.Add(addingEnemyBlox);
         }*/
-        _turnList.AddRange(_currentEnemyBlox); //was _runManager.enemyTeam
+        _turnList.AddRange(_currentEnemyBlox);
 
         //Sorts the turn list by the Blox's speed value
         _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
@@ -197,7 +198,7 @@ public class CombatHandler : MonoBehaviour
     /**********************************************************************************/
     public void DefeatUnit(ClassVitals killedUnit)
     {
-        Debug.Log("went off HEREHRHERHERHHER");
+     
         //remove the blox from the turn order
         _turnList.Remove(killedUnit.gameObject);
 
@@ -211,11 +212,10 @@ public class CombatHandler : MonoBehaviour
         else 
         { //If the Blox was on the Enemy's team, remove it from their team
             _currentEnemyBlox.Remove(killedUnit.gameObject);
+            Destroy(killedUnit.gameObject);
             //_runManager.enemyTeam.Remove(killedUnit.gameObject);
         }//end else
         
-        Destroy(killedUnit.gameObject);
-
         //If the player won, end the combat
         if(CheckVictor() == Team.Player)
         {
@@ -261,7 +261,7 @@ public class CombatHandler : MonoBehaviour
     /* Function name: PlayerList                                                      */
     /* Description: A gettor for the player's current list of Blox in this run        */
     /* Parameters: N/A                                                                */
-    /* Return Value: List<ClassVitals> _runManager.playerTeam: the player's team of   */
+    /* Return Value: List<GameObject> _runManager.playerTeam: the player's team of    */
     /*               Blox                                                             */
     /*                                                                                */
     /**********************************************************************************/
@@ -276,30 +276,13 @@ public class CombatHandler : MonoBehaviour
     /* Function name: EnemyList                                                       */
     /* Description: A gettor for the enemy's current list of Blox                     */
     /* Parameters: N/A                                                                */
-    /* Return Value: List<ClassVitals> _runManager.enemyTeam: the enemy's team of     */
+    /* Return Value: List<GameObject> _runManager.enemyTeam: the enemy's team of      */
     /*               Blox                                                             */
     /**********************************************************************************/
     public List<GameObject> EnemyList()
     {
         return _runManager.enemyTeam;
     }//end EnemyList
-
-
-
-    public void RegisterDefeatEvent()
-    {
-        foreach(GameObject bloxGameObject in _runManager.playerTeam)
-        {
-            ClassVitals blox = bloxGameObject.GetComponent<ClassVitals>();
-            blox.onDefeated += DefeatUnit;
-        }
-
-        foreach(GameObject bloxGameObject in _runManager.enemyTeam)
-        {
-            ClassVitals blox = bloxGameObject.GetComponent<ClassVitals>();
-            blox.onDefeated += DefeatUnit;
-        }
-    }
 
 
     public void AddCurrentBlox(GameObject blox)

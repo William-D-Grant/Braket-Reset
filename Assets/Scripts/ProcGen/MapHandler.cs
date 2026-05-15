@@ -21,6 +21,18 @@ public class MapHandler : MonoBehaviour
         List<GameObject> enemyTeam = _combatHandler.EnemyList();
         int enemyCount = 0;
 
+        //TEST
+        foreach (GameObject blox in playerTeam)
+        {
+            blox.SetActive(false);
+        }
+
+        foreach (GameObject blox in enemyTeam)
+        {
+            blox.SetActive(false);
+        }
+        //TEST
+
         for (int j = 0; j < tileGrid.GetLength(0); j++)
         {
             for (int i = 0; i < tileGrid.GetLength(1); i++)
@@ -32,6 +44,19 @@ public class MapHandler : MonoBehaviour
                     Debug.Log(playerTeam[0].name);
                     if (j == 0)
                     {
+                        //NEW CODE BUT ALSO KINDA OLD IVE DONE THIS BEFORE I THINK
+                        GameObject bloxSpawned = playerTeam[playerCount];
+                        bloxSpawned.transform.position = tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0);
+                        bloxSpawned.SetActive(true);
+                        unitGrid[i, j] = bloxSpawned;
+                        ClassVitals bloxVitals = bloxSpawned.GetComponent<ClassVitals>();
+                        bloxVitals._currPos = new Vector2(i, j);
+                        bloxVitals._team = Team.Player;
+                        playerCount++;
+                        _combatHandler.AddCurrentBlox(bloxSpawned);
+                        //NEW CODE
+
+                        /*
                         //GameObject bloxSpawned = playerTeam[playerCount].gameObject;
                         //bloxSpawned.transform.position = tileGrid[i, j].transform.position = new Vector3(0, playerOffset + 0.2f, 0);
                         //bloxSpawned.transform.SetParent(transform);
@@ -46,9 +71,24 @@ public class MapHandler : MonoBehaviour
                         // test code -> unitGrid[i, j] = Instantiate(testPlayer, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         playerCount++;
                         _combatHandler.AddCurrentBlox(bloxSpawned);
+                        */
                     }
                     else
                     {
+
+                        //NEW CODE BUT ALSO KINDA OLD IVE DONE THIS BEFORE I THINK
+                        GameObject bloxSpawned = enemyTeam[enemyCount];
+                        bloxSpawned.transform.position = tileGrid[i, j].transform.position + new Vector3(0, playerOffset + 0.2f, 0);
+                        bloxSpawned.SetActive(true);
+                        unitGrid[i, j] = bloxSpawned;
+                        ClassVitals bloxVitals = bloxSpawned.GetComponent<ClassVitals>();
+                        bloxVitals._currPos = new Vector2(i, j);
+                        bloxVitals._team = Team.Enemy;
+                        enemyCount++;
+                        _combatHandler.AddCurrentBlox(bloxSpawned);
+                        //NEW CODE
+
+                        /*
                         //GameObject bloxSpawned = enemyTeam[enemyCount].gameObject;
                         //bloxSpawned.transform.position = tileGrid[i, j].transform.position = new Vector3(0, playerOffset + 0.2f, 0);
                         //bloxSpawned.transform.SetParent(transform);
@@ -61,6 +101,7 @@ public class MapHandler : MonoBehaviour
                         // test code -> unitGrid[i, j] = Instantiate(testEnemy, tileGrid[i, j].location + new Vector3(0, playerOffset + 0.2f, 0), Quaternion.identity, transform);
                         enemyCount++;
                         _combatHandler.AddCurrentBlox(bloxSpawned);
+                        */
                     }
                     
                 }

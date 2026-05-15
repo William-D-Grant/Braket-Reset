@@ -177,7 +177,7 @@ public class EnemyController : MonoBehaviour
     {
         _currentEnemy = currentEnemy;
         _currentEnemy.transform.Find("HighlightActive").gameObject.SetActive(true);
-        remainingTM = _currentEnemy.GetComponent<ClassVitals>()._currTM;
+        remainingTM = _currentEnemy.GetComponent<ClassVitals>().GetTileMovement();
         hasAction = true;
         abilitySelected = _currentEnemy.GetComponent<ClassVitals>()._currAbilities[0];
         FindClosestTarget();

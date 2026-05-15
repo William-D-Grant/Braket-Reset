@@ -2,8 +2,8 @@
 * Filename:       	RunManager.cs                              *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.1                                      *
-* Previous Version: 0.1.2                                      *
+* Current Version:  0.4.0                                      *
+* Previous Version: 0.3.1                                      *
 * Creation Date:  	May 4, 2026                                *
 * Last Modified:  	May 7, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -13,8 +13,8 @@
 * Purpose:        	Handle all information for a singular run, *
 *                   healing the player between fights, ending  *
 *                   runs, and getting the enemy team           *
-* Version Changes:	Adjusted CreatePlayerTeam and SelectEnemies*
-*                   to instantiate the teams now               *
+* Version Changes:	Changed RunManager to instantiate the Blox *
+*                   instead of MapHandler for upgrade purposes *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -135,12 +135,22 @@ public class RunManager : MonoBehaviour
                     break;
 
             }
-            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
+            //NEW CODE
+            GameObject bloxInstance = Instantiate(bloxGameObject);
+            DontDestroyOnLoad(bloxInstance);
+            ClassVitals bloxVitals = bloxInstance.GetComponent<ClassVitals>();
+            bloxVitals.InitializeBlox(bloxClass, Team.Player);
+            bloxInstance.SetActive(false);
+            playerTeam.Add(bloxInstance);
+            //NEW CODE
+
+
+            /*ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             //bloxVitals._team = Team.Player;
             bloxVitals.InitializeBlox(bloxClass, Team.Player);  //was commented
             //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxGameObject);
+            playerTeam.Add(bloxGameObject);*/
         }//end foreach
 
     }
@@ -218,11 +228,19 @@ public class RunManager : MonoBehaviour
                     break;
             }
 
-            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+            /*ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
             //enemyBloxClassVitals._team = Team.Enemy;
 
-            enemyTeam.Add(enemyBloxGameObject);
+            enemyTeam.Add(enemyBloxGameObject);*/
+
+            //NEW CODE
+            GameObject enemyInstance = Instantiate(enemyBloxGameObject);
+            DontDestroyOnLoad(enemyInstance);
+            enemyInstance.GetComponent<ClassVitals>().InitializeBlox(enemyBloxClass, Team.Enemy);
+            enemyInstance.SetActive(false);
+            enemyTeam.Add(enemyInstance);
+            //NEW CODE
         }//end foreach
 
     }//end SelectEnemies
@@ -241,22 +259,34 @@ public class RunManager : MonoBehaviour
         //Increment what battle the player is one
         _bracketNumber++;
 
+        //Get the upgrades handler (I'm sorry for my sins)
+        UpgradesHandler upgradesHandler = FindFirstObjectByType<UpgradesHandler>();
+
+
+
         //If the player fought everyone, end the run
-        if(_bracketNumber == 7)
+        if (_bracketNumber == 7)
         {
             //EndRun(playerWon);
             //return;
             HealPlayer();
             EnemyTeamSelector._singletonInstance.BuildWarden();
             SelectEnemies();
-            SceneManager.LoadScene("DialogueRoom");
+            upgradesHandler.ShowUpgradeScreen();
             return;
         }//end if
 
         //Heal the player and get the next opponent otherwise
         HealPlayer();
         SelectEnemies();
-        SceneManager.LoadScene("DialogueRoom");
+        foreach (GameObject blox in playerTeam)
+        {
+            foreach (AbilityInstance ability in blox.GetComponent<ClassVitals>()._currAbilities)
+            {
+                ability.SetCooldown(0);
+            }
+        }
+        upgradesHandler.ShowUpgradeScreen();
 
     }//end EndCombat
 

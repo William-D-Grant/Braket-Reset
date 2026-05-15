@@ -231,8 +231,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log(currentPlayer);
         activeUnit = currentPlayer;
         activeUnit.transform.Find("HighlightActive").gameObject.SetActive(true);
-        remainingTM = activeUnit.GetComponent<ClassVitals>()._currTM;
-        Debug.Log(activeUnit.GetComponent<ClassVitals>()._currTM + " TM");
+        remainingTM = activeUnit.GetComponent<ClassVitals>().GetTileMovement();
+        Debug.Log(activeUnit.GetComponent<ClassVitals>().GetTileMovement() + " TM");
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._team + " Team");
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._bloxClass + " Class");
         hasAction = true;

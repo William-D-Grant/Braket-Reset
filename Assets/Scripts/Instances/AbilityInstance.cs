@@ -2,8 +2,8 @@
 * Filename:       	AbilityInstance.cs                         *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.0.1                                      *
-* Previous Version: N/A                                        *
+* Current Version:  0.0.2                                      *
+* Previous Version: 0.0.1                                      *
 * Creation Date:  	April 28, 2026                             *
 * Last Modified:  	April 30, 2026                             *
 * Due Date:       	May 14th, 2026                             *
@@ -13,7 +13,8 @@
 * Purpose:        	A runtime instance of an ability. Used to  *
 *                   separate the AbilityFlyweights from        *
 *                   gameplay so they can be reused             *
-* Version Changes:	Created                                    *
+* Version Changes:	Added GetBonusAttack() to the TakeDamage   *
+*                   so it can account for damage upgrades      *
 ****************************************************************/
 
 using System.Collections;
@@ -54,14 +55,27 @@ public class AbilityInstance
         return _abilityStats.abilityDamage;
     }
 
+    public void SetCooldown(int newCooldown)
+    {
+        _currCooldown = newCooldown;
+    }
+
 
     public void UseAbility(ClassVitals abilityCaster, ClassVitals abilityTarget)
     {
         if (/*thing that used ability has enough hype*/ 1 == 1 && _currCooldown == 0)
         {
-            //the thing that used ability hype -= _abilityStats.abilityCost;
-            abilityTarget.TakeDamage(_abilityStats.abilityDamage);
             _currCooldown = _abilityStats.abilityCooldown;
+            //the thing that used ability hype -= _abilityStats.abilityCost;
+            int critChance = Random.Range(0, 10);
+            if (critChance > abilityCaster.GetLuck())
+            {
+                abilityTarget.TakeDamage(_abilityStats.abilityDamage + abilityCaster.GetBonusAttack(), false);
+            }
+            else if (critChance <= abilityCaster.GetLuck())
+            {
+                abilityTarget.TakeDamage(_abilityStats.abilityDamage, true);
+            }
 
             string abilityName = _abilityStats.abilityID;
 
