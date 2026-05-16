@@ -2,8 +2,8 @@
 * Filename:       	RunManager.cs                              *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.4.0                                      *
-* Previous Version: 0.3.1                                      *
+* Current Version:  0.2.1                                      *
+* Previous Version: 0.1.2                                      *
 * Creation Date:  	May 4, 2026                                *
 * Last Modified:  	May 7, 2026                                *
 * Due Date:       	May 14th, 2026                             *
@@ -13,8 +13,8 @@
 * Purpose:        	Handle all information for a singular run, *
 *                   healing the player between fights, ending  *
 *                   runs, and getting the enemy team           *
-* Version Changes:	Changed RunManager to instantiate the Blox *
-*                   instead of MapHandler for upgrade purposes *
+* Version Changes:	Adjusted CreatePlayerTeam and SelectEnemies*
+*                   to instantiate the teams now               *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -52,6 +52,9 @@ public class RunManager : MonoBehaviour
 
     //The player's current match
     private int _bracketNumber;
+
+    //A bool for if the player has done the tutorial yet
+    public bool _isTutorial = true;
 
 
     /**********************************************************************************/
@@ -135,22 +138,12 @@ public class RunManager : MonoBehaviour
                     break;
 
             }
-            //NEW CODE
-            GameObject bloxInstance = Instantiate(bloxGameObject);
-            DontDestroyOnLoad(bloxInstance);
-            ClassVitals bloxVitals = bloxInstance.GetComponent<ClassVitals>();
-            bloxVitals.InitializeBlox(bloxClass, Team.Player);
-            bloxInstance.SetActive(false);
-            playerTeam.Add(bloxInstance);
-            //NEW CODE
-
-
-            /*ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
+            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             //bloxVitals._team = Team.Player;
             bloxVitals.InitializeBlox(bloxClass, Team.Player);  //was commented
             //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxGameObject);*/
+            playerTeam.Add(bloxGameObject);
         }//end foreach
 
     }
@@ -228,19 +221,11 @@ public class RunManager : MonoBehaviour
                     break;
             }
 
-            /*ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
             //enemyBloxClassVitals._team = Team.Enemy;
 
-            enemyTeam.Add(enemyBloxGameObject);*/
-
-            //NEW CODE
-            GameObject enemyInstance = Instantiate(enemyBloxGameObject);
-            DontDestroyOnLoad(enemyInstance);
-            enemyInstance.GetComponent<ClassVitals>().InitializeBlox(enemyBloxClass, Team.Enemy);
-            enemyInstance.SetActive(false);
-            enemyTeam.Add(enemyInstance);
-            //NEW CODE
+            enemyTeam.Add(enemyBloxGameObject);
         }//end foreach
 
     }//end SelectEnemies
@@ -254,40 +239,56 @@ public class RunManager : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void EndCombat(Team playerWon)
+    public void EndCombat(Team whoWon)
     {
-        //Increment what battle the player is one
-        _bracketNumber++;
-
-        //Get the upgrades handler (I'm sorry for my sins)
-        UpgradesHandler upgradesHandler = FindFirstObjectByType<UpgradesHandler>();
-
-
-
-        //If the player fought everyone, end the run
-        if (_bracketNumber == 7)
+        if (whoWon == Team.Player)
         {
-            //EndRun(playerWon);
-            //return;
-            HealPlayer();
-            EnemyTeamSelector._singletonInstance.BuildWarden();
-            SelectEnemies();
-            upgradesHandler.ShowUpgradeScreen();
-            return;
-        }//end if
+            //Increment what battle the player is one
+            _bracketNumber++;
 
-        //Heal the player and get the next opponent otherwise
-        HealPlayer();
-        SelectEnemies();
-        foreach (GameObject blox in playerTeam)
-        {
-            foreach (AbilityInstance ability in blox.GetComponent<ClassVitals>()._currAbilities)
+            WinLossTracker._singletonInstance.SetPlayerWin(true);
+            WinLossTracker._singletonInstance.UpdateWinLoss(EnemyTeamSelector._singletonInstance.currentEnemyTeam.name);
+
+            //If the player fought the warden, end the run
+            if (_bracketNumber == 8)
             {
-                ability.SetCooldown(0);
+                EndRun(whoWon);
+                SceneManager.LoadScene("DialogueRoom");
+                return;
             }
-        }
-        upgradesHandler.ShowUpgradeScreen();
 
+            //Get the upgrades handler (I'm sorry for my sins)
+            UpgradesHandler upgradesHandler = FindFirstObjectByType<UpgradesHandler>();
+
+            //If the player fought everyone, fight the warden
+            if (_bracketNumber == 7)
+            {
+                //EndRun(playerWon);
+                //return;
+                HealPlayer();
+                EnemyTeamSelector._singletonInstance.BuildWarden();
+                SelectEnemies();
+                upgradesHandler.ShowUpgradeScreen();
+                return;
+            }//end if
+
+            //Heal the player and get the next opponent otherwise
+            HealPlayer();
+            SelectEnemies();
+            foreach (GameObject blox in playerTeam)
+            {
+                foreach (AbilityInstance ability in blox.GetComponent<ClassVitals>()._currAbilities)
+                {
+                    ability.SetCooldown(0);
+                }
+            }
+            upgradesHandler.ShowUpgradeScreen();
+        }
+        else if (whoWon == Team.Enemy)
+        {
+            WinLossTracker._singletonInstance.SetPlayerWin(true);
+            EndRun(whoWon);
+        }
     }//end EndCombat
 
 
@@ -302,7 +303,7 @@ public class RunManager : MonoBehaviour
     public void EndRun(Team winningTeam)
     {
         //Call the victoryhandler to handle winning
-        if(winningTeam == Team.Enemy) 
+        /*if(winningTeam == Team.Enemy) 
         {
             _lossHandler.ActivateScreen();
         }
@@ -310,7 +311,7 @@ public class RunManager : MonoBehaviour
         if (winningTeam == Team.Player)
         {
             _victoryHandler.ActivateScreen();
-        }
+        }*/
 
         //Resets the current opponent
         _bracketNumber = 0;
@@ -320,6 +321,7 @@ public class RunManager : MonoBehaviour
         playerTeam.Clear();
         enemyTeam.Clear();
         _enemyTeamSelector.ResetBracket();
+        //SceneManager.LoadScene("DialogueRoom");
     }//end EndRun
 
 }//end RunManager

@@ -10,6 +10,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField]
     [Tooltip("start of level 1")]
     private int levelSceneIndex;
+
+    [SerializeField]
+    private VideoPlayer _creditsPlayer;
 
     // Name:        Start
     // Description: Called immediately before its first Update frame
@@ -79,6 +83,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         _mainScreen.SetActive(true);
         _creditScreen.SetActive(false);
+
     }
 
 

@@ -31,7 +31,7 @@ public class DialogueUIHandler : MonoBehaviour
             _enemySprite.sprite = data.talkingSprite;
         }//end else if
 
-    }
+    }//end DisplayText
 
 
 }
