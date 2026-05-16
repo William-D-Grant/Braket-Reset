@@ -418,37 +418,34 @@ public class ClassVitals : MonoBehaviour
             {
                 switch (_currEffects[i]._effectID)
                 {
-                    /*case "SHIELD_BASH":
-                        this.UpdateSpeed(2);
-                        break;*/
 
-                    case "Shield Bash":
+                    case "SHIELD_BASH":
                         this.UpdateSpeed(2);
                         break;
 
-                    case "Defend":
+                    case "DEFEND":
                         this.UpdateDefense(-2);
                         break;
 
-                    case "Speed Demon":
+                    case "SPEED_DEMON":
                         this.UpdateTileMovement(-3);
                         this.UpdateAttack(-1);
                         break;
 
-                    case "Hype Train":
+                    case "HYPE_TRAIN":
                         this.UpdateDefense(1);
                         this.UpdateHype(-3);
                         break;
 
-                    case "Caught":
+                    case "CAUGHT":
                         this.UpdateTileMovement(90);
                         break;
 
-                    case "Joke":
+                    case "JOKE":
                         this.UpdateHype(-2);
                         break;
 
-                    case "Sea Shanty":
+                    case "SEA_SHANTY":
                         if(this.GetTeam() == _currEffects[i]._casterTeam)
                         {
                             this.UpdateLuck(-2);
@@ -461,7 +458,7 @@ public class ClassVitals : MonoBehaviour
                         }
                         break;
 
-                    case "Hum":
+                    case "HUM":
                         this.UpdateLuck(-1);
                         break;
                 }

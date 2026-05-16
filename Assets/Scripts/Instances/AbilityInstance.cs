@@ -113,7 +113,7 @@ public class AbilityInstance
                     break;
 
                 case "Caught":
-                    EffectFlyweight caughtEffect = EffectFactory.RetrieveEffect("HYPE");
+                    EffectFlyweight caughtEffect = EffectFactory.RetrieveEffect("CAUGHT");
                     EffectInstance caughtInstance = new EffectInstance(caughtEffect, abilityCaster.GetTeam(), abilityTarget.GetTeam());
                     abilityTarget.UpdateTileMovement(-90);
                     abilityTarget.ApplyStatus(caughtInstance);
