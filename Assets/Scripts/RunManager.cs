@@ -138,12 +138,19 @@ public class RunManager : MonoBehaviour
                     break;
 
             }
-            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
+            /*ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             //bloxVitals._team = Team.Player;
             bloxVitals.InitializeBlox(bloxClass, Team.Player);  //was commented
             //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxGameObject);
+            playerTeam.Add(bloxGameObject);*/
+
+            GameObject bloxInstance = Instantiate(bloxGameObject);
+            DontDestroyOnLoad(bloxInstance);
+            ClassVitals bloxVitals = bloxInstance.GetComponent<ClassVitals>();
+            bloxVitals.InitializeBlox(bloxClass, Team.Player);
+            bloxInstance.SetActive(false);
+            playerTeam.Add(bloxInstance);
         }//end foreach
 
     }
@@ -221,11 +228,18 @@ public class RunManager : MonoBehaviour
                     break;
             }
 
-            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+            /*ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
             //enemyBloxClassVitals._team = Team.Enemy;
 
-            enemyTeam.Add(enemyBloxGameObject);
+            enemyTeam.Add(enemyBloxGameObject);*/
+
+            GameObject bloxInstance = Instantiate(enemyBloxGameObject);
+            DontDestroyOnLoad(bloxInstance);
+            ClassVitals bloxVitals = bloxInstance.GetComponent<ClassVitals>();
+            bloxVitals.InitializeBlox(enemyBloxClass, Team.Enemy);
+            bloxInstance.SetActive(false);
+            enemyTeam.Add(bloxInstance);
         }//end foreach
 
     }//end SelectEnemies
