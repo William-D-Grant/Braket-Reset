@@ -18,6 +18,7 @@
 ****************************************************************/
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 public class EnemyTeamSelector : MonoBehaviour
 {
@@ -46,15 +47,19 @@ public class EnemyTeamSelector : MonoBehaviour
     /***************************************************************************************************/
     private void Awake()
     {
-        if (_singletonInstance == null)
+        if (_singletonInstance != null && _singletonInstance != this)
         {
-            _singletonInstance = this;
-            DontDestroyOnLoad(gameObject);
-            ResetBracket();
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            _singletonInstance = this;
+            DontDestroyOnLoad(gameObject);
+
+            if (_currentBracketTeams == null)
+            {
+                ResetBracket();
+            }
         }
 
     }//end void
@@ -71,14 +76,23 @@ public class EnemyTeamSelector : MonoBehaviour
     //# Taken from John French on https://gamedevbeginner.com/how-to-use-random-values-in-unity-with-examples/
     public EnemyTeam GetRandomTeam()
     {
+        Debug.Log("Teams left before pick: " + _currentBracketTeams.Count);
         currentEnemyTeam = null;
         //Generates a random number from 0 to the current number of teams in bracket and assigns the _currentEnemyTeam to the team randomly generated
         int randomNumber = Random.Range(0, _currentBracketTeams.Count);
         currentEnemyTeam = _currentBracketTeams[randomNumber];
 
+        _currentBracketTeams.RemoveAt(randomNumber);
         //Removes that team from _currentBracketTeams
-        RemoveFromBracket(currentEnemyTeam);
+        //RemoveFromBracket(currentEnemyTeam);
 
+        Debug.Log("Picked enemy: " + currentEnemyTeam.enemyName);
+
+        Debug.Log("CURRENT BRACKET TEAMS:");
+        foreach (EnemyTeam team in _currentBracketTeams)
+        {
+            Debug.Log(team.enemyName);
+        }
         //Return the _currentEnemyTeam
         return currentEnemyTeam;
 
@@ -110,6 +124,7 @@ public class EnemyTeamSelector : MonoBehaviour
     /**********************************************************************************/
     public void ResetBracket()
     {
+        Debug.LogWarning("RESET BRACKET CALLED");
         //Build all enemy teams and clear _currentBracketTeams
         BuildEnemyTeams();
         _currentBracketTeams = new List<EnemyTeam>();
@@ -220,7 +235,7 @@ public class EnemyTeamSelector : MonoBehaviour
         {
             BloxClass.Sage,
             BloxClass.Tank,
-                BloxClass.Clown
+            BloxClass.Clown
         }));
 
         //Set the team to Enemy
@@ -230,4 +245,19 @@ public class EnemyTeamSelector : MonoBehaviour
         }*/
 
     }//end BuildEnemyTeams
-}
+
+    public void BuildWarden()
+    {
+        _allEnemyTeams = new List<EnemyTeam>();
+        _allEnemyTeams.Add(new EnemyTeam("WARREN_T_WARDEN", new List<BloxClass>
+        {
+            BloxClass.Fighter,
+            BloxClass.Sage,
+            BloxClass.Ranger,
+        }));
+
+        _currentBracketTeams.Add(_allEnemyTeams[0]);
+
+    }
+
+}//end EnemyTeamSelector

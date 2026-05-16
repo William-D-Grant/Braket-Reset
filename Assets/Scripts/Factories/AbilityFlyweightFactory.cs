@@ -103,7 +103,7 @@ public class AbilityFlyweightFactory
             case "Shield Bash":
                 AbilityFlyweight shieldBashAbility = new AbilityFlyweight();
                 shieldBashAbility.abilityID = abilityID;
-                shieldBashAbility.abilityDamage = 5;
+                shieldBashAbility.abilityDamage = Blox.GetAttack() + 2;
                 shieldBashAbility.abilityRange = Blox.GetRange();
                 shieldBashAbility.abilityCooldown = 2;
                 shieldBashAbility.abilityCost = 5;
@@ -166,7 +166,7 @@ public class AbilityFlyweightFactory
             case "Life Drain":
                 AbilityFlyweight lifeDrainAbility = new AbilityFlyweight();
                 lifeDrainAbility.abilityID = abilityID;
-                lifeDrainAbility.abilityDamage = 6;
+                lifeDrainAbility.abilityDamage = Blox.GetAttack() + 2;
                 lifeDrainAbility.abilityRange = Blox.GetRange();
                 lifeDrainAbility.abilityCooldown = 3;
                 lifeDrainAbility.abilityCost = 5;
@@ -187,7 +187,7 @@ public class AbilityFlyweightFactory
             case "Shock":
                 AbilityFlyweight shockAbility = new AbilityFlyweight();
                 shockAbility.abilityID = abilityID;
-                shockAbility.abilityDamage = 4;
+                shockAbility.abilityDamage = Blox.GetAttack();
                 shockAbility.abilityRange = Blox.GetRange();
                 shockAbility.abilityCooldown = 1;
                 shockAbility.abilityCost = 2;
@@ -238,7 +238,7 @@ public class AbilityFlyweightFactory
             case "Caught":
                 AbilityFlyweight caughtAbility = new AbilityFlyweight();
                 caughtAbility.abilityID = abilityID;
-                caughtAbility.abilityDamage = 5;
+                caughtAbility.abilityDamage = Blox.GetAttack() + 2;
                 caughtAbility.abilityRange = Blox.GetRange(); 
                 caughtAbility.abilityCooldown = 3;
                 caughtAbility.abilityCost = 8;

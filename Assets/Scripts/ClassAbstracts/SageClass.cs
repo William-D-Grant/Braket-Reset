@@ -39,7 +39,7 @@ public class SageClass : ClassAbstract
         classSPD = 2;
 
         //The Sage's attack
-        classATK = 2;
+        classATK = 4;
 
         //The Sage's defense
         classDEF = 1;

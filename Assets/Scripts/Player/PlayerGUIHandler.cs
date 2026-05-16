@@ -48,7 +48,7 @@ public class PlayerGUIHandler : MonoBehaviour
         _unitName.SetText(_playerController.activeUnit.GetComponent<ClassVitals>()._class.ToString());
         _tmCounter.SetText("TM: " + _playerController.remainingTM.ToString());
         _hpCounter.SetText("HP: " + _playerController.activeUnit.GetComponent<ClassVitals>()._currHP.ToString());
-        _statsLayout.SetText("SPD: " + _playerController.activeUnit.GetComponent<ClassVitals>()._currSPD + "<br>ATK: " + _playerController.activeUnit.GetComponent<ClassVitals>()._currATK + "<br>DEF: " + _playerController.activeUnit.GetComponent<ClassVitals>()._currDEF);
+        _statsLayout.SetText("SPD: " + _playerController.activeUnit.GetComponent<ClassVitals>().GetSpeed() + "<br>ATK: " + _playerController.activeUnit.GetComponent<ClassVitals>().GetAttack() + "<br>DEF: " + _playerController.activeUnit.GetComponent<ClassVitals>().GetDefense());
         _cdCounter.SetText("Cooldown: " + _playerController.abilitySelected._currCooldown.ToString() + "<br>Range: " + _playerController.abilitySelected.GetRange());
     }
 }

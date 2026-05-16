@@ -85,6 +85,10 @@ public class ClassSelectorMenu : MonoBehaviour
                 playerBloxClass = BloxClass.Pirate;
                 break;
 
+            case "TEST":
+                playerBloxClass = BloxClass.Test;
+                break;
+
             default:
                 playerBloxClass = BloxClass.Fighter;
                 break;
@@ -136,6 +140,7 @@ public class ClassSelectorMenu : MonoBehaviour
     /**********************************************************************************/
     public void ToMainMenu()
     {
+        playerSelection = new List<BloxClass>();
         SceneManager.LoadScene("MainMenu");
     }//end ToMainMenu
 
