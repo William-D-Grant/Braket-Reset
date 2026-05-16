@@ -138,12 +138,19 @@ public class RunManager : MonoBehaviour
                     break;
 
             }
-            ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
+            /*ClassVitals bloxVitals = bloxGameObject.GetComponent<ClassVitals>();
             //bloxVitals._team = Team.Player;
             bloxVitals.InitializeBlox(bloxClass, Team.Player);  //was commented
             //if (bloxVitals == null)
             Debug.Log("Resulting Vitals is " + bloxVitals);
-            playerTeam.Add(bloxGameObject);
+            playerTeam.Add(bloxGameObject);*/
+
+            GameObject bloxInstance = Instantiate(bloxGameObject);
+            DontDestroyOnLoad(bloxInstance);
+            ClassVitals bloxVitals = bloxInstance.GetComponent<ClassVitals>();
+            bloxVitals.InitializeBlox(bloxClass, Team.Player);
+            bloxInstance.SetActive(false);
+            playerTeam.Add(bloxInstance);
         }//end foreach
 
     }
@@ -221,11 +228,18 @@ public class RunManager : MonoBehaviour
                     break;
             }
 
-            ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
+            /*ClassVitals enemyBloxClassVitals = enemyBloxGameObject.GetComponent<ClassVitals>();
 
             //enemyBloxClassVitals._team = Team.Enemy;
 
-            enemyTeam.Add(enemyBloxGameObject);
+            enemyTeam.Add(enemyBloxGameObject);*/
+
+            GameObject enemyInstance = Instantiate(enemyBloxGameObject);
+            DontDestroyOnLoad(enemyInstance);
+            ClassVitals enemyVitals = enemyInstance.GetComponent<ClassVitals>();
+            enemyVitals.InitializeBlox(enemyBloxClass, Team.Enemy);
+            enemyInstance.SetActive(false);
+            enemyTeam.Add(enemyInstance);
         }//end foreach
 
     }//end SelectEnemies
@@ -239,9 +253,9 @@ public class RunManager : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void EndCombat(Team whoWon)
+    public void EndCombat(Team whoLost)
     {
-        if (whoWon == Team.Player)
+        if (whoLost == Team.Enemy)
         {
             //Increment what battle the player is one
             _bracketNumber++;
@@ -252,7 +266,7 @@ public class RunManager : MonoBehaviour
             //If the player fought the warden, end the run
             if (_bracketNumber == 8)
             {
-                EndRun(whoWon);
+                EndRun(whoLost);
                 SceneManager.LoadScene("DialogueRoom");
                 return;
             }
@@ -284,10 +298,11 @@ public class RunManager : MonoBehaviour
             }
             upgradesHandler.ShowUpgradeScreen();
         }
-        else if (whoWon == Team.Enemy)
+        else if (whoLost == Team.Player)
         {
+            Debug.Log("enemyteam won");
             WinLossTracker._singletonInstance.SetPlayerWin(true);
-            EndRun(whoWon);
+            EndRun(whoLost);
         }
     }//end EndCombat
 
@@ -317,10 +332,10 @@ public class RunManager : MonoBehaviour
         _bracketNumber = 0;
 
         //Clears the player's blox choices, blox, the enemy team, and resets all possible opponents
-        playerSelection.Clear();
+        //playerSelection.Clear();
         playerTeam.Clear();
         enemyTeam.Clear();
-        _enemyTeamSelector.ResetBracket();
+        EnemyTeamSelector._singletonInstance.ResetBracket();
         //SceneManager.LoadScene("DialogueRoom");
     }//end EndRun
 
