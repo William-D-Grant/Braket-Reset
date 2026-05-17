@@ -928,11 +928,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: adf9fd85-7c20-4b9b-ba25-4ba08b0a8e53
+  cloudProjectId: 121eae07-203a-47d9-8516-1ad6e83157ec
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Braket Reset
-  organizationId: billgee
+  projectName: My project
+  organizationId: marysuee
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
