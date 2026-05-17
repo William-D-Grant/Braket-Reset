@@ -1,3 +1,21 @@
+/****************************************************************
+* Filename:       	WaveFunctionCollapse.cs                     *
+* Authors:        	William Grant                               *
+* Version Authors:	William Grant                               *
+* Current Version:  0.4.1                                       *
+* Previous Version: 0.4.0                                       *
+* Creation Date:  	May 11, 2026                                *
+* Last Modified:  	May 12, 2026                                *
+* Due Date:       	May 17th, 2026                              *
+* Course:         	CPSC 323                                    *
+* Professor Name: 	Professor Jacklitsch                        *
+* Project:        	Braket Reset                                *
+* Purpose:        	Handles Wave Function Collapse generation   *
+*                   of the map using Tile.cs and Cell.cs        *
+* Version Changes:	Static placements and reordering methods    *
+****************************************************************/
+//# Taken from Game Dev Garnet's "Easy City Generator Tutorial for Unity!"  on May 11, 2026. https://www.youtube.com/watch?v=iJ_GnGD5BZA
+//# Almost entirely based on the code from there, however with minor adjustments to work for varied-sized objects and static placements.
 using System;
 using System.Collections;
 using System.Collections.Generic;

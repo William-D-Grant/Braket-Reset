@@ -1,18 +1,18 @@
 /***************************************************************
 * Filename:       	InputManager.cs                            *
 * Authors:        	Ophelia Carlin                             *
-* Version Authors:	Ophelia Carlin                             *
-* Current Version:  0.0.1                                      *
-* Previous Version: 0.0.0                                      *
+* Version Authors:	William Grant                              *
+* Current Version:  0.1.0                                      *
+* Previous Version: 0.0.1                                      *
 * Creation Date:  	May 7, 2026                                *
-* Last Modified:  	May 7, 2026                                *
+* Last Modified:  	May 11, 2026                                *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
 * Project:        	Braket Reset (Procedurogue Generation)     *
 * Purpose:        	Manager script to handle Unity's input     * 
 *                   system.                                    *
-* Version Changes:	Created and hopefully finished.            *
+* Version Changes:	Added GetMouse3DTarget() and minor changes *
 ****************************************************************/
 
 using UnityEngine;

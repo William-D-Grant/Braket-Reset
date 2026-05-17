@@ -1,3 +1,18 @@
+/****************************************************************
+* Filename:       	PlayerGUIHandler.cs                         *
+* Authors:        	William Grant                               *
+* Version Authors:	William Grant                               *
+* Current Version:  1.0.0                                       *
+* Previous Version: 0.4.0                                       *
+* Creation Date:  	May 10, 2026                                *
+* Last Modified:  	May 16, 2026                                *
+* Due Date:       	May 17th, 2026                              *
+* Course:         	CPSC 323                                    *
+* Professor Name: 	Professor Jacklitsch                        *
+* Project:        	Braket Reset                                *
+* Purpose:        	Displays player information on the GUI      *
+* Version Changes:	Changes to how a used ability is displayed  *
+****************************************************************/
 using TMPro;
 using UnityEngine;
 
@@ -29,11 +44,14 @@ public class PlayerGUIHandler : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _statsLayout;
 
-    private void Update()
-    {
-
-    }
-
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UpdatePlayerDisplay()                                           */
+    /* Description: Called any time the player updates something on the UI            */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void UpdatePlayerDisplay()
     {
         Debug.Log("Trying to update UI");

@@ -1,3 +1,20 @@
+/****************************************************************
+* Filename:       	PlayerController.cs                         *
+* Authors:        	William Grant                               *
+* Version Authors:	William Grant                               *
+* Current Version:  1.0.0                                       *
+* Previous Version: 0.4.3                                       *
+* Creation Date:  	May 8, 2026                                 *
+* Last Modified:  	May 16, 2026                                *
+* Due Date:       	May 17th, 2026                              *
+* Course:         	CPSC 323                                    *
+* Professor Name: 	Professor Jacklitsch                        *
+* Project:        	Braket Reset                                *
+* Purpose:        	Controls all aspects of a player and the    *
+*                   unit they currently have selected, allowing *
+*                   for player-side gameplay.                   *
+* Version Changes:	Movement conditions for no overlapping      *
+****************************************************************/
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,30 +27,58 @@ public class PlayerController : MonoBehaviour
     private MapHandler _mapHandler;
     [SerializeField]
     private PlayerGUIHandler _playerGUI;
-
+    
+    // Remaining Tile Movement
     public int remainingTM;
+
+    // Action has been used for this character
     public bool hasAction;
+
+    // Unit being used by player
     public GameObject activeUnit;
+
+    // Unit being targeted by player
     public GameObject targetUnit;
+
+    // Tile being selected by player
     public Tile selectedTile;
+
+    // Current ability selected from the activeUnit
     public AbilityInstance abilitySelected;
+
+    // The index of the above ability
     private int abilityIndex;
 
     private int _currentHype;
 
-
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: Start()                                                         */
+    /* Description: Called upon creation of the object.                               */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     private void Start()
     {
         //_mapHandler = FindFirstObjectByType<MapHandler>();
         //_combatHandler = FindFirstObjectByType<CombatHandler>();
         _inputManager = InputManager._singletonInstance;
-
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: Update()                                                        */
+    /* Description: Called every frame.                                               */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     private void Update()
     {
         if (activeUnit != null)
         {
+            // On left click...
             if (_inputManager.SelectInput)
             {
                 Debug.Log("Click Detected");
@@ -42,6 +87,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(targetUnit + " Before");
                 if (mouseTarget.collider != null)
                 {
+                    // Trying to select target if none is selected.
                     if (targetUnit == null)
                     {
                         Debug.Log("Target Detected");
@@ -56,6 +102,7 @@ public class PlayerController : MonoBehaviour
                         }
                         Debug.Log(targetUnit + " After");
                     }
+                    //Trying to select tile if none is selected.
                     if (selectedTile == null)
                     {
                         Debug.Log("Tile Detected");
@@ -74,10 +121,12 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            // Deselect on right click
             if (_inputManager.DeselectInput)
             {
                 DeselectAll();
             }
+            // Force end turn if nothing can be done.
             if (remainingTM <= 0 && hasAction == false)
             {
                 EndTurn();
@@ -90,6 +139,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: DeselectAll()                                                   */
+    /* Description: Used to condense all deselect actions.                            */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     private void DeselectAll()
     {
         if (targetUnit != null)
@@ -109,6 +166,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: CheckTile()                                                     */
+    /* Description: Called when selecting a tile to make sure it is a valid selection */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     private void CheckTile()
     {
         Debug.Log(activeUnit.GetComponent<ClassVitals>()._currPos);
@@ -133,6 +198,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: MoveToTile()                                                    */
+    /* Description: Move to selected tile when the Move function is pressed.          */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void MoveToTile()
     {
         Debug.Log(remainingTM);
@@ -155,6 +228,14 @@ public class PlayerController : MonoBehaviour
         selectedTile = null;
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: SelectAbility()                                                 */
+    /* Description: Change current ability selected by cycling through the list.      */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void SelectAbility()
     {
         if (activeUnit != null)
@@ -171,6 +252,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UseAbility()                                                    */
+    /* Description: Activates the current ability and passes the target and caster.   */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void UseAbility()
     {
         Debug.Log(abilitySelected._currCooldown); 
@@ -209,6 +298,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: EndTurn()                                                       */
+    /* Description: Deactivates all guides and shifts turn with CombatHandler.        */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void EndTurn()
     {
         if (activeUnit != null)
@@ -229,6 +326,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: EnablePlayer()                                                  */
+    /* Description: Enables all parts of this class using the player passed.          */
+    /* Parameters: GameObject currentPlayer - The blox currently in player turn.      */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void EnablePlayer(GameObject currentPlayer)
     {
         Debug.Log(currentPlayer);

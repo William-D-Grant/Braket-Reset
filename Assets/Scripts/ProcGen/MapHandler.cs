@@ -1,17 +1,45 @@
+/****************************************************************
+* Filename:       	MapHander.cs                                *
+* Authors:        	William Grant, Noah Stern                   *
+* Version Authors:	William Grant                               *
+* Current Version:  1.0.0                                       *
+* Previous Version: 0.4.2                                       *
+* Creation Date:  	May 6, 2026                                 *
+* Last Modified:  	May 16, 2026                                *
+* Due Date:       	May 17th, 2026                              *
+* Course:         	CPSC 323                                    *
+* Professor Name: 	Professor Jacklitsch                        *
+* Project:        	Braket Reset                                *
+* Purpose:        	Keeps track of the grid of tiles and units, *
+*                   giving the ability to find and move units   *
+*                   across the grids.                           *
+* Version Changes:	Stop player blox from stepping on units     *
+****************************************************************/
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapHandler : MonoBehaviour
 {
+    // Grid of all the tiles placed in the arena
     public Tile[,] tileGrid = new Tile[9, 9];
+    // Associated grid of all units in the same tile area
     public GameObject[,] unitGrid = new GameObject[9, 9];
-    public GameObject testPlayer;
-    public GameObject testEnemy;
+    //public GameObject testPlayer;
+    //public GameObject testEnemy;
+    // Offset to spawn blox at
     public float playerOffset;
 
     [SerializeField]
-    private CombatHandler _combatHandler; 
+    private CombatHandler _combatHandler;
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: PlaceUnits()                                                    */
+    /* Description: Places units across the grid according to spawn tiles.            */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void PlaceUnits()
     {
         _combatHandler.ClearCurrentBlox();
@@ -111,6 +139,15 @@ public class MapHandler : MonoBehaviour
         //_combatHandler.RegisterDefeatEvent();
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: ChangePosition()                                                */
+    /* Description: Changes position of a unit in the unitGrid.                       */
+    /* Parameters: GameObject referenceUnit - The unit to move                        */
+    /*             Vector2 newPosition - The position on the grid to place them at    */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void ChangePosition(GameObject referenceUnit, Vector2 newPosition)
     {
         unitGrid[(int)referenceUnit.GetComponent<ClassVitals>()._currPos.x, (int)referenceUnit.GetComponent<ClassVitals>()._currPos.y] = null;
@@ -118,7 +155,14 @@ public class MapHandler : MonoBehaviour
         unitGrid[(int)newPosition.x, (int)newPosition.y] = referenceUnit;
     }
 
-
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: FindTilesNearUnit()                                             */
+    /* Description: Find occupiable tiles near a unit. Player-side movement.          */
+    /* Parameters: ClassVitals referenceUnit - The unit to search around.             */
+    /* Return Value: Tile[] - Array of tiles that are around the unit.                */
+    /*                                                                                */
+    /**********************************************************************************/
     public Tile[] FindTilesNearUnit(ClassVitals referenceUnit)
     {
         Tile[] nearbyTiles = new Tile[4];
@@ -158,6 +202,14 @@ public class MapHandler : MonoBehaviour
         return nearbyTiles;
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: FindAttackTilesNearTile()                                       */
+    /* Description: Find usable tiles near another tile for pathing. Enemy movement.  */
+    /* Parameters: Tile referenceTile - Tile to search around.                        */
+    /* Return Value: List<Tile> - List of usable tiles around the reference tile      */
+    /*                                                                                */
+    /**********************************************************************************/
     public List<Tile> FindAttackTilesNearTile(Tile referenceTile)
     {
         List<Tile> nearbyTiles = new List<Tile>();
@@ -209,6 +261,14 @@ public class MapHandler : MonoBehaviour
         return nearbyTiles;
     }
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: Populate()                                                      */
+    /* Description: Propogates a call between CombatHandler and WaveFunctionCollapse  */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void Populate()
     {
         _combatHandler.PopulateTurns();

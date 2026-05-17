@@ -1,3 +1,20 @@
+/****************************************************************
+* Filename:       	EnemyHandler.cs                             *
+* Authors:        	William Grant, Noah Stern                   *
+* Version Authors:	William Grant                               *
+* Current Version:  1.0.0                                       *
+* Previous Version: 0.4.0                                       *
+* Creation Date:  	May 11, 2026                                *
+* Last Modified:  	May 16, 2026                                *
+* Due Date:       	May 17th, 2026                              *
+* Course:         	CPSC 323                                    *
+* Professor Name: 	Professor Jacklitsch                        *
+* Project:        	Braket Reset                                *
+* Purpose:        	Used for enemy logic and movement, acting   *
+*                   similarly to an automatic                   *
+*                   PlayerController.cs                         *
+* Version Changes:	Slow movement for readability.              *
+****************************************************************/
 using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.Multiplayer.PlayMode;
@@ -30,11 +47,20 @@ public class EnemyController : MonoBehaviour
 
     private float timer = 2f;
 
-    
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: Update()                                                        */
+    /* Description: Called every frame.                                               */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     private void Update()
     {
         if (_currentEnemy != null)
         {
+            // Very simple timer for actions.
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
@@ -66,7 +92,14 @@ public class EnemyController : MonoBehaviour
         }//end foreach
     }//end FindClosetTarget
 
-
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: ChangeState()                                                   */
+    /* Description: Goes through all the different states that the enemy considers.   */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void ChangeState()
     {
         if (abilitySelected._currCooldown != 0)
@@ -130,7 +163,14 @@ public class EnemyController : MonoBehaviour
         }
     }//end ChangeState
 
-
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: EndTurn()                                                       */
+    /* Description: De-assigns enemy and disables items no longer necessary.          */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void EndTurn()
     {
         _currentEnemy.transform.Find("HighlightActive").gameObject.SetActive(false);
@@ -147,6 +187,15 @@ public class EnemyController : MonoBehaviour
     
 }//end EndTurn
 
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: PathToTarget()                                                  */
+    /* Description: Generates a path towards the target avoiding other units.         */
+    /* Parameters: None                                                               */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    //# Partially adapted from ForlornU's "(BFS) Tactical Turn-Based Pathfinding, Breadth First Search in Unity3d" on May 11th, 2026 https://www.youtube.com/watch?v=ayRwygd_rQw&t=211s
     public void PathToTarget()
     {
         Tile currentTile = _mapHandler.tileGrid[(int)_currentEnemy.GetComponent<ClassVitals>()._currPos.x, (int)_currentEnemy.GetComponent<ClassVitals>()._currPos.y];
@@ -183,6 +232,15 @@ public class EnemyController : MonoBehaviour
 
     }//end PathToTarget
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: EnableEnemy()                                                   */
+    /* Description: Enables enemy and populates related variables for use.            */
+    /* Parameters: GameObject currentEnemy - The enemy blox in current turn order.    */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void EnableEnemy(GameObject currentEnemy)
     {
         _currentEnemy = currentEnemy;
