@@ -47,7 +47,6 @@ public class EnemyController : MonoBehaviour
 
     private float timer = 2f;
 
-
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: Update()                                                        */
@@ -111,14 +110,17 @@ public class EnemyController : MonoBehaviour
         if (hasAction && _closestTarget != null && abilitySelected._currCooldown == 0)
         {
             Debug.Log("Enemy attempting ability");
+            
             if (abilitySelected.GetRange() == 0 || abilitySelected.GetDamage() <= 0)
             {
+                _currentEnemy.GetComponent<ClassVitals>().DoAnimation(abilitySelected.GetName());
                 abilitySelected.UseAbility(_currentEnemy.GetComponent<ClassVitals>(), _currentEnemy.GetComponent<ClassVitals>());
                 hasAction = false;
                 Debug.Log("Enemy casting on self.");
             }
             else if (Mathf.Abs(_currentEnemy.GetComponent<ClassVitals>()._currPos.x - _closestTarget.GetComponent<ClassVitals>()._currPos.x) + Mathf.Abs(_currentEnemy.GetComponent<ClassVitals>()._currPos.y - _closestTarget.GetComponent<ClassVitals>()._currPos.y) <= abilitySelected.GetRange())
             {
+                _currentEnemy.GetComponent<ClassVitals>().DoAnimation(abilitySelected.GetName());
                 abilitySelected.UseAbility(_currentEnemy.GetComponent<ClassVitals>(), _closestTarget.GetComponent<ClassVitals>());
                 hasAction = false;
                 Debug.Log("Enemy casting on " + _closestTarget);
@@ -156,7 +158,7 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (abilityAttempts == 5)
+        if (abilityAttempts >= 3)
         {
             Debug.Log("Enemy ending turn from trying too hard");
             EndTurn();
