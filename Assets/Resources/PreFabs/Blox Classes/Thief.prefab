@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1184080325201892171, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      propertyPath: _bloxClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4923266297986545251, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
       propertyPath: m_Name
       value: Thief
@@ -60,8 +64,20 @@ PrefabInstance:
       propertyPath: _bloxClass
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8133315848920022050, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      propertyPath: m_Name
+      value: Thief
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8519745830028662939, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 634135214765031106, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 2255133191315036544, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 7537844175098528103, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 6482624304888119579, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 7123911939266946640, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 478163583202155319, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+    - {fileID: 3161239549038665815, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
