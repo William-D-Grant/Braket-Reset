@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _bloxClass
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1184080325201892171, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      propertyPath: _bloxAnimation
+      value: 
+      objectReference: {fileID: 1325619496304225998}
     - target: {fileID: 4923266297986545251, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
       propertyPath: m_Name
       value: Thief
@@ -78,6 +82,122 @@ PrefabInstance:
     - {fileID: 7123911939266946640, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
     - {fileID: 478163583202155319, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
     - {fileID: 3161239549038665815, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7178499676298470419, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6137984550304721838}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+--- !u!4 &7049255558924268214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7178499676298470419, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+  m_PrefabInstance: {fileID: 165749148977862309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5954947352115727429
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7049255558924268214}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      propertyPath: m_Name
+      value: OC_BloxThief
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2017699184158893935}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1325619496304225998}
+  m_SourcePrefab: {fileID: 100100000, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+--- !u!4 &6137984550304721838 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+  m_PrefabInstance: {fileID: 5954947352115727429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6801931602324615444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a2ffcf1019887a4a857e0862fb6fba4, type: 3}
+  m_PrefabInstance: {fileID: 5954947352115727429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2017699184158893935
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801931602324615444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dee8d03aa584a4c4ea86bf2d308c5811, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1325619496304225998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801931602324615444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156a7aa2975c9bc48b6940b57c1f583e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationControlScript
+  theAnim: {fileID: 2017699184158893935}

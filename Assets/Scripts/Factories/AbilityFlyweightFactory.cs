@@ -77,7 +77,6 @@ public class AbilityFlyweightFactory
                 heavyHitterAbility.abilityRange = Blox.GetRange();
                 heavyHitterAbility.abilityCooldown = 2;
                 heavyHitterAbility.abilityCost = 5;
-                heavyHitterAbility.abilityAnimationLength = 0.65f;
                 //heavyHitterAbility.abilityIcon = ;
                 //heavyHitterAbility.abilitySound = ;
                 return heavyHitterAbility;
@@ -89,7 +88,6 @@ public class AbilityFlyweightFactory
                 stabAbility.abilityRange = Blox.GetRange();
                 stabAbility.abilityCooldown = 1;
                 stabAbility.abilityCost = 0;
-                stabAbility.abilityAnimationLength = 0.65f;
                 //icons if we do them
                 return stabAbility;
 
@@ -100,7 +98,6 @@ public class AbilityFlyweightFactory
                 slashAbility.abilityRange = Blox.GetRange();
                 slashAbility.abilityCooldown = 2;
                 slashAbility.abilityCost = 2;
-                slashAbility.abilityAnimationLength = 0.65f;
                 return slashAbility;
 
             case "Shield Bash":
@@ -110,7 +107,6 @@ public class AbilityFlyweightFactory
                 shieldBashAbility.abilityRange = Blox.GetRange();
                 shieldBashAbility.abilityCooldown = 2;
                 shieldBashAbility.abilityCost = 5;
-                shieldBashAbility.abilityAnimationLength = 0.65f;
                 //shieldBashAbility.abilityIcon = ;
                 //shieldBashAbility.abilitySound = ;
                 return shieldBashAbility;
@@ -122,7 +118,6 @@ public class AbilityFlyweightFactory
                 hitAbility.abilityRange = Blox.GetRange();
                 hitAbility.abilityCooldown = 1;
                 hitAbility.abilityCost = 0;
-                hitAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return hitAbility;
 
@@ -133,7 +128,6 @@ public class AbilityFlyweightFactory
                 defendAbility.abilityRange = 1;
                 defendAbility.abilityCooldown = 1;
                 defendAbility.abilityCost = 0;
-                defendAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return defendAbility;
 
@@ -144,7 +138,6 @@ public class AbilityFlyweightFactory
                 longShotAbility.abilityRange = 10;
                 longShotAbility.abilityCooldown = 2;
                 longShotAbility.abilityCost = 4;
-                longShotAbility.abilityAnimationLength = 0.65f;
                 //longShotAbility.abilityIcon = ;
                 //longShotAbility.abilitySound = ;
                 return longShotAbility;
@@ -156,7 +149,6 @@ public class AbilityFlyweightFactory
                 shootAbility.abilityRange = Blox.GetRange();
                 shootAbility.abilityCooldown = 1;
                 shootAbility.abilityCost = 0;
-                shootAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return shootAbility;
 
@@ -167,7 +159,6 @@ public class AbilityFlyweightFactory
                 speedDemonAbility.abilityRange = 2;
                 speedDemonAbility.abilityCooldown = 1;
                 speedDemonAbility.abilityCost = 3;
-                speedDemonAbility.abilityAnimationLength = 0.65f;
                 //speedDemonAbility.abilityIcon = ;
                 //speedDemonAbility.abilitySound = ;
                 return speedDemonAbility;
@@ -179,7 +170,6 @@ public class AbilityFlyweightFactory
                 lifeDrainAbility.abilityRange = Blox.GetRange();
                 lifeDrainAbility.abilityCooldown = 3;
                 lifeDrainAbility.abilityCost = 5;
-                lifeDrainAbility.abilityAnimationLength = 0.65f;
                 //lifeDrainAbility.abilityIcon = ;
                 //lifeDrainAbility.abilitySound = ;
                 return lifeDrainAbility;
@@ -191,7 +181,6 @@ public class AbilityFlyweightFactory
                 healAbility.abilityRange = 1;
                 healAbility.abilityCooldown = 1;
                 healAbility.abilityCost = 1;
-                healAbility.abilityAnimationLength = 0.65f;
                 //icon
                 return healAbility;
 
@@ -202,7 +191,6 @@ public class AbilityFlyweightFactory
                 shockAbility.abilityRange = Blox.GetRange();
                 shockAbility.abilityCooldown = 1;
                 shockAbility.abilityCost = 2;
-                shockAbility.abilityAnimationLength = 0.65f;
                 //icon
                 return shockAbility;
 
@@ -213,7 +201,6 @@ public class AbilityFlyweightFactory
                 hypeTrainAbility.abilityRange = 0; //placeholder amount, doesnt matter for this ability
                 hypeTrainAbility.abilityCooldown = 3;
                 hypeTrainAbility.abilityCost = 0;
-                hypeTrainAbility.abilityAnimationLength = 0.65f;
                 //hypeTrainAbility.abilityIcon = ;
                 //hypeTrainAbility.abilitySound = ;
                 return hypeTrainAbility;
@@ -225,7 +212,6 @@ public class AbilityFlyweightFactory
                 jokeAbility.abilityRange = 0;
                 jokeAbility.abilityCooldown = 1;
                 jokeAbility.abilityCost = 1;
-                jokeAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return jokeAbility;
 
@@ -236,7 +222,6 @@ public class AbilityFlyweightFactory
                 throwPieAbility.abilityRange = Blox.GetRange();
                 throwPieAbility.abilityCooldown = 1;
                 throwPieAbility.abilityCost = 0;
-                throwPieAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return throwPieAbility;
 
@@ -247,7 +232,6 @@ public class AbilityFlyweightFactory
                 eatPieAbility.abilityRange = 0;
                 eatPieAbility.abilityCooldown = 2;
                 eatPieAbility.abilityCost = 2;
-                eatPieAbility.abilityAnimationLength = 1f;
                 //eatPieAbility.abilityAnimation;
                 //icon and sound
                 return eatPieAbility;
@@ -259,7 +243,6 @@ public class AbilityFlyweightFactory
                 caughtAbility.abilityRange = Blox.GetRange(); 
                 caughtAbility.abilityCooldown = 3;
                 caughtAbility.abilityCost = 8;
-                caughtAbility.abilityAnimationLength = 0.65f;
                 //caughtAbility.abilityIcon = ;
                 //caughtAbility.abilitySound = ;
                 return caughtAbility;
@@ -271,7 +254,6 @@ public class AbilityFlyweightFactory
                 whipAbility.abilityRange = Blox.GetRange();
                 whipAbility.abilityCooldown = 1;
                 whipAbility.abilityCost = 0;
-                whipAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return whipAbility;
 
@@ -282,7 +264,6 @@ public class AbilityFlyweightFactory
                 sixShooterAbility.abilityRange = Blox.GetRange();
                 sixShooterAbility.abilityCooldown = 2;
                 sixShooterAbility.abilityCost = 2;
-                sixShooterAbility.abilityAnimationLength = 0.65f;
                 //icon and sound
                 return sixShooterAbility;
 
@@ -293,7 +274,6 @@ public class AbilityFlyweightFactory
                 seaShantyAbility.abilityRange = 3;
                 seaShantyAbility.abilityCooldown = 2;
                 seaShantyAbility.abilityCost = 5;
-                seaShantyAbility.abilityAnimationLength = 0.65f;
                 //seaShantyAbility.abilityIcon = ;
                 //seaShantyAbility.abilitySound = ;
                 return seaShantyAbility;
@@ -305,7 +285,6 @@ public class AbilityFlyweightFactory
                 enGuardAbility.abilityRange = Blox.GetRange();
                 enGuardAbility.abilityCooldown = 1;
                 enGuardAbility.abilityCost = 0;
-                enGuardAbility.abilityAnimationLength = 0.65f;
                 //icon
                 return enGuardAbility;
 
@@ -316,7 +295,6 @@ public class AbilityFlyweightFactory
                 humAbility.abilityRange = 0;
                 humAbility.abilityCooldown = 1;
                 humAbility.abilityCost = 1;
-                humAbility.abilityAnimationLength = 0.65f;
                 //icon
                 return humAbility;
 
@@ -329,7 +307,6 @@ public class AbilityFlyweightFactory
                 defaultTestAbility.abilityCost = 0;
                 //seaShantyAbility.abilityIcon = ;
                 //seaShantyAbility.abilitySound = ;
-                defaultTestAbility.abilityAnimationLength = 1f;
                 return defaultTestAbility;
 
                 

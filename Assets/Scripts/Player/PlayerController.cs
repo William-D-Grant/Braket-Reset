@@ -174,6 +174,8 @@ public class PlayerController : MonoBehaviour
     public void UseAbility()
     {
         Debug.Log(abilitySelected._currCooldown); 
+        //Plays the animation of a given move.
+        activeUnit.GetComponent<ClassVitals>().DoAnimation(abilitySelected.GetName());
         if (hasAction && targetUnit != null && abilitySelected._currCooldown == 0)
         {
             if (Mathf.Abs(activeUnit.GetComponent<ClassVitals>()._currPos.x - targetUnit.GetComponent<ClassVitals>()._currPos.x) + Mathf.Abs(activeUnit.GetComponent<ClassVitals>()._currPos.y - targetUnit.GetComponent<ClassVitals>()._currPos.y) <= abilitySelected.GetRange())

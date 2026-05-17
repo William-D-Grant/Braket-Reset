@@ -39,8 +39,6 @@ public class AbilityFlyweight
 
     //The sound the ability makes when used
     public AudioClip abilitySound;
-    //The animation that the Blox performs when used
-    public float abilityAnimationLength = 0;
 
     //The effect(s) the ability applies
     public List<EffectFlyweight> statusEffect;

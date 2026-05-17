@@ -90,6 +90,8 @@ public class ClassVitals : MonoBehaviour
     //A hype bonus, what is actually upgraded each run
     private int _bonusHype;
 
+    public AnimationControlScript _bloxAnimation;
+
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: InitializeBlox                                                  */
@@ -563,6 +565,20 @@ public class ClassVitals : MonoBehaviour
     {
         return _currHype;
     }//end GetTileMovement
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: DoAnimation                                                     */
+    /* Description: Plays a Blox's animation.                                         */
+    /* Parameters: string givenString                                                 */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public void DoAnimation(string givenString)
+    {
+        _bloxAnimation.PlayDesiredAnimation(givenString);
+    }
 
     /**********************************************************************************/
     /*                                                                                */

@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 6561454690784360776}
   m_Layer: 0
   m_Name: Base Blox Class
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 8133315848920022050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 267.05478, y: 3.14413, z: -96.00198}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -228,15 +228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassVitals
   _bloxClass: 0
-  _currHP: 0
-  _currSPD: 0
-  _currATK: 0
-  _currDEF: 0
-  _currRange: 0
-  _currLuck: 0
   _team: 0
   _currPos: {x: 0, y: 0}
   _bloxObject: {fileID: 0}
+  _bloxAnimation: {fileID: 0}
 --- !u!65 &6561454690784360776
 BoxCollider:
   m_ObjectHideFlags: 0

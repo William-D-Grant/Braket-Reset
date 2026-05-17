@@ -102,12 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156a7aa2975c9bc48b6940b57c1f583e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationControlScript
-  theAnim: {fileID: 0}
-  animationArray:
-  - Idle
-  - EatPie
-  - 
-  - 
+  theAnim: {fileID: 6083792224265573573}
 --- !u!4 &1032942820339022315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d28fbada1684c2469a7d2cd85de6598, type: 3}
@@ -137,6 +132,14 @@ PrefabInstance:
       propertyPath: _currAnimation
       value: 
       objectReference: {fileID: 7400000, guid: 3e0aa98c7d1050246afbeca514fb07c8, type: 2}
+    - target: {fileID: 1412069464588115649, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663167241695029135, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4923266297986545251, guid: 9cb64651ec7825144ac78546947d674b, type: 3}
       propertyPath: m_Name
       value: Clown
