@@ -76,6 +76,7 @@ public class ClassVitals : MonoBehaviour
     //The associated Blox's GameObject
     public GameObject _bloxObject;
 
+    public AnimationControlScript _bloxAnimation;
     public event Action<ClassVitals> onDefeated;
 
     /**********************************************************************************/
@@ -393,6 +394,11 @@ public class ClassVitals : MonoBehaviour
     public int GetRange()
     {
         return _currRange;
+    }
+
+    public void DoAnimation(string givenString, float givenTime)
+    {
+        _bloxAnimation.playDesiredAnimation(givenString, givenTime);
     }
 
     /**********************************************************************************/

@@ -59,11 +59,15 @@ public class AbilityInstance
     {
         if (/*thing that used ability has enough hype*/ 1 == 1 && _currCooldown == 0)
         {
+            
             //the thing that used ability hype -= _abilityStats.abilityCost;
             abilityTarget.TakeDamage(_abilityStats.abilityDamage);
             _currCooldown = _abilityStats.abilityCooldown;
 
             string abilityName = _abilityStats.abilityID;
+            float animationLength = _abilityStats.abilityAnimationLength;
+
+            if (abilityName != null){abilityCaster.DoAnimation(abilityName, animationLength);}
 
             switch (abilityName)
             {
