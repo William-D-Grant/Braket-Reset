@@ -26,6 +26,7 @@ public class DialogueData
 
     //What sprite to use
     public Sprite talkingSprite;
+    public Sprite backgroundSprite;
 
     //If the player talking or not
     public bool isPlayerTalking;

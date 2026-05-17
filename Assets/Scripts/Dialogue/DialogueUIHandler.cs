@@ -31,7 +31,6 @@ public class DialogueUIHandler : MonoBehaviour
     //The enemy's sprite
     [SerializeField]
     private Image _enemySprite;
-
     //The name of who is talking
     [SerializeField]
     private TextMeshProUGUI _talkingName;
@@ -64,7 +63,7 @@ public class DialogueUIHandler : MonoBehaviour
         {
             _enemySprite.sprite = data.talkingSprite;
         }//end else if
-
+        
     }//end DisplayText
 
 }//end DialogueUIHandler

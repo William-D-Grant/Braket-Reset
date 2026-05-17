@@ -1497,6 +1497,12 @@ MonoBehaviour:
   _enemySprite: {fileID: 1090572594}
   _talkingName: {fileID: 1607926341}
   _talkingDialogue: {fileID: 1216946}
+  _background: {fileID: 841581147}
+  BackgroundArray:
+  - {fileID: 21300000, guid: 59cb181833191794db96a8ad1166653c, type: 3}
+  - {fileID: 21300000, guid: d026eb17d345aaf4294d48f43ed2b677, type: 3}
+  - {fileID: 21300000, guid: 814f2edfc172c7b41be057165191d03f, type: 3}
+  - {fileID: 21300000, guid: b97f7e55623ec0e4da14a0d5f5847250, type: 3}
 --- !u!4 &1968527850
 Transform:
   m_ObjectHideFlags: 0
