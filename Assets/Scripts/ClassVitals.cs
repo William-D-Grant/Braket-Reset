@@ -5,8 +5,8 @@
 * Current Version:  0.4.2                                      *
 * Previous Version: 0.4.1                                      *
 * Creation Date:  	April 28, 2026                             *
-* Last Modified:  	May 5, 2026                                *
-* Due Date:       	May 14th, 2026                             *
+* Last Modified:  	May 14, 2026                               *
+* Due Date:       	May 17th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
 * Project:        	Braket Reset                               *

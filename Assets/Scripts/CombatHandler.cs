@@ -2,19 +2,17 @@
 * Filename:       	CombatHandler.cs                           *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.1                                      *
-* Previous Version: 0.1.3                                      *
+* Current Version:  0.2.2                                      *
+* Previous Version: 0.2.1                                      *
 * Creation Date:  	May 4, 2026                                *
-* Last Modified:  	May 4, 2026                                *
-* Due Date:       	May 14th, 2026                             *
+* Last Modified:  	May 16, 2026                               *
+* Due Date:       	May 17th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
 * Project:        	Braket Reset                               *
 * Purpose:        	Handles a single combat between the player *
 *                   and an enemy                               *
-* Version Changes:	Updated ShiftTurn to handle between turn   *
-*                   logic like ability and effect ticks and    *
-*                   repopulating the turns                     *
+* Version Changes:	Updated EndCombat ending logic             *
 ****************************************************************/
 
 using System.Collections.Generic;
@@ -81,20 +79,8 @@ public class CombatHandler : MonoBehaviour
 
         Debug.Log(_runManager.playerTeam[0]);
 
-        //Adds both the player's and the enemy's teams of Blox into the turn order
-        /*foreach (GameObject playerBlox in _runManager.playerTeam)
-        {
-            GameObject addingPlayerBlox = Instantiate(playerBlox);
-            addingPlayerBlox.GetComponent<ClassVitals>()._team = Team.Player;
-            _turnList.Add(addingPlayerBlox);
-        }*/
         _turnList.AddRange(_currentPlayerBlox);
-        /*foreach (GameObject enemyBlox in _runManager.enemyTeam)
-        {
-            GameObject addingEnemyBlox = Instantiate(enemyBlox);
-            addingEnemyBlox.GetComponent<ClassVitals>()._team = Team.Enemy;
-            _turnList.Add(addingEnemyBlox);
-        }*/
+
         _turnList.AddRange(_currentEnemyBlox);
 
         //Sorts the turn list by the Blox's speed value
@@ -138,11 +124,7 @@ public class CombatHandler : MonoBehaviour
                 _turnList[i].GetComponent<ClassVitals>().TurnTick();
                 _turnList = _turnList.OrderByDescending(blox => blox.GetComponent<ClassVitals>().GetSpeed()).ToList();
             }
-            /*foreach(GameObject blox in _turnList)
-            {
-                blox.GetComponent<ClassVitals>().TurnTick();
-                PopulateTurns();
-            }*/
+
             }
 
         Debug.Log("Checking if unity is player");
@@ -159,18 +141,6 @@ public class CombatHandler : MonoBehaviour
             _enemyHandler.EnableEnemy(_turnList[_turn]);
         }
 
-        /*foreach (GameObject bloxUnit in _turnList)
-        {
-            foreach (AbilityInstance cooledDown in bloxUnit.GetComponent<ClassVitals>()._currAbilities)
-            {
-                if (cooledDown._currCooldown > 0)
-                {
-                    cooledDown._currCooldown--;
-                }
-            }
-        }*/
-
-        //return _turnList[_turn].GetTeam();
     }//end shiftTurn
 
 
@@ -215,15 +185,16 @@ public class CombatHandler : MonoBehaviour
             Destroy(killedUnit.gameObject);
             //_runManager.enemyTeam.Remove(killedUnit.gameObject);
         }//end else
-        
+        Debug.LogWarning("Player count: " + _currentPlayerBlox.Count);
+        Debug.LogWarning("Enemy count: " + _currentEnemyBlox.Count);
         //If the player won, end the combat
-        if(CheckVictor() == Team.Player)
+        if (CheckVictor() == Team.Player)
         {
             _runManager.EndCombat(killedUnit.GetTeam());
         }//end if
         else if (CheckVictor() == Team.Enemy)
         {//If the enemy won, end the Run
-            _runManager.EndRun(killedUnit.GetTeam());
+            _runManager.EndCombat(killedUnit.GetTeam());
         }
 
     }//end DefeatUnit
@@ -242,11 +213,13 @@ public class CombatHandler : MonoBehaviour
         //If the player ran out of Blox, return the enemy won
         if(_currentPlayerBlox.Count == 0)  //was runManager.playerTeam.Count
         {
+            Debug.LogWarning("EnemyWon");
             return Team.Enemy;
         }//end if
         //If the enemy ran out of Blox, return the player won
         else if (_currentEnemyBlox.Count == 0)
         {
+            Debug.LogWarning("PlayerWon");
             return Team.Player;
         }
 
@@ -285,22 +258,41 @@ public class CombatHandler : MonoBehaviour
     }//end EnemyList
 
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: AddCurrentBlox                                                  */
+    /* Description: Adds a blox to the player's or the enemy's team, also registers   */
+    /*              the onDefeated action to every blox                               */
+    /* Parameters: GameObject blox: the blox being added to a team                    */
+    /* Return Value: N/A                                                              */
+    /**********************************************************************************/
     public void AddCurrentBlox(GameObject blox)
     {
+        //If its the player's Blox, add it to the player's team
         if (blox.GetComponent<ClassVitals>().GetTeam() == Team.Player)
         {
             _currentPlayerBlox.Add(blox);
-        }
-        else
+        }//end if
+        else //otherwise, add it to the enemy's team
         {
             _currentEnemyBlox.Add(blox);
-        }
+        }//end else
 
         _turnList.Add(blox);
 
+        //add an onDefeated event
         blox.GetComponent<ClassVitals>().onDefeated += DefeatUnit;
-    }
+    }//end AddCurrentBlox
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: ClearCurrentBlox                                                */
+    /* Description: Clears the turnlist, the player's and the enemy's list of blox    */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /**********************************************************************************/
     public void ClearCurrentBlox()
     {
         _turnList.Clear();
@@ -309,6 +301,7 @@ public class CombatHandler : MonoBehaviour
 
         _turn = -1;
         _round = 1;
-    }
-}
+    }//end ClearCurrentBlox
+
+}//end CombatHandler
 

@@ -6,7 +6,7 @@
 * Previous Version: 0.0.0                                      *
 * Creation Date:  	May 7, 2026                                *
 * Last Modified:  	May 7, 2026                                *
-* Due Date:       	May 14th, 2026                             *
+* Due Date:       	May 17th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
 * Project:        	Braket Reset                               *

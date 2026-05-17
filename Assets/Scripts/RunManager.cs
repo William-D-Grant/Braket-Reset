@@ -2,10 +2,10 @@
 * Filename:       	RunManager.cs                              *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.2.1                                      *
-* Previous Version: 0.1.2                                      *
+* Current Version:  0.5.0                                      *
+* Previous Version: 0.4.2                                      *
 * Creation Date:  	May 4, 2026                                *
-* Last Modified:  	May 7, 2026                                *
+* Last Modified:  	May 16, 2026                               *
 * Due Date:       	May 14th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
@@ -13,8 +13,8 @@
 * Purpose:        	Handle all information for a singular run, *
 *                   healing the player between fights, ending  *
 *                   runs, and getting the enemy team           *
-* Version Changes:	Adjusted CreatePlayerTeam and SelectEnemies*
-*                   to instantiate the teams now               *
+* Version Changes:	Updated EndCombat, completely changed its  *
+*                   logic and outcomes                         *
 ****************************************************************/
 
 using NUnit.Framework;
@@ -60,7 +60,7 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: Awake                                                           */
-    /* Description: Makes RunManager a singleton                                      */
+    /* Description: Makes RunManager a singleton, readies all prefabs                 */
     /* Parameters: N/A                                                                */
     /* Return Value: N/A                                                              */
     /*                                                                                */
@@ -153,7 +153,7 @@ public class RunManager : MonoBehaviour
             playerTeam.Add(bloxInstance);
         }//end foreach
 
-    }
+    }//end CreatePlayerTeam
 
     /**********************************************************************************/
     /*                                                                                */
@@ -248,26 +248,27 @@ public class RunManager : MonoBehaviour
     /**********************************************************************************/
     /*                                                                                */
     /* Function name: EndCombat                                                       */
-    /* Description: Ends the current combat, and checks if the run is over            */
-    /* Parameters: N/A                                                                */
+    /* Description: Ends the current combat, and checks if the run is over or if the  */
+    /*              player needs to fight the warden                                  */
+    /* Parameters: Team whoLost: the team who lost the last fight                     */
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void EndCombat(Team whoWon)
+    public void EndCombat(Team whoLost)
     {
-        if (whoWon == Team.Player)
+        if (whoLost == Team.Enemy)
         {
             //Increment what battle the player is one
             _bracketNumber++;
 
             WinLossTracker._singletonInstance.SetPlayerWin(true);
-            WinLossTracker._singletonInstance.UpdateWinLoss(EnemyTeamSelector._singletonInstance.currentEnemyTeam.name);
+            WinLossTracker._singletonInstance.UpdateWinLoss(EnemyTeamSelector._singletonInstance.currentEnemyTeam.enemyName);
 
             //If the player fought the warden, end the run
             if (_bracketNumber == 8)
             {
-                EndRun(whoWon);
-                SceneManager.LoadScene("DialogueRoom");
+                EndRun();
+                SceneManager.LoadScene("PostCombatDialogueRoom");
                 return;
             }
 
@@ -281,14 +282,21 @@ public class RunManager : MonoBehaviour
                 //return;
                 HealPlayer();
                 EnemyTeamSelector._singletonInstance.BuildWarden();
-                SelectEnemies();
+                //SelectEnemies();
+                foreach (GameObject blox in playerTeam)
+                {
+                    foreach (AbilityInstance ability in blox.GetComponent<ClassVitals>()._currAbilities)
+                    {
+                        ability.SetCooldown(0);
+                    }
+                }
                 upgradesHandler.ShowUpgradeScreen();
                 return;
             }//end if
 
             //Heal the player and get the next opponent otherwise
             HealPlayer();
-            SelectEnemies();
+            //SelectEnemies();
             foreach (GameObject blox in playerTeam)
             {
                 foreach (AbilityInstance ability in blox.GetComponent<ClassVitals>()._currAbilities)
@@ -298,10 +306,11 @@ public class RunManager : MonoBehaviour
             }
             upgradesHandler.ShowUpgradeScreen();
         }
-        else if (whoWon == Team.Enemy)
+        else if (whoLost == Team.Player)
         {
-            WinLossTracker._singletonInstance.SetPlayerWin(true);
-            EndRun(whoWon);
+            WinLossTracker._singletonInstance.SetPlayerWin(false);
+            EndRun();
+            SceneManager.LoadScene("PostCombatDialogueRoom");
         }
     }//end EndCombat
 
@@ -314,28 +323,15 @@ public class RunManager : MonoBehaviour
     /* Return Value: N/A                                                              */
     /*                                                                                */
     /**********************************************************************************/
-    public void EndRun(Team winningTeam)
+    public void EndRun()
     {
-        //Call the victoryhandler to handle winning
-        /*if(winningTeam == Team.Enemy) 
-        {
-            _lossHandler.ActivateScreen();
-        }
-
-        if (winningTeam == Team.Player)
-        {
-            _victoryHandler.ActivateScreen();
-        }*/
 
         //Resets the current opponent
         _bracketNumber = 0;
 
-        //Clears the player's blox choices, blox, the enemy team, and resets all possible opponents
-        playerSelection.Clear();
         playerTeam.Clear();
         enemyTeam.Clear();
-        _enemyTeamSelector.ResetBracket();
-        //SceneManager.LoadScene("DialogueRoom");
+        EnemyTeamSelector._singletonInstance.ResetBracket();
     }//end EndRun
 
 }//end RunManager
