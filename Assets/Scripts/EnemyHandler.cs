@@ -28,12 +28,22 @@ public class EnemyController : MonoBehaviour
 
     private int abilityAttempts;
 
+    private float timer = 2f;
+
     
     private void Update()
     {
         if (_currentEnemy != null)
         {
-            ChangeState();
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                timer = 2f;
+                ChangeState();
+            }
         }
     }//end update
 
@@ -113,7 +123,7 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (abilityAttempts == 10)
+        if (abilityAttempts == 5)
         {
             Debug.Log("Enemy ending turn from trying too hard");
             EndTurn();

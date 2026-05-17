@@ -124,19 +124,19 @@ public class MapHandler : MonoBehaviour
         Tile[] nearbyTiles = new Tile[4];
         Debug.Log(referenceUnit._currPos);
         //int tileNumber = 0;
-        if (referenceUnit._currPos.x - 1 >= 0)
+        if (referenceUnit._currPos.x - 1 >= 0 && unitGrid[(int)referenceUnit._currPos.x - 1, (int)referenceUnit._currPos.y] == null)
         {
             nearbyTiles[0] = tileGrid[(int)referenceUnit._currPos.x - 1, (int)referenceUnit._currPos.y];
         }
-        if (referenceUnit._currPos.x + 1 < 9)
+        if (referenceUnit._currPos.x + 1 < 9 && unitGrid[(int)referenceUnit._currPos.x + 1, (int)referenceUnit._currPos.y] == null)
         {
             nearbyTiles[1] = tileGrid[(int)referenceUnit._currPos.x + 1, (int)referenceUnit._currPos.y];
         }
-        if (referenceUnit._currPos.y - 1 >= 0)
+        if (referenceUnit._currPos.y - 1 >= 0 && unitGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y - 1] == null)
         {
             nearbyTiles[2] = tileGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y - 1];
         }
-        if (referenceUnit._currPos.y + 1 < 9)
+        if (referenceUnit._currPos.y + 1 < 9 && unitGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y + 1] == null)
         {
             nearbyTiles[3] = tileGrid[(int)referenceUnit._currPos.x, (int)referenceUnit._currPos.y + 1];
 
