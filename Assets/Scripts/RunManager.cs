@@ -56,6 +56,7 @@ public class RunManager : MonoBehaviour
     //A bool for if the player has done the tutorial yet
     public bool _isTutorial = true;
 
+    public int currentHype { get; private set; } = 0;
 
     /**********************************************************************************/
     /*                                                                                */
@@ -87,6 +88,20 @@ public class RunManager : MonoBehaviour
         _bloxPrefabs[7] = new ThiefClass();
         _bloxPrefabs[8] = new TestingClass();
     }//end void
+
+
+    /*************************************************************************************/
+    /*                                                                                   */
+    /* Function name: UpdateHype                                                         */
+    /* Description: Updates the player's current hype                                    */
+    /* Parameters: int hypeModifier: the amount the hype will change                     */
+    /* Return Value: N/A                                                                 */
+    /*                                                                                   */
+    /*************************************************************************************/
+    public void UpdateHype(int hypeModifier)
+    {
+        currentHype += hypeModifier;
+    }//end UpdateHype
 
 
     /*************************************************************************************/
@@ -332,6 +347,7 @@ public class RunManager : MonoBehaviour
         playerTeam.Clear();
         enemyTeam.Clear();
         EnemyTeamSelector._singletonInstance.ResetBracket();
+        currentHype = 0;
     }//end EndRun
 
 }//end RunManager

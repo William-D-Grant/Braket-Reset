@@ -2,10 +2,10 @@
 * Filename:       	AbilityInstance.cs                         *
 * Authors:        	Noah Stern                                 *
 * Version Authors:	Noah Stern                                 *
-* Current Version:  0.0.2                                      *
-* Previous Version: 0.0.1                                      *
+* Current Version:  0.1.0                                      *
+* Previous Version: 0.0.2                                      *
 * Creation Date:  	April 28, 2026                             *
-* Last Modified:  	April 30, 2026                             *
+* Last Modified:  	May 16th, 2026                             *
 * Due Date:       	May 17th, 2026                             *
 * Course:         	CPSC 323                                   *
 * Professor Name: 	Professor Jacklitsch                       *
@@ -13,8 +13,7 @@
 * Purpose:        	A runtime instance of an ability. Used to  *
 *                   separate the AbilityFlyweights from        *
 *                   gameplay so they can be reused             *
-* Version Changes:	Added GetBonusAttack() to the TakeDamage   *
-*                   so it can account for damage upgrades      *
+* Version Changes:	Updated logic to account for Hype costs    *
 ****************************************************************/
 
 using System.Collections;
@@ -40,42 +39,91 @@ public class AbilityInstance
         this._abilityStats = abilityStats;
     }//end AbilityInstance Constructor
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetRange                                                        */
+    /* Description: A gettor for the ability's range                                  */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public int GetRange()
     {
         return _abilityStats.abilityRange;
-    }
+    }//end GetRange
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetName                                                         */
+    /* Description: A gettor for the ability's Name                                   */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public string GetName()
     {
         return _abilityStats.abilityID;
-    }
-    
+    }//end GetName
+
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetDamage                                                       */
+    /* Description: A gettor for the ability's Damage                                 */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public float GetDamage()
     {
         return _abilityStats.abilityDamage;
-    }
+    }//end GetDamage
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: SetCooldown                                                     */
+    /* Description: Sets the cooldown to the passed int                               */
+    /* Parameters: int newCooldown: the new cooldown of this ability                  */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void SetCooldown(int newCooldown)
     {
         _currCooldown = newCooldown;
-    }
+    }//end SetCooldown
 
 
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: UseAbility                                                      */
+    /* Description: Applies all stat changes (hype, cooldown, damage), checks for a   */
+    /*              crit, and if the ability causes an effect, apply that effect      */
+    /* Parameters: ClassVitals abilityCaster: the Blox that cast the ability          */
+    /*             ClassVitals abilityTarget: the blox that was targeted for the ability */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
     public void UseAbility(ClassVitals abilityCaster, ClassVitals abilityTarget)
     {
-        if (/*thing that used ability has enough hype*/ 1 == 1 && _currCooldown == 0)
+        if (RunManager._singletonInstance.currentHype >= this._abilityStats.abilityCost && _currCooldown == 0)
         {
             _currCooldown = _abilityStats.abilityCooldown;
+            RunManager._singletonInstance.UpdateHype(-this._abilityStats.abilityCost);
+            RunManager._singletonInstance.UpdateHype(abilityCaster.GetHype());
             //the thing that used ability hype -= _abilityStats.abilityCost;
             int critChance = Random.Range(0, 10);
             if (critChance > abilityCaster.GetLuck())
             {
                 abilityTarget.TakeDamage(_abilityStats.abilityDamage + abilityCaster.GetBonusAttack(), false);
-            }
+            }//end if
             else if (critChance <= abilityCaster.GetLuck())
             {
                 abilityTarget.TakeDamage(_abilityStats.abilityDamage, true);
-            }
+            }//end else if
 
             string abilityName = _abilityStats.abilityID;
 

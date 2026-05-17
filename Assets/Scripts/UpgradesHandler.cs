@@ -48,38 +48,42 @@ public class UpgradesHandler : MonoBehaviour
     /**********************************************************************************/
     public void UpgradeStat(string chosenStat)
     {
-        switch (chosenStat)
+        if (RunManager._singletonInstance.currentHype >= 5)
         {
-            case "ATTACK":
-                foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
-                {
-                    blox.GetComponent<ClassVitals>().UpgradeAttack(1);
-                    Debug.Log(blox.GetComponent<ClassVitals>().GetAttack());
+            RunManager._singletonInstance.UpdateHype(-5);
+            switch (chosenStat)
+            {
+                case "ATTACK":
+                    foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
+                    {
+                        blox.GetComponent<ClassVitals>().UpgradeAttack(1);
+                        Debug.Log(blox.GetComponent<ClassVitals>().GetAttack());
 
-                }//end foreach
-                break;
+                    }//end foreach
+                    break;
 
-            case "DEFENSE":
-                foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
-                {
-                    blox.GetComponent<ClassVitals>().UpgradeDefense(1);
-                }//end foreach
-                break;
+                case "DEFENSE":
+                    foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
+                    {
+                        blox.GetComponent<ClassVitals>().UpgradeDefense(1);
+                    }//end foreach
+                    break;
 
-            case "HYPE":
-                foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
-                {
-                    blox.GetComponent<ClassVitals>().UpgradeHype(1);
-                }//end foreach
-                break;
+                case "HYPE":
+                    foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
+                    {
+                        blox.GetComponent<ClassVitals>().UpgradeHype(1);
+                    }//end foreach
+                    break;
 
-            case "TM":
-                foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
-                {
-                    blox.GetComponent<ClassVitals>().UpgradeTileMovement(1);
-                }//end foreach
-                break;
-        }//end switch
+                case "TM":
+                    foreach (GameObject blox in RunManager._singletonInstance.playerTeam)
+                    {
+                        blox.GetComponent<ClassVitals>().UpgradeTileMovement(1);
+                    }//end foreach
+                    break;
+            }//end switch
+        }
     }//end UpgradeStat
 
 

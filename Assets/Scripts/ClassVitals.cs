@@ -549,7 +549,20 @@ public class ClassVitals : MonoBehaviour
     public int GetTileMovement()
     {
         return _currTM + _bonusTM;
-    }//end GetDefense
+    }//end GetTileMovement
+
+    /**********************************************************************************/
+    /*                                                                                */
+    /* Function name: GetHype                                                         */
+    /* Description: A gettor for the Blox's hype                                      */
+    /* Parameters: N/A                                                                */
+    /* Return Value: N/A                                                              */
+    /*                                                                                */
+    /**********************************************************************************/
+    public int GetHype()
+    {
+        return _currHype;
+    }//end GetTileMovement
 
     /**********************************************************************************/
     /*                                                                                */

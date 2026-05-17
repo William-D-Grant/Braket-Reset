@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
             remainingTM--;
             Debug.Log(remainingTM + " TM Left");
             _playerGUI.UpdatePlayerDisplay();
+            RunManager._singletonInstance.UpdateHype(activeUnit.GetComponent<ClassVitals>().GetHype());
             
         }
         if (selectedTile != null)
