@@ -42,4 +42,6 @@ public class AbilityFlyweight
 
     //The effect(s) the ability applies
     public List<EffectFlyweight> statusEffect;
+    //Determines how long an animation should play for.
+    public float animationLength = 1f;
 }//end AbilityFlyweight

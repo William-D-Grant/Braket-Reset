@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
     public void UseAbility()
     {
+        if (abilitySelected.GetName() == "Joke"){activeUnit.GetComponent<ClassVitals>().DoAnimation(abilitySelected.GetName());}
         Debug.Log(abilitySelected._currCooldown); 
         if (hasAction && targetUnit != null && abilitySelected._currCooldown == 0)
         {

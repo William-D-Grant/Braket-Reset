@@ -75,7 +75,8 @@ public class ClassVitals : MonoBehaviour
 
     //The associated Blox's GameObject
     public GameObject _bloxObject;
-
+    //The animation control script attatched to each Blox, which communicates with the animator
+    public AnimationControlScript _bloxAnimation; 
     public event Action<ClassVitals> onDefeated;
 
     /**********************************************************************************/
@@ -393,6 +394,11 @@ public class ClassVitals : MonoBehaviour
     public int GetRange()
     {
         return _currRange;
+    }
+
+    public void DoAnimation(string givenName)
+    {
+        _bloxAnimation.PlayAnimation(givenName);
     }
 
     /**********************************************************************************/
